@@ -175,40 +175,40 @@ The library doesn't make a difference between mocks and stubs (specific to their
 #### Basic Usage
 ```
 let myClassMock: MyClass = mock(MyClass);
-when(myClassMock.get(3)).thenReturn("This is a test string");
+when(myClassMock.foo(3)).thenReturn("This is a test string");
 
 let myClassMockInstance: MyClass = instance(myClassMock);
 
-console.log(myClassMockInstance.get(3)) // Prints 'This is a test string'
-console.log(myClassMockInstance.get(4)) // Prints undefined
+console.log(myClassMockInstance.foo(3)) // Prints 'This is a test string'
+console.log(myClassMockInstance.foo(4)) // Prints null
 ```
 
 ### Stubs for different calls
 ```
 let myClassMock: MyClass = mock(MyClass);
-when(myClassMock.get(3)).thenReturn("This is a test string");
-when(myClassMock.get(4)).thenReturn("Another test string");
+when(myClassMock.foo(3)).thenReturn("This is a test string");
+when(myClassMock.foo(4)).thenReturn("Another test string");
 
 let myClassMockInstance: MyClass = instance(myClassMock);
 
-console.log(myClassMockInstance.get(3)) // Prints 'This is a test string'
-console.log(myClassMockInstance.get(4)) // Prints 'Another test string'
+console.log(myClassMockInstance.foo(3)) // Prints 'This is a test string'
+console.log(myClassMockInstance.foo(4)) // Prints 'Another test string'
 ```
 
 ### Multiple stubs for the same call
 ```
 let myClassMock: MyClass = mock(MyClass);
-when(myClassMock.get(3))
+when(myClassMock.foo(3))
   .thenReturn("A stub")
   .thenReturn("Another stub")
   .thenReturn("Final stub");
 
 let myClassMockInstance: MyClass = instance(myClassMock);
 
-console.log(myClassMockInstance.get(3)) // Prints 'A stub'
-console.log(myClassMockInstance.get(3)) // Prints 'Another stub'
-console.log(myClassMockInstance.get(3)) // Prints 'Final stub'
-console.log(myClassMockInstance.get(3)) // Prints 'Final stub'
+console.log(myClassMockInstance.foo(3)) // Prints 'A stub'
+console.log(myClassMockInstance.foo(3)) // Prints 'Another stub'
+console.log(myClassMockInstance.foo(3)) // Prints 'Final stub'
+console.log(myClassMockInstance.foo(3)) // Prints 'Final stub'
 ```
 
 ### Supported Mock Types
