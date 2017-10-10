@@ -41,7 +41,7 @@ This is working fine. However, it isn't using the full power of Typescript, sinc
 
 Moreover, if the mocked class (`Http` in the example) was to change a method's interface, the test would only fail at runtime (which isn't great). If the mock was typed, the test would fail at compile-time (which is a bit better).
 
-### `ts-mockito`
+## `ts-mockito`
 This is where [`ts-mockito`](https://github.com/NagRock/ts-mockito) comes in!
 
 From the GitHub [repo](https://github.com/NagRock/ts-mockito):
@@ -99,20 +99,20 @@ Stubs are objects that easily provides values for a given method, without to act
 
 This is probably the main feature of the library. `ts-mockito` allows the user to create strongly typed mock and then verify the behavior on it later.
 
-*Attention*: `ts-mockito` require to define a mock object, and then create an instance of that mock that will be used to records behavior. Ultimately, the verification is done on the mock.
+*Attention*: `ts-mockito` require to define a mock object, and then create an instance of that mock that will be used to record behavior. Ultimately, the verification is done on the mock.
 
 #### Basic Example
 
 Suppose
 ```
 class MyClass {
-  foo(n: number): Bar {
-    return createBarFromNumber(n);
+  foo(n: number): string {
+    return createStringFromNumber(n);
   }
 }
 ```
 
-Then
+Then,
 ```
 let myClassMock: MyClass = mock(MyClass);
 
@@ -140,3 +140,128 @@ verify(myClassMock.foo(1)).atMost(2); // Failure!
 verify(myClassMock.foo(1)).never(); // Failure!
 ```
 
+#### Argument Specification
+```
+let myClassMock: MyClass = mock(MyClass);
+
+let myClassMockInstance: MyClass = instance(myClassMock);
+myClassMockInstance.foo(4);
+
+verify(myClassMock.foo(anything())).called(); // Success!
+verify(myClassMock.foo(anyNumber())).called(); // Success!
+verify(myClassMock.foo(between(2, 6))).called(); // Success!
+```
+
+#### Call Order Verification
+```
+let myClassMock: MyClass = mock(MyClass);
+let myOtherClassMock: MyClass = mock(MyClass);
+
+let myClassMockInstance: MyClass = instance(myClassMock);
+let myOtherClassMockInstance: MyClass = instance(myClassMock);
+myClassMockInstance.foo(4);
+myOtherClassMockInstance.foo(5);
+
+verify(myClassMock.foo(anything())).calledBefore(myOtherClassMock.foo(anything())); // Success!
+verify(myOtherClassMock.foo(anything())).calledAfter(myClassMock.foo(anything())); // Success!
+```
+
+### Stubbing
+
+`ts-mockito` provides also a stubbing feature, i.e. it can stub determined value for specific calls without actually executing the implementation.
+
+The library doesn't make a difference between mocks and stubs (specific to their definitions) here, since the stubbing is also done on the mock object.
+
+#### Basic Usage
+```
+let myClassMock: MyClass = mock(MyClass);
+when(myClassMock.get(3)).thenReturn("This is a test string");
+
+let myClassMockInstance: MyClass = instance(myClassMock);
+
+console.log(myClassMockInstance.get(3)) // Prints 'This is a test string'
+console.log(myClassMockInstance.get(4)) // Prints undefined
+```
+
+### Stubs for different calls
+```
+let myClassMock: MyClass = mock(MyClass);
+when(myClassMock.get(3)).thenReturn("This is a test string");
+when(myClassMock.get(4)).thenReturn("Another test string");
+
+let myClassMockInstance: MyClass = instance(myClassMock);
+
+console.log(myClassMockInstance.get(3)) // Prints 'This is a test string'
+console.log(myClassMockInstance.get(4)) // Prints 'Another test string'
+```
+
+### Multiple stubs for the same call
+```
+let myClassMock: MyClass = mock(MyClass);
+when(myClassMock.get(3))
+  .thenReturn("A stub")
+  .thenReturn("Another stub")
+  .thenReturn("Final stub");
+
+let myClassMockInstance: MyClass = instance(myClassMock);
+
+console.log(myClassMockInstance.get(3)) // Prints 'A stub'
+console.log(myClassMockInstance.get(3)) // Prints 'Another stub'
+console.log(myClassMockInstance.get(3)) // Prints 'Final stub'
+console.log(myClassMockInstance.get(3)) // Prints 'Final stub'
+```
+
+### Supported Mock Types
+`ts-mockito` supports the mocking of normal classes and abstract classes. However, it *can't* stub abstract methods in abstract classes. Furthermore, it also doesn't support the mocking of interfaces. The reason behind this is that abstract methods and interface are Typescript constructs and aren't defined at runtime. Thus, there is no way for `ts-mockito` to do anything about those types.
+
+However, there is a quick work-around for this, if one really wants/needs to mock an interface. It requires the usage of a fake class implemented the wanted interface.
+
+```
+interface MyInterface {
+  foo(n: number): string;
+}
+
+class FakeOfMyInterface implements MyInterface {
+  foo(n: number): string {
+    throw new Error(`Method not implemented`);
+  }
+}
+
+...
+
+let myInterfaceMock: MyInterface = mock(FakeOfMyInterface);
+let myInterfaceMockInstance: MyInterface = instance(myInterfaceMock);
+
+...
+```
+
+## Final thoughts
+
+I think that `ts-mockito` is a great library. It provides strongly typed mocks, intuitive functions and powerful features. I personally used it a few times and I liked it better than the features provided by the Jasmine framework.
+
+Here is the test file from the motivation section using `ts-mockito`:
+```
+describe('Load Stuff', () => {
+  let httpServiceMock: Http = mock(Http);
+
+  let myService: MyService = new MyService(instance(httpServiceMock));
+
+  it('should load stuff', () => {
+    myService.loadStuff();
+    verify(httpServiceMock.get(...)).called();
+  });
+});
+```
+
+Finally, there are some advices that one should know in order to not get lost in the sea of mocks and create hard to read tests. Those advices come from the `Mockito` documentation page
+> * Do not mock types you don’t own
+> * Don’t mock value objects
+> * Don’t mock everything
+> * Show love with your tests!
+
+Code from examples can be found here: ...
+
+## References
+1. `ts-mockito` GitHub page: https://github.com/NagRock/ts-mockito
+2. Martin Fowler - 'Mocks Aren't Stubs': https://martinfowler.com/articles/mocksArentStubs.html
+3. Mockito (Mocking Framework for Java): http://site.mockito.org/
