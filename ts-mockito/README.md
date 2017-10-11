@@ -1,7 +1,7 @@
 # Strongly typed Typescript mocks/stubs with `ts-mockito`
 
 ## Motivation
-Coming from Java to Typescript was a fairly straigforward transition to me: strong types,
+Going from Java to Typescript was a fairly straightforward transition for me: strong types,
 classes, generics, etc. However, since Typescript is a typed superset of Javascript,
 it is still possible to go around types (using the `any` type) to achieve some goals and/or features.
 
@@ -66,7 +66,7 @@ Framework for unit-tests in Java and certainly has powerful mocking/stubbing fea
 * Strongly Typed
 * Mocks on class and abstract classes (no mocks on interfaces, but we'll talk about
 a workaround later)
-* Verify mecanism on mock behaviours
+* Verify mechanism on mock behaviours
   * Flexible arguments comparison
   * Call count verification
   * Call order verification
@@ -81,11 +81,11 @@ a workaround later)
 Before going further, terminology definitions is necessary to have a clear understanding
 on the term used in this post. Martin Fowler's [blog post](https://martinfowler.com/articles/mocksArentStubs.html)
 about the subject will be used as the source of truth here.
-Fowler's himself is refering to Gerard Meszaros's
+Fowler's himself is referring to Gerard Meszaros's
 ["xUnit Test Patterns"](https://books.google.ca/books?id=-izOiCEIABQC&lpg=PP1&dq=xunit%20test%20patterns&pg=PP1#v=onepage&q=xunit%20test%20patterns&f=false)
 book about unit-test code, and how to refactor it.
 
-Typically, a unit test follow four phases (which are referenced in the terminology definition). Those are named
+Typically, a unit test follows four phases (which are referenced in the terminology definition). Those are named:
 1. Setup: Prepare the necessary objects before performing the test
 2. Exercice: Call the actual method/function under test
 3. Verify: Verify the output and/or the behavior of what is under test
@@ -199,7 +199,7 @@ verify(myOtherClassMock.foo(anything())).calledAfter(myClassMock.foo(anything())
 specific calls without actually executing the implementation.
 
 The library doesn't make a difference between mocks and stubs objects (specific to the definitions
-mentionned above) here, since the stubbing is also done on the mock object.
+mentioned above) here, since the stubbing is also done on the mock object.
 
 #### Basic Usage
 ```
@@ -247,7 +247,7 @@ it doesn't support the mocking of interfaces. The reason behind this is that
 abstract methods and interface are Typescript constructs and aren't defined in Javascript.
 Thus, there is no way for `ts-mockito` to do anything about those types.
 
-However, there is a quick work-around for this, if one really wants/needs to mock an interface.
+However, there is a quick workaround for this, if one really wants/needs to mock an interface.
 It requires the usage of a fake class implementing the wanted interface.
 
 ```
