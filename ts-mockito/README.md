@@ -198,7 +198,7 @@ verify(myOtherClassMock.foo(anything())).calledAfter(myClassMock.foo(anything())
 `ts-mockito` provides also a stubbing feature, i.e. it can stub determined value for
 specific calls without actually executing the implementation.
 
-The library doesn't make a difference between mocks and stubs objects (specific to the definitions
+The library doesn't make a difference between mock and stub objects (specific to the definitions
 mentioned above) here, since the stubbing is also done on the mock object.
 
 #### Basic Usage
