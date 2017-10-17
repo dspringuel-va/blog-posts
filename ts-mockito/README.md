@@ -289,8 +289,8 @@ describe('Load Stuff', () => {
 });
 ```
 
-Finally, there are some advices that one should know in order to not get lost in the
-sea of mocks and create tests that are hard to read. Those advices come from the `Mockito`
+Finally, here are some tips that one should know in order to not get lost in the
+sea of mocks and create tests that are hard to read. These tips come from the `Mockito`
 documentation page
 
 > * Do not mock types you don’t own
