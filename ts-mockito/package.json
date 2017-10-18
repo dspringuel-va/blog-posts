@@ -15,5 +15,8 @@
     "typescript": "^2.5.3",
     "@types/chai": "^4.0.4",
     "chai": "^4.1.2"
+  },
+  "repository": {
+    "url": "https://github.com/dspringuel-va/blog-posts/tree/master/ts-mockito"
   }
 }
