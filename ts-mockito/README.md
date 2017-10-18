@@ -298,7 +298,7 @@ documentation page
 > * Don’t mock everything
 > * Show love with your tests!
 
-Code from examples can be found [here](https://github.com/dspringuel-va/blog-posts/tree/ts-mockito/ts-mockito).
+Code from examples can be found [here](https://github.com/dspringuel-va/blog-posts/tree/master/ts-mockito).
 
 ## References
 1. `ts-mockito` GitHub page: https://github.com/NagRock/ts-mockito
