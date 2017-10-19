@@ -1,6 +1,9 @@
 export class MyClass {
+
+  constructor(private myInterface: MyInterface){}
+
   public foo(n: number): string {
-    return `Foo number ${n}`;
+    return this.myInterface.foo(n);
   }
 }
 
