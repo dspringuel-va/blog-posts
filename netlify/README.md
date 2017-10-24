@@ -8,7 +8,7 @@ From Netlify's [website](https://www.netlify.com/):
 
 For my hackathon project, I decided to explore this platform to learn what it can and cannot do.
 
-I created an Angular 2 application with the Angular CLI utility, and used this application to hosted on the Netlify platform.
+I created an Angular 2 application with the Angular CLI utility, and used this application to be hosted on the Netlify platform.
 
 ## Overview
 
@@ -59,17 +59,17 @@ Creating a website on Netlify is really easy. There are two methods:
 The Drag & Drop method is nice and easy. You drop the website files and then your website is live online. There's nothing else to do. However, dropping the files each time one needs to update the website can be tedious and annoying.
 
 #### Git
-Creating a website from a Git repository is way more practical. The only thing to setup is the repository URL and the default branch (let's say `master`) to be on production. Upon creation, Netlify deploys and publishes the application at the head of `master`. To release subsequent version, one simply needs to push new code to `master` on GitHub.
+Creating a website from a Git repository is more practical. The only thing to setup is the repository URL and the default branch (let's say `master`) to be on production. Upon creation, Netlify deploys and publishes the application at the head of `master`. To publish subsequent versions, one simply needs to push new code to `master` on GitHub.
 
-This enables a great development workflow. Development happens in a feature branch. When it is ready to be release, the feature branch is simply merged into `master` and Netlify automatically builds, deploys and publishes the application.
+This enables a great development workflow. Development happens in a feature branch. When it is ready to be released, the feature branch is simply merged into `master` and Netlify automatically builds, deploys and publishes the application.
 
-In fact, Netlify creates 'Deploys' for every new push in every available branch. A deploy is a snapshot of the application for a given commit hash. There is not a deploy created for each individual commit, but one is created each time code is pushed to GitHub.
+In fact, Netlify creates 'Deploys' for every new push in every available branch. A deploy is a snapshot of the application for a given commit hash. Netlify doesn't create a deploy for each individual commit, but creates one each time code is pushed to GitHub.
 
-Each deploy begins by building the application code. Again, one simply needs to supply the build command to be executed by Netlify. Node, Ruby and Python environment are supported. Netlify also manages dependencies (assuming that dependencies files are provided, e.g. package.json, Gemfile, requirements.txt). Furthermore, it caches the dependencies for a faster build time for subsequent builds (assuming the dependencies don't change). For the Angular 2 application that I created, I set the build command to `npm run build:prod`, which was mapped to `ng serve --target=production --aot`.
+Each deploy begins by building the application code. Again, one simply needs to supply the build command to be executed by Netlify. Node, Ruby and Python environments are supported. Netlify also manages dependencies (assuming that dependencies files are provided, e.g. package.json, Gemfile, requirements.txt). Furthermore, it caches the dependencies for a faster build time for subsequent builds (assuming the dependencies don't change). For the Angular 2 application that I created, I set the build command to `npm run build:prod`, which was mapped to `ng build --target=production --aot`.
 
 Depending on the build tool, the build output could be in different folder. Thus, Netlify lets the user specify the publish directory. In my test application, I set this directory to `dist`, since it's the Angular CLI default output destination.
 
-Moreover, Netlify lets the user defines some environment variables that are available during build time. It also exposes some pre-defined environment variables, e.g. `REPOSITORY_URL`, `BRANCH`, `PULL_REQUEST`, etc.
+Moreover, Netlify lets the user defines some environment variables which will be available during build time. It also exposes some pre-defined environment variables, e.g. `REPOSITORY_URL`, `BRANCH`, `PULL_REQUEST`, etc.
 
 ### Continous Deployment
 Once the application is set up, deploying new version is as simple as pushing new code to GitHub. As mentionned above, each push on each branch will create a deploy on Netlify. There are three deploy contexts defined in Netlify: Production, Branch Deploy and Deploy Previews.
@@ -78,14 +78,14 @@ However, only the deploys from the production context (deploy from `master` in t
 
 In any cases, the user can publish any deploy living on Netlify. That means that every deploy created from any branch can be published into production by a click of a button. Publishing a deploy into production is a matter of seconds. For example, if there was a bad push into production, a Netlify user can roll it back by publishing the previous version to have a clean application in production while the problem is being fixed.
 
-At any given time, there will be only only one deploy published in production. However, each individual deploy is also hosted online. Netlify exposes those deploys by specifying a prefix in the URL for each of them. For example, individual deploy can be accessed by prefixing the commit hash in the URL; deploys referring to a branch's head can also be access by prefixing the branch name in the URL; deploys referred in a pull request can be accessed by prefixing 'deploy-preview-' + the pull request number.
+At any given time, there will be only only one deploy published in production. However, each individual deploy is also hosted online. Netlify exposes those deploys by specifying a prefix in the URL for each of them. For example, individual deploy can be accessed by prefixing the commit hash in the URL; deploys referring to a branch's head can also be access by prefixing the branch name in the URL; deploys referred in a pull request can be accessed by prefixing 'deploy-preview-' + *pull request number* in the URL.
 
 ### Deploy Previews
 
 Each time there a pull request against the production branch, Netlify creates another deploy called 'Deploy Previews'. There is a 1:1 mapping between deploy previews and pull requests on the repository. Netlify also integrates with GitHub to expose a link (within the pull request's page) to the preview version. That means that the reviewer can see an actual live preview for the pull request, which gives a good context to give meaningful comments.
 
 ## Other features
-I think the following features are not as meaningful as the deployment, but still worth mentionning.
+I think the following features are not as meaningful as the deployment feature, but still worth mentionning.
 
 ### Split Testing
 From the [docs](https://www.netlify.com/docs/split-testing/):
@@ -96,7 +96,6 @@ Split testing takes advantages of having different branches on GitHub. As mentio
 However, there is no way to determine which users will be served which version.
 
 ### Forms
-
 Netlify can receive submissions from any forms living in the website. For each deploy, there is a post-processing bots that looks for a `netlify` attribute within a `form` tag. Then, it exposes the found forms in the Netlify dashboard. Netlify keeps every submissions on the platform. The submissions can be exported into a CSV file.
 
 Furthermore, notifications can be created for each submissions received. Netlify supports Slack messages, webhooks and emails notifications.
