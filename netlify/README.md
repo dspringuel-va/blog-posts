@@ -61,11 +61,11 @@ The Drag & Drop method is nice and easy. You drop the website files and then you
 #### Git
 Creating a website from a Git repository is more practical. The only thing to setup is the repository URL and the default branch (let's say `master`) to be on production. Upon creation, Netlify deploys and publishes the application at the head of `master`. To publish subsequent versions, one simply needs to push new code to `master` on GitHub.
 
-![Create new site](https://i.imgur.com/6ICrCzem.png)
+![Create new site](https://i.imgur.com/6ICrCzel.png)
 
 This enables a great development workflow. Development happens in a feature branch. When it is ready to be released, the feature branch is simply merged into `master` and Netlify automatically builds, deploys and publishes the application.
 
-![Production deploys](https://i.imgur.com/3yGHeKPm.png?1)
+![Production deploys](https://i.imgur.com/3yGHeKPl.png?1)
 
 In fact, Netlify creates 'Deploys' for every new push in every available branch. A deploy is a snapshot of the application for a given commit hash. Netlify doesn't create a deploy for each individual commit, but creates one each time code is pushed to GitHub.
 
@@ -74,22 +74,22 @@ Each deploy begins by building the application code. Again, one simply needs to 
 
 Depending on the build tool, the build output could be in different folder. Thus, Netlify lets the user specify the publish directory. In my test application, I set this directory to `dist`, since it's the Angular CLI default output destination.
 
-![Deploy settings](https://i.imgur.com/U8ixR6Um.png)
+![Deploy settings](https://i.imgur.com/U8ixR6Ul.png)
 
 Moreover, Netlify lets the user defines some environment variables which will be available during build time. It also exposes some pre-defined environment variables, e.g. `REPOSITORY_URL`, `BRANCH`, `PULL_REQUEST`, etc.
 
 ### Continous Deployment
 Once the application is set up, deploying new version is as simple as pushing new code to GitHub. As mentionned above, each push on each branch will create a deploy on Netlify. There are three deploy contexts defined in Netlify: Production, Branch Deploy and Deploy Previews.
 
-![All Deploys](https://i.imgur.com/Eeqkm6Rm.png)
+![All Deploys](https://i.imgur.com/Eeqkm6Rl.png)
 
 However, only the deploys from the production context (deploy from `master` in the example) will be published. The auto-publish feature can be turn off in the dashboard. Then, the user will have to manually publish any desired deploys.
 
-![Deploy Dashboard](https://i.imgur.com/8dnTvY8m.png)
+![Deploy Dashboard](https://i.imgur.com/8dnTvY8l.png)
 
 In any cases, the user can publish any deploy living on Netlify. That means that every deploy created from any branch can be published into production by a click of a button. Publishing a deploy into production is a matter of seconds. For example, if there was a bad push into production, a Netlify user can roll it back by publishing the previous version to have a clean application in production while the problem is being fixed.
 
-![Deploy not published](https://i.imgur.com/gVgwrlZm.png)
+![Deploy not published](https://i.imgur.com/gVgwrlZl.png)
 
 At any given time, there will be only only one deploy published in production. However, each individual deploy is also hosted online. Netlify exposes those deploys by specifying a prefix in the URL for each of them. For example, individual deploy can be accessed by prefixing the commit hash in the URL; deploys referring to a branch's head can also be access by prefixing the branch name in the URL; deploys referred in a pull request can be accessed by prefixing 'deploy-preview-' + *pull request number* in the URL. Moreover, a Netlify user can simply click the 'Preview deploy' to preview the a deploy.
 
