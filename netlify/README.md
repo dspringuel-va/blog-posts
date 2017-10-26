@@ -112,7 +112,7 @@ be available during build time. It also exposes some pre-defined environment
 variables, e.g. `REPOSITORY_URL`, `BRANCH`, `PULL_REQUEST`, etc.
 
 ### Continous Deployment
-Once the application is set up, deploying new version is as simple as
+Once the application is set up, deploying a new version is as simple as
 pushing new code to GitHub. As mentionned above, each push on each branch
 will create a deploy on Netlify. There are three deploy contexts defined
 in Netlify: Production, Branch Deploy and Deploy Previews.
@@ -134,7 +134,7 @@ production while the problem is being fixed.
 
 ![Deploy not published](https://i.imgur.com/gVgwrlZl.png)
 
-At any given time, there will be only only one deploy published in production.
+At any given time, there will be only one deploy published in production.
 However, each individual deploy is also hosted online. Netlify exposes those
 deploys by specifying a prefix in the URL for each of them. For example,
 individual deploy can be accessed by prefixing the commit hash in the URL;
