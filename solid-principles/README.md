@@ -72,6 +72,96 @@ Finally, this is probably the most important principle in this group. It is the 
 
 ## The Liskov Substitution Principle
 
+The Open-Closed Principle uses abstraction and polymorphism as its primary mechanisms. In object-oriented language, inheritance is a tool that let the user implements abstract classes. However, there are some traps that comes with inheritance that will eventually violate the Open-Closed Principle. The Liskov Substitution Principle is a principle that helps avoids those violations. It is defined as follow:
+
+>*Subtypes must be substitutable for their base types*
+
+In other words, a subtype, when used as its base type, should not behave differently than the general abstract case. Let's have an example that shows a violation.
+
+First, let's define some classes.
+```
+interface Shape {
+  calculateArea(): int
+}
+class Rectangle implements Shape {
+  getWidth():int {...}
+  setWidth(width:int) {...}
+  getHeight():int {...}
+  setHeight(height:int) {...}
+
+  calculateArea(): int { return getWidth() * getHeight(); }
+}
+```
+Here, we have a rectangle that implements a `Shape` interface. So far, no violation. However, we want now to implement a square class
+
+```
+class Square extends Rectangle {
+  setWidth(width: int) {
+    super.setWidth(width);
+    super.setHeight(height);
+  }
+  setHeight(height: int) {
+    super.setWidth(width);
+    super.setHeight(height);
+  }
+}
+```
+
+Since a square is a rectangle, it makes sense to extends the `Rectangle` class. It reuses the `get` methods, plus the `calculateArea` method. However, this inheritance violates the Liskov Substitution Principle and here is why
+
+```
+function rectangleTest(rectangle: Rectangle) {
+  rectangle.setWidth(5);
+  rectangle.setHeight(4);
+
+  assertThat(rectangle.calculateArea(), is(20));
+}
+```
+
+Following the principle, the above assertion must always be true. It makes sense since we are expecting a rectangle and a rectangle by definition can have different width and height and that its area is the product of the two. However, if this function receives a `Square` object, the assertion will fail. With this particular implementation, a `Square` can't be substituted by its base type (here `Rectangle`) without changing the expected base class behavior.
+
+We could update the test with the following
+```
+function rectangleTest(rectangle: Rectangle) {
+  rectangle.setWidth(5);
+  rectangle.setHeight(4);
+
+  if(rectangle is Square) {
+    assertThat(rectangle.calculateArea(), is(16));
+  }
+  else {
+    assertThat(rectangle.calculateArea(), is(20));
+  }
+}
+```
+However, the `Rectangle` is now aware of a specific behavior from its subclass, which violates the Open-Closed principle.
+
+Thus, the previous `Square`-`Rectangle` implementation isn't the right way to go. However, how can we reuse `Rectangle`'s `calculateArea` implementation in the `Square` class, since it's the same? The answer is composition.
+
+```
+class Square implements Shape {
+  private squareRectangle: Rectangle;
+
+  setWidth(width: int) {
+    squareRectangle.setWidth(width);
+    squareRectangle.setHeight(height);
+  }
+  setHeight(height: int) {
+    squareRectangle.setWidth(width);
+    squareRectangle.setHeight(height);
+  }
+  getWidth():int { return squareRectangle.getWidth(); }
+  getHeight():int { return squareRectangle.getHeight(); }
+
+  calculateArea(): int { return squareRectangle.calculateArea(); }
+}
+```
+
+With composition, it is possible to reuse the `Rectangle` functionnality without mixing the two classes. It is now not possible to pass a `Square` in the test function above, since the `Square` class doesn't extends the `Rectangle` anymore.
+
+Finally, the Liskov Substitution Principle is a principle that helps avoiding bugs caused by weird substitutability errors created by a misuse of inheritance.
+
+
 ## The Interface Segregation Principle
 
 ## The Dependency Inversion Principle
