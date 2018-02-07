@@ -159,14 +159,79 @@ class Square implements Shape {
 
 With composition, it is possible to reuse the `Rectangle` functionnality without mixing the two classes. It is now not possible to pass a `Square` in the test function above, since the `Square` class doesn't extends the `Rectangle` anymore.
 
-Finally, the Liskov Substitution Principle is a principle that helps avoiding bugs caused by weird substitutability errors created by a misuse of inheritance.
+Finally, the Liskov Substitution Principle is a principle that helps avoiding bugs caused by weird substitutability errors created by a misuse of inheritance. Furthermore, keeping that principle in mind helps a lot when applying the Open-Closed Principle.
 
 
 ## The Interface Segregation Principle
 
+The Interface Segregation Principle states the following:
+
+>*A client should not be forced to depend on methods it doesn't use.*
+
+When a client depends on more methods in a class that it needs, it creates unnecessary coupling between the class and those methods. For example,
+
+```
+class Base {
+  foo() {...}
+  bar() {...}
+}
+
+class UserA {
+  aMethod(base: Base) {
+    ...
+    base.foo();
+    ...
+  }
+}
+
+class UserB {
+  anotherMethod(base: Base) {
+    ...
+    base.bar();
+    ...
+  }
+}
+```
+
+Here, the class `UserA` only uses the `foo()` method on the `Base` class, where `UserB` only uses the `bar()` method on the `Base` class. That means that if `UserB` forces changes on the `Base` class, it will automatically affect the `UserA` class, even though the changes has nothing to do with the `foo()` method. This is because the `Base` class needs to be recompiled and redeployed, which will trigger the same for its users, in that case `UserA` and `UserB`. However, recompiling, retesting and redeploying `UserA` each time another `Base`class' user forces changes is bad. It means that `UserA` and `UserB` and now indirectly coupled, which leads to fragility. That's why segregating interface is important.
+
+We can fix the previous example by creating new interfaces and moving the dependencies.
+
+```
+interface Foo {
+  foo();
+}
+interface Bar {
+  bar();
+}
+class Base implements Foo, Bar {
+  foo() {...}
+  bar() {...}
+}
+
+class UserA {
+  aMethod(foo: Foo) {
+    ...
+    foo.foo();
+    ...
+  }
+}
+
+class UserB {
+  anotherMethod(bar: Bar) {
+    ...
+    bar.bar();
+    ...
+  }
+}
+```
+
+Now, each user knows only about the methods it needs. Furtermore, if the `Bar` interface changes now (because the `UserB` needs it to), the `Foo` interface stays unaffected, which means that the `UserA` won't need to be recompiled, retested nor redeployed.
+
+
 ## The Dependency Inversion Principle
 
-## Conclusion
+## Closing
 
 ## References
 - Robert C. Martin, "Clean Architecture: A Craftsman's guide to Software Structure and Design", Prentice Hall, 2018
