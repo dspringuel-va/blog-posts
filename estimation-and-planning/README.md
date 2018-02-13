@@ -12,7 +12,7 @@ There has been a few things that bothered me for a while now related to our esti
 ## Goals
 ### Understand better how we use estimation and planning in R&D
 ### Find a way to have more meaningful estimates
-### Find a way to have better confidence in roadmaps
+### Find a way to have better confidence in roadmaps (timeline wise)
 
 ## Actions
 To achieve the previous goals, I planned to do the following actions
@@ -88,4 +88,15 @@ Thus, I realized why the estimations are very light weight and why the release p
 
 
 ## Return on goals
+
+After this research, I can say I understand more about how we use estimation and planning. I know that continuously delivering actual value as fast as possible is (and should be) the number 1 priority.
+
+One consequence from that statement is that estimates are not as critical as it seemed to me. The amount of work required to be more meaningful in this short cycle time is simply not worth it. It is simply used to roughly gauge if a team has enough defined work for the very next sprint or if more stories need to be refined. With that in mind, I think that our current estimation process is good enough.
+
+Furthermore, the goal to find a way to have better confidence in roadmaps doesn't make much sense anymore. Since the *what* is more important than the *when*, we could even question the existence of roadmaps. Long term goals should be defined by value and not by time. Luckily, we have OKRs (Objective and Key Results) that exist especially for that reason.
+
+An OKR defines a business oriented goal, along with the key results and/or metrics to measure how much that goal was achieved. Then, it defines tactics that drive the completion of the goal. Within those tactics lies candidate features, i.e. software features that add value needed to achieve the objective.
+
+Thus, OKRs can be used to keep the big picture, and at the same time, to keep the focus on delivering actual value.
+
 ## What we can do
