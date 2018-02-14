@@ -78,7 +78,7 @@ After the first interview, I remember thinking *"This is way harder than expecte
 
 When I was done interview the third PM, I started realizing something: Estimation and planning might not be as important as I think it is. All PM's answer (relatively) aligned with that statement. They're not all from the same division and they all have different background, but they still answer somewhat the same thing:
 
->The estimations should be fairly lightweight and be used to help for sprint planning. The release planning/roadmap are there to have rough understanding of what is coming up within the next few months, knowing that it's very likely to change.
+>The estimations should be fairly lightweight and be used to help for sprint planning. The release planning/roadmap are there to have rough understanding of what is coming up within the next few months, knowing that it's very possible to change.
 
 At that point, I started to feel that I wasn't focusing on the right thing. Maybe that a process that yields more accurate estimation and planning is not the most useful thing for R&D. It doesn't matter if you nailed the estimations and the plan if you deliver software that doesn't add value for customers.
 
@@ -99,4 +99,12 @@ An OKR defines a business oriented goal, along with the key results and/or metri
 
 Thus, OKRs can be used to keep the big picture, and at the same time, to keep the focus on delivering actual value.
 
-## What we can do
+## Closing
+
+Looking back, I feel like I didn't do much. I already knew that the OKRs were important and that in the end, they dictate what is coming up in the next few months.
+
+However, I didn't understand completely why the estimates and the planning were so lightweight. It just felt wrong with me, because I probably had to much of a theorytical stance on that point of view. Finally, I'm glad that I did this research, because now I feel that I can stop worrying about estimations and planning and focus even more on delivering business value.
+
+## Reference
+
+- Mike Cohn, "Agile Estimation and Planning", Prentice Hall, 1st edition, 2005
