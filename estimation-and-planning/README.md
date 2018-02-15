@@ -5,14 +5,25 @@ This is a post on research that I did about R&D's estimation and planning proces
 ## Motivations
 There has been a few things that bothered me for a while now related to our estimation and planning process in R&D.
 
-### Having only three estimate size doesn't feel enough
-### I don't feel that the actual number estimates are really useful
-### Off-time (vacation, sick days, hackathon) doesn't seem to be considered in the planning
+### Having only three estimate size doesn't feel enough.
+I feel that having only three sizes makes the estimation really fuzzy. Furthermore, I would say 4 stories out of 5 were always estimated at 2, even though they were really different. I think that some refinement in the size 2 would be possible.
+
+### I don't feel that the actual number estimates are really useful.
+Once we agree on a number, we enter that in Pivotal and we (the dev team) forget about it. I don't really what they are used for. I feel that they could serve a better purpose.
+
+### Time off (vacation, sick days, hackathon) doesn't seem to be considered in the planning.
+I don't know if time off is considered when sprint planning is done. Having some people in the team taking some time off changes completely the velocity for that sprint. I feel that we should consider team member's time off in the planning, and I'm not sure why we don't seem to do it.
 
 ## Goals
-### Understand better how we use estimation and planning in R&D
-### Find a way to have more meaningful estimates
-### Find a way to have better confidence in roadmaps (timeline wise)
+### Understand better how we use estimation and planning in R&D.
+There are many things I don't fully understand related to estimation and planning. I would like to have a better understanding of this process in R&D.
+
+### Find a way to have more meaningful estimates.
+Since I think that the estimate size are really fuzzy, I would like to find a better way to make them more meaningful and useful.
+
+### Find a way to have better confidence in roadmaps (timeline wise).
+The planning always seem really loose and I would like to find a way to make them such that we can rely on them more.
+
 
 ## Actions
 To achieve the previous goals, I planned to do the following actions
