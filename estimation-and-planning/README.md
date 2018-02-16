@@ -3,7 +3,7 @@
 This is a post on research that I did about R&D's estimation and planning process for hackathon in Feb 2018.
 
 ## Motivations
-There has been a few things that bothered me for a while now related to our estimation and planning process in R&D.
+There has been a few things that bothered me for a while related to our estimation and planning process in R&D.
 
 ### Having only three estimate sizes doesn't feel enough.
 I feel that having only three sizes makes the estimation really fuzzy. Furthermore, I would say 4 stories out of 5 were always estimated at 2, even though they were really different. I think that some refinement in the size 2 would be possible.
@@ -14,14 +14,14 @@ Once we agree on a number, we enter that in Pivotal and we (the dev team) forget
 ### Time off (vacation, sick days, hackathon) doesn't seem to be considered in the planning.
 I don't know if time off is considered when sprint planning is done. Having some people in the team taking some time off changes completely the velocity for that sprint and potentially alters the longer-term planning.
 
-I feel that we should consider team member's time off in the planning, and I'm not sure why we don't seem to do it.
+I feel that we should consider team member's time off in the planning, and I'm not sure why we don't do it.
 
 ## Goals
 ### Understand better how we use estimation and planning in R&D.
 There are many things I don't fully understand related to estimation and planning in R&D. I would like to have a better understanding of this process.
 
 ### Find a way to have more meaningful estimates.
-Since I think that the estimate size are really fuzzy, I would like to find a better way to make them more meaningful and useful.
+Since I think that the estimate sizes are really fuzzy, I would like to find a better way to make them more meaningful and useful.
 
 ### Find a way to have better confidence in roadmaps (timeline wise).
 The planning always seem really loose and I would like to find a way to make them so that we can rely on them a bit more, even though I know it can't be perfect.
@@ -45,9 +45,9 @@ At the beginning, the author states that the estimations for stories work better
 
 The author also talks about planning. The planning part gives ways to plan a block of stories focusing on value, either by themes, by some financial measures or by desirability. He also talks about how splitting user stories might help the planning.
 
-The next point is scheduling the release planning and the iteration planning. The release planning should be pretty straigtforward: Sum of the wanted stories divided by a velocity yields how many iterations are needed. The author also talks about techniques for estimating velocity (use historical values, run a iteration or make a forecast). Furthermore, he talks about how to calculate buffers to plan for uncertainty.
+The next point is scheduling the release planning and the sprint planning. The release planning should be pretty straigtforward: Sum of the wanted stories divided by a velocity yields how many sprints are needed. The author also talks about techniques for estimating velocity (use historical values, run a sprint or make a forecast). Furthermore, he talks about how to calculate time buffers to plan for uncertainty.
 
-Then, the author gives examples on how to track and communicate progress on both release and iteration plans, like task boards or burdown charts.
+Then, the author gives examples on how to track and communicate progress on both release and sprint plans, like task boards or burdown charts.
 
 Finally, the books ends with reasons on why agile estimating and planning works. To name a few
 - Replanning occurs frequently
@@ -69,14 +69,14 @@ I interviewed three PMs during the first half of hackathon. I asked them questio
   - What are the blockers related to planning?
 - Tracking and communication
   - *Questions about tools (Pivotal, Jira)*
-  - Do you think burdown charts (either for release or iteration planning) would help?
+  - Do you think burdown charts (either for release or sprint planning) would help?
   - Do you think tracking various metric would help he process in general?
 
 
 ### Experiments
 For the first half of hackathon, I experimented with workflows to help to automatically plan the release and track some metrics.
 
-I also tested some workflows for iteration planning and tracking by implementing an automatic iteration burndown chart.
+I also tested some workflows for sprint planning and tracking by implementing an automatic sprint burndown chart.
 
 Those experiments were done in Google Spreadsheets with custom Google Script functions.
 
@@ -95,20 +95,20 @@ When I was done interview the third PM, I started realizing something: Estimatio
 
 At that point, I started to feel that I wasn't focusing on the right thing. Maybe that a process that yields more accurate estimation and planning is not the most useful thing for R&D. It doesn't matter if you nailed the estimations and the plan if you deliver software that doesn't add value for customers.
 
-The focus becomes *what* stories to deliver next, not *when* to deliver them. In an agile environment, short development-feedback cycle is favored over mid to long term releases. In this environment, everything changes so fast that maintaining a relatively precise time would be too much work to be worth it.
+The focus becomes *what* stories to deliver next, not *when* to deliver them. In an agile environment, short development-feedback cycle is favored over mid to long term releases. In this environment, everything changes so fast that maintaining a precise timeline would be too much work to be worth it.
 
 Thus, I realized why the estimations are very light weight and why the release planning don't need to be very precise. It's because the most critical part (and possibly the hardest) is to find and prioritize the stories to deliver value as fast as possible.
 
 
 ## Return on goals
 
-After this research, I can say I understand more about how we use estimation and planning. I know that continuously delivering actual value as fast as possible is (and should be) the number 1 priority.
+After this research, I can say I understand more about how we use estimations and planning. I know that continuously delivering actual value as fast as possible is (and should be) the number 1 priority.
 
 One consequence from that statement is that estimates are not as critical as it seemed to me. The amount of work required to be more meaningful in this short cycle time is simply not worth it. It is simply used to roughly gauge if a team has enough defined work for the very next sprint and/or if more stories need to be refined. With that in mind, I think that our current estimation process is good enough.
 
 Furthermore, the goal to find a way to have better confidence in roadmaps doesn't make much sense anymore. Since the *what* is more important than the *when*, we could even question the existence of roadmaps. Long term goals should be defined by value and not by time. Fortunately, we have OKRs (Objective and Key Results) that exist especially for that reason.
 
-An OKR defines a business oriented goal, along with the key results and/or metrics to measure how much that goal was achieved. Then, it defines tactics that drive the completion of the goal. Within those tactics lies candidate features, i.e. software features that add value needed to achieve the objective.
+An OKR defines a business oriented goal, along with the key results and/or metrics to measure how much that goal was achieved. Then, it defines tactics that drives the completion of the goal. Within those tactics lies candidate features, i.e. software features that add value needed to achieve the objective.
 
 Thus, OKRs can be used to keep the big picture, and at the same time, to keep the focus on delivering actual value.
 
@@ -116,7 +116,7 @@ Thus, OKRs can be used to keep the big picture, and at the same time, to keep th
 
 Looking back, I feel like I didn't do much. I already knew that the OKRs were important and that in the end, they dictate what is coming up in the next few months.
 
-However, I didn't understand completely why the estimates and the planning were so lightweight. It just felt wrong with me, because I probably had to much of a theoretical stance on that point of view.
+However, I didn't understand completely why the estimates and the planning were so lightweight. It just felt wrong with me, probably because I had too much of a theoretical stance on that point of view.
 
 Finally, I'm glad that I did this research, because now I feel that I can stop worrying about estimations and planning and focus even more on delivering business value.
 
