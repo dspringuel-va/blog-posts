@@ -4,11 +4,11 @@
 
 Every programmer knows how easy software can rot if it is not designed and maintained properly. Then, design smells begin to rise. Software can then have the following attributes:
 
-- Rigide: Software that is hard to change, even in simple ways. Also, rigidity cause cascade updates in other modules, due to poor dependency management
-- Fragile: Software that when is updated, causes break and failure in other part of the software, sometimes that are unrelated
-- Immobile: Common parts that could be reused in other modules but are so anchored in their modules that the risk to refactor and extract them are too high.
+- *Rigid*: Software that is hard to change, even in simple ways. Also, rigidity cause cascade updates in other modules, due to poor dependency management.
+- *Fragile*: Software that when is updated, causes break and failure in other part of the software, sometimes that are unrelated.
+- *Immobile*: Common parts that could be reused in other modules but are so anchored in their modules that the risk to refactor and extract them are too high.
 
-The SOLID principles are simple design principles that helps prevent the precendent smells to happen in the first place. SOLID is an acronymn for the five principles
+The SOLID principles are simple design principles that help prevent the precedent smells to happen in the first place. SOLID is an acronymn for the five principles:
 
 - The **S**ingle Responsibility Principle
 - The **O**pen-Closed Principle
@@ -62,13 +62,13 @@ Two parts are defined in this principle
 
 These two parts seem contradictory. How can we extend a class behavior without modifying it. The answer is *abstraction*.
 
-Let's go back to the example mentionned in the previous section. Let's say we have a module that is responsible for reporting. At first we have a `HoursReporter` class that is responsible to report the employee's time by the hour. This is very specific case. If we want to add a `WeeksReporter`, we'll have to adapt the reporting module, which violates the *closed for modification* part of the principle. Furthermore, if the reporting module changes, all the depending modules will have to be rebuilt (re-compiled, re-tested and re-deployed).
+Let's go back to the example mentionned in the previous section. Let's say we have a module that is responsible for reporting. At first we have a `HoursReporter` class that is responsible to report the employee's time by the hour. This is very specific case. If we want to add a `WeeksReporter`, we'll have to adapt the reporting module, which violates the *closed for modification* part of the principle. Furthermore, if the reporting module changes, all the depending modules will have to be rebuilt (recompiled, retested and redeployed).
 
 As mentionned above, the answer to this problem is abstraction. Let's replace the `HoursReporter` class in the reporting module by an abstract class `EmployeeReporter`, which is extended in by the `HoursReporter` class. The best thing about this now is that the `HoursReporter` class can be extracted from the reporting module into it's own module. Thus, the reporting module doesn't know anything about the specific `HoursReporter` anymore. Furthermore, if another type of reporter is needed (e.g. the `WeeksReporter`), we only need to extend the abstract class in the reporting module.
 
 At that point, the reporting module respects the Open/Closed Principle. The module is open for extension (through the `EmployeeReporter` class) and closed for modification, which means that the reporting module doesn't have to be modified in order to add a new behavior.
 
-Finally, this is probably the most important principle in this group. It is the heart of object-oriented programming that allows great flexibility and reusability with a minimal maintenance. However, it doesn't mean to abstract everything all the time. Since abstraction comes with a cost (in time and complexity), benefits are seen when it is applied to part of the system that changes frequently.
+Finally, this is probably the most important principle in this group. It is the heart of object-oriented programming that allows great flexibility and reusability with a minimal maintenance. However, it doesn't mean to abstract everything all the time. Since abstraction comes with a cost (in time and complexity), benefits are seen when it is applied to parts of the system that change frequently.
 
 ## The Liskov Substitution Principle
 
@@ -136,7 +136,7 @@ function rectangleTest(rectangle: Rectangle) {
 ```
 However, the `Rectangle` is now aware of a specific behavior from its subclass, which violates the Open-Closed principle.
 
-Thus, the previous `Square`-`Rectangle` implementation isn't the right way to go. However, how can we reuse `Rectangle`'s `calculateArea` implementation in the `Square` class, since it's the same? The answer is **composition**.
+Thus, the previous `Square`-`Rectangle` implementation isn't the right way to go. However, how can we reuse `Rectangle`'s `calculateArea` implementation in the `Square` class, since it's the same? The answer is *composition*.
 
 ```
 class Square implements Shape {
