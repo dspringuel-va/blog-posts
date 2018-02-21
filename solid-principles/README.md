@@ -16,7 +16,7 @@ The SOLID principles are simple design principles that helps prevent the precend
 - The **I**nterface Segregation Principle
 - The **D**ependency Inversion Principle
 
-Those principles apply mainly at a module/class level.
+Those principles were defined by [Robert C. Martin](https://en.wikipedia.org/wiki/Robert_C._Martin), a.k.a. Uncle Bob.
 
 ## The Single Responsibility Principle
 
@@ -107,7 +107,7 @@ class Square extends Rectangle {
 }
 ```
 
-Since a square is a rectangle, it makes sense to extends the `Rectangle` class. It reuses the `get` methods, plus the `calculateArea` method. However, this inheritance violates the Liskov Substitution Principle and here is why
+Since a square is a rectangle, it makes sense to extends the `Rectangle` class. It reuses the `get` methods, plus the `calculateArea` method. However, this inheritance violates the Liskov Substitution Principle and here is an example why:
 
 ```
 function rectangleTest(rectangle: Rectangle) {
@@ -136,7 +136,7 @@ function rectangleTest(rectangle: Rectangle) {
 ```
 However, the `Rectangle` is now aware of a specific behavior from its subclass, which violates the Open-Closed principle.
 
-Thus, the previous `Square`-`Rectangle` implementation isn't the right way to go. However, how can we reuse `Rectangle`'s `calculateArea` implementation in the `Square` class, since it's the same? The answer is composition.
+Thus, the previous `Square`-`Rectangle` implementation isn't the right way to go. However, how can we reuse `Rectangle`'s `calculateArea` implementation in the `Square` class, since it's the same? The answer is **composition**.
 
 ```
 class Square implements Shape {
@@ -231,9 +231,53 @@ Now, each user knows only about the methods it needs. Furtermore, if the `Bar` i
 
 ## The Dependency Inversion Principle
 
+The Dependency Inversion Principle can be define in two ways:
+
+>*High-level module should not depend on low-level modules. Both should depend on abstraction*
+
+>*Abstractions should not depend upon details. Details should depend upon abstraction*
+
+Some might ask why it is called the Dependency *Inversion* Principle. Where does the inversion come from?
+
+Traditionally, the dependencies were as follow:
+
+```
+Policy Module --> Interactor Module --> Utility Module
+
+(where A --> B means A depends on B)
+```
+
+In this example the high-level modules depends on low level ones. This means that high-level policies are tightly coupled to the low-level details. Each times the `Utility` module is changed, the policy module will have to be recompiled, retested and redeployed.
+
+For example, a utility module could be a reporting module in an accounting software. It doesn't make sense to have the high-level accounting policies depend on the low-level reporting utilities. It should be the other way around, since the accounting policies might probably be reused somewhere else in the software.
+
+The dependencies then should be inversed as follow:
+
+```
+Policy Module --> Policy Service Interface
+                            ^
+                            |
+                     Interactor Module --> Interactor Service Interface
+                                                         ^
+                                                         |
+                                                   Utility Module
+```
+
+In that diagram, the low-level modules now depend on a higher-level abstraction, and the high-level modules only define a interface for lower-level modules. Thus, the dependency that high-level modules had on lower-level ones disappeared.
+
+This principle is closely related to the Open-Closed Principle. When the dependencies are reversed, it is now easy to close the high-level modules for modification (because of the non-existent lower-level dependencies) as well as to open them for extension (since they provide an interface that any lower-level modules can implement and use).
+
 ## Closing
+
+As Uncle Bob stated,
+> The SOLID principles are not rules. They are not laws. They are not perfect truths. The are statements on the order of “An apple a day keeps the doctor away.” This is a good principle, it is good advice, but it’s not a pure truth, nor is it a rule.
+
+The principles are meant to be a guide to good software design decisions. Personally, I think they do particularly well with TDD, because they allow good design software that is really easy to test and refactor.
+
+Finally, I think that at least be aware of those principle and try to apply them in the work environment can help every programmer on going down the road of being a better programmer.
 
 ## References
 - Robert C. Martin, "Clean Architecture: A Craftsman's guide to Software Structure and Design", Prentice Hall, 2018
 - Robert C. Martin, "Agile Software Development: Principles, Patterns, and Practices", Pearson Education, 2003
 - "SOLID (object-oriented design)", Wikipedia page, https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)
+- "Getting a SOLID start", https://sites.google.com/site/unclebobconsultingllc/getting-a-solid-start
