@@ -5,7 +5,7 @@
 Every programmer knows how easy software can rot if it is not designed and maintained properly. Then, design smells begin to rise. Software can then have the following attributes:
 
 - *Rigid*: Software that is hard to change, even in simple ways. Also, rigidity cause cascade updates in other modules, due to poor dependency management.
-- *Fragile*: Software that when is updated, causes break and failure in other part of the software, sometimes that are unrelated.
+- *Fragile*: Software that when is updated, causes break and failure in other parts of the software, sometimes that are unrelated.
 - *Immobile*: Common parts that could be reused in other modules but are so anchored in their modules that the risk to refactor and extract them are too high.
 
 The SOLID principles are simple design principles that help prevent the precedent smells to happen in the first place. SOLID is an acronymn for the five principles:
@@ -55,7 +55,7 @@ The Open-Closed Principle can be defined by the following:
 
 >*Classes/Modules should be open for extension, but closed for modification*
 
-Two parts are defined in this principle
+Two parts are defined in this principle:
 
 1. Open for extension: As new requirements come into play, class behaviors should be easy to extend and change. It also mean that the class isn't rigid (following definition in the overview section)
 1. Closed for modification: In a perfect architecture, extending a class to add a behavior shouldn't trigger any change in the base class or module.
@@ -92,7 +92,7 @@ class Rectangle implements Shape {
   calculateArea(): int { return getWidth() * getHeight(); }
 }
 ```
-Here, we have a rectangle that implements a `Shape` interface. So far, no violation. However, we want now to implement a square class
+Here, we have a rectangle that implements a `Shape` interface. So far, no violation. However, we want now to implement a square class.
 
 ```
 class Square extends Rectangle {
@@ -146,12 +146,7 @@ class Square implements Shape {
     squareRectangle.setWidth(width);
     squareRectangle.setHeight(height);
   }
-  setHeight(height: int) {
-    squareRectangle.setWidth(width);
-    squareRectangle.setHeight(height);
-  }
   getWidth():int { return squareRectangle.getWidth(); }
-  getHeight():int { return squareRectangle.getHeight(); }
 
   calculateArea(): int { return squareRectangle.calculateArea(); }
 }
@@ -274,7 +269,7 @@ As Uncle Bob stated,
 
 The principles are meant to be a guide to good software design decisions. Personally, I think they do particularly well with TDD, because they allow good design software that is really easy to test and refactor.
 
-Finally, I think that at least be aware of those principle and try to apply them in the work environment can help every programmer on going down the road of being a better programmer.
+Finally, I think that at least be aware of those principles and try to apply them in the work environment can help every programmer going down the road of being a better programmer.
 
 ## References
 - Robert C. Martin, "Clean Architecture: A Craftsman's guide to Software Structure and Design", Prentice Hall, 2018
