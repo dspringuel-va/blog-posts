@@ -25,7 +25,7 @@ The Single Responsibility Principle might seem easy to understand at first:
 
 This definition isn't quite right. If we would apply this blindly, we could end up with more classes than needed and create confusion about the cohesion of those classes.
 
-Since we still want cohesion within the class, the following definition makes more sense
+Since we still want cohesion within the class, the following definition makes more sense:
 >*A class should only have one reason to change.*
 
 From this definition, we can infer that a responsibility is a reason to change.
@@ -53,7 +53,7 @@ A better design could be to refactor the `Employee` class to be essentially a da
 
 The Open-Closed Principle can be defined by the following:
 
->*Classes/Modules should be open for extension, but closed for modification*
+>*Classes/Modules should be open for extension, but closed for modification.*
 
 Two parts are defined in this principle:
 
@@ -62,9 +62,9 @@ Two parts are defined in this principle:
 
 These two parts seem contradictory. How can we extend a class behavior without modifying it. The answer is *abstraction*.
 
-Let's go back to the example mentionned in the previous section. Let's say we have a module that is responsible for reporting. At first we have a `HoursReporter` class that is responsible to report the employee's time by the hour. This is very specific case. If we want to add a `WeeksReporter`, we'll have to adapt the reporting module, which violates the *closed for modification* part of the principle. Furthermore, if the reporting module changes, all the depending modules will have to be rebuilt (recompiled, retested and redeployed).
+Let's go back to the example mentionned in the previous section. Let's say we have a module that is responsible for reporting. At first we have a `HoursReporter` class that is responsible to report the employee's time by the hour. This is a very specific case. If we want to add a `WeeksReporter`, we'll have to adapt the reporting module, which violates the *closed for modification* part of the principle. Furthermore, if the reporting module changes, all the depending modules will have to be rebuilt (recompiled, retested and redeployed).
 
-As mentionned above, the answer to this problem is abstraction. Let's replace the `HoursReporter` class in the reporting module by an abstract class `EmployeeReporter`, which is extended in by the `HoursReporter` class. The best thing about this now is that the `HoursReporter` class can be extracted from the reporting module into it's own module. Thus, the reporting module doesn't know anything about the specific `HoursReporter` anymore. Furthermore, if another type of reporter is needed (e.g. the `WeeksReporter`), we only need to extend the abstract class in the reporting module.
+As mentionned above, the answer to this problem is abstraction. Let's replace the `HoursReporter` class in the reporting module by an abstract class `EmployeeReporter`, which is extended by the `HoursReporter` class. The best thing about this now is that the `HoursReporter` class can be extracted from the reporting module into it's own module. Thus, the reporting module doesn't know anything about the specific `HoursReporter` anymore. Furthermore, if another type of reporter is needed (e.g. the `WeeksReporter`), we only need to extend the abstract class in the reporting module.
 
 At that point, the reporting module respects the Open/Closed Principle. The module is open for extension (through the `EmployeeReporter` class) and closed for modification, which means that the reporting module doesn't have to be modified in order to add a new behavior.
 
@@ -74,7 +74,7 @@ Finally, this is probably the most important principle in this group. It is the 
 
 The Open-Closed Principle uses abstraction and polymorphism as its primary mechanisms. In object-oriented language, inheritance is a tool that let the user implements abstract classes. However, there are some traps that comes with inheritance that will eventually violate the Open-Closed Principle. The Liskov Substitution Principle is a principle that helps avoids those violations. It is defined as follow:
 
->*Subtypes must be substitutable for their base types*
+>*Subtypes must be substitutable for their base types.
 
 In other words, a subtype, when used as its base type, should not behave differently than the general abstract case. Let's have an example that shows a violation.
 
@@ -188,7 +188,7 @@ class UserB {
 }
 ```
 
-Here, the class `UserA` only uses the `foo()` method on the `Base` class, where `UserB` only uses the `bar()` method on the `Base` class. That means that if `UserB` forces changes on the `Base` class, it will automatically affect the `UserA` class, even though the changes has nothing to do with the `foo()` method. This is because the `Base` class needs to be recompiled and redeployed, which will trigger the same for its users, in that case `UserA` and `UserB`. However, recompiling, retesting and redeploying `UserA` each time another `Base`class' user forces changes is bad. It means that `UserA` and `UserB` and now indirectly coupled, which leads to fragility. That's why segregating interface is important.
+Here, the class `UserA` only uses the `foo()` method on the `Base` class, where `UserB` only uses the `bar()` method on the `Base` class. That means that if `UserB` forces changes on the `Base` class, it will automatically affect the `UserA` class, even though the changes has nothing to do with the `foo()` method. This is because the `Base` class needs to be recompiled and redeployed, which will trigger the same for its users, in that case `UserA` and `UserB`. However, recompiling, retesting and redeploying `UserA` each time another `Base` class' user forces changes is bad. It means that `UserA` and `UserB` and now indirectly coupled, which leads to fragility. That's why segregating interface is important.
 
 We can fix the previous example by creating new interfaces and moving the dependencies.
 
@@ -228,9 +228,9 @@ Now, each user knows only about the methods it needs. Furtermore, if the `Bar` i
 
 The Dependency Inversion Principle can be define in two ways:
 
->*High-level module should not depend on low-level modules. Both should depend on abstraction*
+>*High-level module should not depend on low-level modules. Both should depend on abstraction.*
 
->*Abstractions should not depend upon details. Details should depend upon abstraction*
+>*Abstractions should not depend upon details. Details should depend upon abstraction.*
 
 Some might ask why it is called the Dependency *Inversion* Principle. Where does the inversion come from?
 
