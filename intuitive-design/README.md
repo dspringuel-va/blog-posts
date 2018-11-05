@@ -59,7 +59,7 @@ Google home page is a good example. The vast majority of user that visits the go
 
 The element used to search (here, the search) is easily discoverable, because there are very few elements on that page. Furthermore, the search bar element is one of the most prominent element on the page, even when it's competing with other elements (the interactive game doodle in the previous example).
 
-### Quick Tips
+#### Quick Tips
 
 * Put main elements in a good location
 * Have a good layout
@@ -67,7 +67,26 @@ The element used to search (here, the search) is easily discoverable, because th
 
 ### Affordance
 
+When the user discovered the element that they need to use, they must figure how to interact with it. That where affordance comes in.
 
+> Affordances are the visual properties of a UI element that suggest how to perform an interaction.
+
+Button show one of the most basic example of affordance. Let's look at various Material Design button varieties.
+
+![alt Material Design Button Varieties](https://i.imgur.com/jBq1CDR.png)
+
+From the four varieties of buttons, the "Raised Buttons" have the best affordance. The fact that it shows shadows as the button was elevated (hence the name "Raised") mimics real life button. Thus, it really suggests the user to push the button, which means that a raised button provide affordance by definition.
+
+The "Basic Button" have the least affordance in the previous example. It doesn't look like a button at first glance. The user have to hover the button to discover that it is a button, but that is not a good experience on mobile since there are no hover.
+
+However, having basic buttons can help to have an intuitive design. It would most likely be used as a secondary action. Furthermore, the context and location of those buttons can provide affordance (for example, a cancel action).
+
+
+#### Quick Tips
+
+* Use UI convention to show affordance for standard UI elements
+* Provide a clear affordance for primary interactions
+* Secondary interactions can show a little less affordance, as this could confuse the user
 
 ### Comprenhensibility
 
