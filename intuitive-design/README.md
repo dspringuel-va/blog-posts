@@ -90,6 +90,30 @@ However, having basic buttons can help to have an intuitive design. It would mos
 
 ### Comprenhensibility
 
+Once the user knows how to interact with an UI element, he must understand its effect, and how it will help reach his goal
+
+> Comprehensibility is the user's ability to understand the meaning and effect of a UI element.
+
+The UI text is probably the most important factor for good comprenhensibility. It must speak the target user's language. One good rule of thumb is that the text should be similar to something that you would say in person.
+
+Let's have an example: You want to print 4 pages. Which of the following is more comprehensible?
+
+> ☑ Duplex Printing
+
+*or*
+
+> ☑ Print of both sides
+
+The second one is less technical. However, it would probably be understood by a vast majority of printer user.
+
+
+#### Quick Tips
+
+* Use multiword labels on a element to be self-explanatory.
+* Favor standard icons in favor of custom ones.
+* Provide the information the users need to make decision towards their goal.
+
+
 ### Responsive feedback
 
 ### Predictability
