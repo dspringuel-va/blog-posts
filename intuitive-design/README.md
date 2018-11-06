@@ -88,7 +88,7 @@ However, having basic buttons can help to have an intuitive design. It would mos
 * Provide a clear affordance for primary interactions
 * Secondary interactions can show a little less affordance, as this could confuse the user
 
-### Comprenhensibility
+### Comprehensibility
 
 Once the user knows how to interact with an UI element, he must understand its effect, and how it will help reach his goal
 
