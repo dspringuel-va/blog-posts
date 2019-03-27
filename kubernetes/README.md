@@ -24,13 +24,21 @@
 
 ### Namespaces
 
+![Namespace Diagram]()
+
 ### Workloads
 
 #### Pod
 
+![Detailed Pod Diagram]()
+
 #### ReplicaSet
 
+![Replica Set Diagram]()
+
 #### Deployment
+
+![Deployment Diagram]()
 
 #### Other
 - Job
@@ -42,11 +50,19 @@
 
 #### Service
 
-- ClusterIp
-- NodePort
-- LoadBalancer
+*ClusterIp*
+
+*NodePort*
+
+![NodePort Service Diagram]()
+
+*LoadBalancer*
+
+![Load Balancer Service Diagram]()
 
 #### Ingress
+
+![Ingress Diagram]()
 
 ### Config
 
@@ -70,10 +86,13 @@
 
 #### ServiceAccount
 
-
 ## Architecture
 
+![Overall Architecture Diagram]()
+
 ### Control Plane (a.k.a. Master Node)
+
+![Control Plane Diagram]()
 
 #### ApiServer
 
@@ -82,6 +101,8 @@
 #### Scheduler / Controller Manager
 
 ### Worker Nodes
+
+![Worker Node Diagram]()
 
 #### Container Runtime
 
