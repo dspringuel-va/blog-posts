@@ -116,6 +116,13 @@ The second one is less technical. However, it would probably be understood by a 
 
 ### Responsive feedback
 
+When the user understood and performed the action needed, the results should help the users towards their goals.
+
+> Responsive feedback is a clear, accurate, immediate, indication of the current state of an interaction or the resulting state.
+
+
+
+
 ### Predictability
 
 ### Efficiency
