@@ -24,7 +24,7 @@
 
 ### Namespaces
 
-![Namespace Diagram]()
+![Namespace Diagram](https://docs.google.com/drawings/d/e/2PACX-1vTR7MCsBMEVbMBA9AQg-32kEKqNLHMdkK1sunii7x2Rb5fylYdhwYszPjYGEP2QqxReeIwnzGloRcVk/pub?w=1898&h=1014)
 
 ### Workloads
 
@@ -73,9 +73,11 @@
 
 ### Config
 
-#### Secrets
-
 #### ConfigMap
+
+![Config Map Diagram](https://docs.google.com/drawings/d/e/2PACX-1vT6vIlztG8iSEWAFlBpM1AZOBl4ZvBPiSEJRO9FXXB0bBkOjeCt_T74vpkSpXkydRC4N7Mk4KdxT7mw/pub?w=927&h=628)
+
+#### Secrets
 
 ### Storage
 
@@ -95,11 +97,9 @@
 
 ## Architecture
 
-![Overall Architecture Diagram]()
+![Overall Architecture Diagram](https://docs.google.com/drawings/d/e/2PACX-1vQCYKzEwsN1q74BkfHv85o6bsE_1gSigon8mHLn9Yf7A4bIYEV0PRT0Y5GT97_Sss-i51NL9LwJysC0/pub?w=1416&h=778)
 
 ### Control Plane (a.k.a. Master Node)
-
-![Control Plane Diagram]()
 
 #### ApiServer
 
@@ -109,13 +109,11 @@
 
 ### Worker Nodes
 
-![Worker Node Diagram]()
-
-#### Container Runtime
+#### Kubernetes Service Proxy (a.k.a. kube-proxy)
 
 #### Kubelet
 
-#### Kubernetes Service Proxy (a.k.a. kube-proxy)
+#### Container Runtime
 
 ## References
 
