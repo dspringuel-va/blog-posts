@@ -30,7 +30,7 @@
 
 #### Pod
 
-![Detailed Pod Diagram]()
+![Detailed Pod Diagram](https://docs.google.com/drawings/d/e/2PACX-1vRO_zH_xjWw9SXZ9szPmCUtxYmg52Sj8TscNJ8dBBiAids0XFRFxxVu1NfRwEuGQNTph79P3cOuTpBy/pub?w=824&h=870)
 
 #### ReplicaSet
 
@@ -112,4 +112,4 @@
 
 ## References
 
-- Marko Luksa, "Kubernetes in Action", Manning Publication, 2018
+- Marko Luksa, "Kubernetes in Action", Manning Publications, 2018
