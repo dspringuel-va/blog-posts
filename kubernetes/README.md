@@ -25,15 +25,40 @@ The most known one is DockerHub. Google Cloud Platform offers also its own image
 
 ### Pod
 
+A Kubernetes pod is a group of 1 or more containers.
 ![Pod Diagram](https://docs.google.com/drawings/d/e/2PACX-1vQsoPj5L9ab2o0ZgeNqLzYQhdSiu_KAs1dNaPhwopQjujnW1SNBhX5gvyFQ2iV4_20_nqdmflNolblp/pub?w=415&h=625)
 
+Containers within a pod have their processes isolated (like every other containers).
+However, containers in a pod share their network namespace, i.e. they share the same IP address and the same port space.
+The IP address is chosen by Kubernetes at creation time, and only stays around for the pod instance life.
+
+A pod can contain more than 1 container. However, those should be tightly coupled together. Usually, that means a "main" container which run the application the pod is meant for, along with sidecar containers that provides specific value to the main container.
+Here, main is only a logical concept.
+
+An example could be a nginx server that runs in the main container, along with another container that is meant to fetch the website files from somewhere else. Here, one container can't do much without the other.
+
+A counter-example would be to have a frontend and backend container within the same pod. In this case, one can definitely run without the other.
+Those containers shouldn't really be coupled at that level. Maybe they don't need the same resources, or same availability. It's impossible to scale one without scaling the other, which might be a problem.
+In this case, it would be better separate the apps into two pods.
 
 ### Node
 
+A node is a machine representation where a group of pods are running.
+
 ![Node Diagram](https://docs.google.com/drawings/d/e/2PACX-1vQUI6h9QuTXPSfnJ0ehCORuNo6aknViuqi2Oan2L4a7gEajvKhv8L89qvnN8XJFSa6L-oZ7oPnjKZM5/pub?w=1517&h=851)
+
+Every pods in the node have a unique internal IP address. Also, a pod can't live across two different nodes, i.e. have one container run in one node, and a second container in a different nodes. All pod's containers are garanteed to run in the same node.
+
+The nodes can have differents computational resources, depending on what the system needs.
+
 ### Cluster
 
+A cluster is a group of nodes.
+
 ![Cluster Diagram](https://docs.google.com/drawings/d/e/2PACX-1vRu7wUcEbgvU8kSli7Ye58hbXlqCUKsgXVnlk-IxbSQWUpBl3tVJOCWZFGc_VQp_t1_5e3lfu5BAOWM/pub?w=1770&h=1129)
+
+It is important to note that every single pods and nodes accross the cluster have unique IP address within the internal network, which makes possible to connect to any pods from any pods within the cluster.
+
 
 ## Resources
 
