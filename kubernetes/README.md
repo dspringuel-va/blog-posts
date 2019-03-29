@@ -73,6 +73,21 @@ That architecture makes Kubernetes declarative (instead of imperative), i.e. it 
 
 There are more details on Kubernetes architecture further down.
 
+One last thing before jumping into individual resources, `kubectl` is a nice little CLI tools that can quickly expose documentation for each resources. The command for it is `explain`.
+
+For example,
+
+```
+kubectl explain pod
+```
+
+shows the documentation for the pod resource and its fields.
+It is also possible to dig deeper in the doc. If one wants to know more about pod spec, the command to run is the following.
+
+```
+kubectl explain pod.spec
+```
+
 ### Namespaces
 
 Every single resource in the cluster is named. The namespace resource is used to group resources togheter in a non overlapping way. Therefore, all resources' name must be unique within a namespace. A different resource with the same name can exist in a different namespace.
@@ -90,20 +105,63 @@ Workloads is a logical group of resources that manages the life of pods. The mos
 
 #### Pod
 
+The Pod is the atomic workload resource. As mentioned before, it runs one or more containers within it.
+
 ![Detailed Pod Diagram](https://docs.google.com/drawings/d/e/2PACX-1vRO_zH_xjWw9SXZ9szPmCUtxYmg52Sj8TscNJ8dBBiAids0XFRFxxVu1NfRwEuGQNTph79P3cOuTpBy/pub?w=824&h=870)
+
+In the Pod resource definition, it is possible to attribute many properties.
+The metadata exposes information on the pod itself, like its name, namespace or labels.
+The spec describes among other things which container to run, from which images to create them, or which volume to create.
+
+Labels are part of the metadata section of the pod definition, and it is a important property for the pods.
+It allows the user to organize the pods, in a potentially overlapping way.
+Furthermore, it allows other resources to select pods based on those labels.
+
+The ReplicaSet is one of such resource.
 
 #### ReplicaSet
 
+A ReplicaSet is a resource responsible to manage a group of pods. The main properties of that resources are the pod template (what each pod should look like), the pod selector (how to know which pods are part of this set), and the replicas (how many pods should be running under that set).
+
 ![Replica Set Diagram](https://docs.google.com/drawings/d/e/2PACX-1vTCrgcAKk-InhOQPw84ULsK8Z0eioosmABeYZYDZzKa8gyY9vhwUr1mk0FYscNq7cAvxOHgyfSqyFS3/pub?w=991&h=1064)
+
+The ReplicaSet watches for any pod changes. If for any reasons, the number of pods doesn't match the replica number (a pod crashed, a pod label changed, or the host node failed for example), the ReplicaSet will spin up a new pod automatically.
+
+The ReplicaSet doesn't decide on which node the pod is created, nor its IP address. It only care about the number of pods running.
+If the ReplicaSet replicas property would change (up or down), it would then command to create or kill the needed pods.
+
+If the pod template would change, it doesn't affect the currently running pods under the ReplicaSet. The next the ReplicaSet needs to create a pod, it would use the new template, which means that two versions of the pods could concurrently run under that ReplicaSet (which isn't ideal).
+
+The Deployment resource alleviates that problem.
+
 
 #### Deployment
 
+The Deployment resource is almost the same as the ReplicaSet. It has a pod selector, a pod template and a replicas property.
+
 ![Deployment Diagram](https://docs.google.com/drawings/d/e/2PACX-1vRUwVm0eMdmQVOkQ6WOR6kiMRP_lM1cBQgFixzWFAh-l5Ml2jPKRVgYXxx2tXzY-pFap4Q5_1ai6YzV/pub?w=4487&h=1709)
+
+The difference resides on what happens when the pod template is updated. In that scenario, the Deployment will create another ReplicaSet with the updated pod template.
+That new ReplicaSet has its replicas property set to 0.
+Then, it gradually increase the new ReplicaSet replicas number, while decreasing the old ReplicaSet replicas number to 0.
 
 ![Deployment Diagram - Rolling Update](https://docs.google.com/drawings/d/e/2PACX-1vTKew2mhzCXOMfBZOHCxyF3eOykFSL9h-PKkbj2RmrkkdlpOR7U4IiFdzSPiy3OwMUeQvVdKErcmm-i/pub?w=3325&h=1699)
 
+Once the rolling update is done, the Deployment doesn't delete the old ReplicaSet. It is kept around, in case that a rollback is needed.
+
+The Deployment defines also a Rolling Update Strategy. It is compose mainly of two properties: maxSurge and maxUnavailable.
+The maxSurge property defines how many more pods than the desired number can run during the update.
+The maxUnavailable property defines the opposite, i.e. how many fewer pods than the desired number can run during the update.
+
+For example, if the maxSurge is set to 1 and maxUnavailable is set to 0 with a desired number set to 3, the rolling update will have at most 4 pods at any moment, and at least 3 at any moment.
+
 #### Other
-- Job
+
+There are many other resources that will spin up new pods. Let's talk a few of them.
+
+*Job*
+A job is almost the
+
 - CronJob
 - DaemonSet
 - StatefulSet
