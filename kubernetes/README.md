@@ -47,7 +47,9 @@ A node is a machine representation where a group of pods are running.
 
 ![Node Diagram](https://docs.google.com/drawings/d/e/2PACX-1vQUI6h9QuTXPSfnJ0ehCORuNo6aknViuqi2Oan2L4a7gEajvKhv8L89qvnN8XJFSa6L-oZ7oPnjKZM5/pub?w=1517&h=851)
 
-Every pods in the node have a unique internal IP address. Also, a pod can't live across two different nodes, i.e. have one container run in one node, and a second container in a different nodes. All pod's containers are garanteed to run in the same node.
+Every pods in the node have a unique internal IP address.
+Also, a pod can't live across two different nodes, i.e. have one container run in one node, and a second container in a different nodes.
+All pod's containers are guaranteed to run in the same node.
 
 The nodes can have differents computational resources, depending on what the system needs.
 
@@ -62,11 +64,29 @@ It is important to note that every single pods and nodes accross the cluster hav
 
 ## Resources
 
+Almost everything that defines a Kubernetes clusters is represented by a resource.
+The resources are managed by a single RESTful API server.
+They represent the state of the cluster at any moment in time.
+There are controllers that listens to resources CRUD operations at any time and execute actions accordingly to unify the actual state with the desired state.
+
+That architecture makes Kubernetes declarative (instead of imperative), i.e. it only needs to be told what state the cluster should be in (and Kubernetes will take care of making it happen), instead of being told what to do in order to be in that state.
+
+There are more details on Kubernetes architecture further down.
+
 ### Namespaces
+
+Every single resource in the cluster is named. The namespace resource is used to group resources togheter in a non overlapping way. Therefore, all resources' name must be unique within a namespace. A different resource with the same name can exist in a different namespace.
 
 ![Namespace Diagram](https://docs.google.com/drawings/d/e/2PACX-1vTR7MCsBMEVbMBA9AQg-32kEKqNLHMdkK1sunii7x2Rb5fylYdhwYszPjYGEP2QqxReeIwnzGloRcVk/pub?w=1898&h=1014)
 
+Kubernetes creates a default namespace, where all resources go if no namespace is specified upon resource creation.
+
+Some resources are cluster-level resources, which means that they can't be in a namespace. The namespace resource itself is a good example of a cluster-level resource (Kubernetes doesn't allow to have a namespace resource within a namespace).
+Nodes and persistent volumes are other examples of cluster-level resources.
+
 ### Workloads
+
+Workloads is a logical group of resources that manages the life of pods. The most simple one is the pod resource itself. Let's take a look at some few of those resources.
 
 #### Pod
 
