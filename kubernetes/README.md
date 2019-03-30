@@ -157,14 +157,34 @@ For example, if the maxSurge is set to 1 and maxUnavailable is set to 0 with a d
 
 #### Other
 
-There are many other resources that will spin up new pods. Let's talk a few of them.
+There are many other resources that will spin up new pods. Let's talk about a few of them.
 
 *Job*
-A job is almost the
 
-- CronJob
-- DaemonSet
-- StatefulSet
+A Job is almost the same resource than a Pod.
+
+Usually, a Pod needs to run continuously. When it fails, the general use case for it is to be brought back to life, usually by a ReplicaSet.
+
+However, there are some case where a pod would normally execute and terminate successfully.
+In those case, the pod shouldn't be spinned up again, since it was a one time execution.
+The Job resource was created especially for that purpose.
+
+The Job will run a pod until it finishes successfully. If the pod fails for any reason (the node crashed, etc), it will reschedule it to run again.
+
+Furthermore, it is possible to setup a job to run many times the pods, sequentially or concurrently (or both).
+
+*CronJob*
+
+A CronJob is the exact same thing than a Job, except the fact that is possible to schedule the running time of the pod in time.
+
+At approximately the schedule time, the CronJob simply creates a Job resources, which in turn takes care of running the pod.
+
+*DaemonSet*
+
+The DaemonSet is a resource similar to the ReplicaSets. Instead of specifying the number of replicas to run, the DaemonSet makes sure that a single pod runs on every node in the cluster.
+
+This is useful for example to monitor the node itself, or to run system wide operations.
+
 
 ### Services
 
