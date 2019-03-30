@@ -188,22 +188,51 @@ This is useful for example to monitor the node itself, or to run system wide ope
 
 ### Services
 
+As mentionned earlier, pods are assigned unpredictable IP address when they are created. Then, how can one pod call another pod if it doesn't know its address?
+Services is a resource type that takes care of that issue.
+
+There are two main service resources: a Service (duh!) and an Ingress.
+
+The common thing amongst all the services is that they map a group of pods to a stable IP address. Then, other pods can call the service IP, which then will redirect requests to a pod under its management.
+
 #### Service
 
-*ClusterIp*
+*ClusterIP*
+
+The simplest Service resource is called a ClusterIP Service.
 
 ![Cluster IP Service Diagram](https://docs.google.com/drawings/d/e/2PACX-1vRjzGBrjZTZmKlVyLvEYaKaXtjzcuQSGbfp7xh4M05rKKyFJuv7gXJTIjtU-d4JDVm7_zqfriqlK-30/pub?w=1397&h=945)
+
+A ClusterIP service exposes an internal only IP address (i.e. can be called only from within the cluster internal network). When a handling a request, it redirects it to a random pod it manages.
+
+The service uses the same labelling system the ReplicaSet uses. A pod selector is specified in the Service description. All pods with a matching label can receive a redirected request from that service.
+
+One thing to mention is that the Service resource itself doesn't manage the pods' IP addresses under its wings. Another resource called Endpoints takes care of that.
+
+The Endpoint resource can be created manually. When matched by name with a Service that doesn't specify a pod selector, it can be used to create a service that points to external services to the cluster.
 
 ![Endpoints to external service](https://docs.google.com/drawings/d/e/2PACX-1vSdFY4W97DJuRz0agL_GG8SoYBZ2QiDqTSWQrj6pKiAx0xdOHhkRTr4roqS-LHuUFsmm73OvS0520Sb/pub?w=1870&h=1278)
 
 *NodePort*
 
+A ClusterIP service doesn't expose the service outside the cluster. A NodePort service can. That type of service listens to an open ports on any node in the cluster. Then, the request is redirected to a random pod under the service.
+
+Since the nodes have an external IP address, the service is effectively exposed to external clients.
+
 ![NodePort Service Diagram](https://docs.google.com/drawings/d/e/2PACX-1vR_wFvaJUmfEOg8IwWwrmP_ZtVKblBl0pow7VuZj5kqdfXZYfO8YlUqY7xVtmI-3iZNnP_20UmR879b/pub?w=1929&h=1233)
+
+One thing to note is that the client must know a node IP address.
+It could be any nodes, even though the pod the request is directed to doesn't run on that node.
+Also, this type of service requires to configure the cluster firewall to have the right ports open on every node.
 
 *Load Balancer*
 
+A Load Balancer Service is almost the same thing as a NodePort service. In fact, it is just an extension of it.
+
 ![Load Balancer Service Diagram](https://docs.google.com/drawings/d/e/2PACX-1vRZTBO7-f7i0H_eMZVPZDPnGt0kG-i1i0d3En71GXXwsS3TsHdYqaGyg712HQ_vEUDnxEPrkljxrqQc/pub?w=1806&h=1226)
 
+Instead of having the clients call the nodes directly, that service uses a load balancer in front of the nodes. Thus, the client needs to know only one IP address, instead of individual node IP.
+Furthermore, it makes sure that the service load is evenly distributed amongst all nodes.
 
 #### Ingress
 
