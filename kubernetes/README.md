@@ -209,7 +209,7 @@ The service uses the same labelling system the ReplicaSet uses. A pod selector i
 
 One thing to mention is that the Service resource itself doesn't manage the pods' IP addresses under its wings. Another resource called Endpoints takes care of that.
 
-The Endpoint resource can be created manually. When matched by name with a Service that doesn't specify a pod selector, it can be used to create a service that points to external services to the cluster.
+The Endpoint resource can be created manually. When matched by name with a Service that doesn't specify a pod selector, it can be used to create a service that points to external services outside the cluster.
 
 ![Endpoints to external service](https://docs.google.com/drawings/d/e/2PACX-1vSdFY4W97DJuRz0agL_GG8SoYBZ2QiDqTSWQrj6pKiAx0xdOHhkRTr4roqS-LHuUFsmm73OvS0520Sb/pub?w=1870&h=1278)
 
@@ -236,7 +236,15 @@ Furthermore, it makes sure that the service load is evenly distributed amongst a
 
 #### Ingress
 
+When there are many different services exposed externally, it can become hard to manage all the load-balancer's IP addresses.
+
+An Ingress is a resources that sits in front of many other resources. It operates at the L7 (application layer) of the network stack. That means that it can redirect requests based on either the request domain, or the request path.
+
 ![Ingress Diagram](https://docs.google.com/drawings/d/e/2PACX-1vQ5gIevkt6uJntEbEBWg0sIMOD8m6dBw6EJ-x0X4jdvRJuvK0b-LegHQY2VofHJrjObNKRUCdvQn4X_/pub?w=2003&h=823)
+
+To make the Ingress resources work, it needs a Ingress controller. For example, GKE uses Google Cloud Platform's own HTTP load-balancing features to provide the Ingress functionality.
+
+With the correct set of rules, it would be possible to have a single Ingress resource that act as an entry point to all the services within the cluster.
 
 ### Config
 
