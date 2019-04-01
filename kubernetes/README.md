@@ -1,10 +1,11 @@
 # Kubernetes in Action
 
 Recently, I took some professional development days.
-Since Kubernetes is a black box to me, I decided to dig into it for a week.
-I opened a ticket to order the book "Kubernetes in Action", published by Manning.
+Since Kubernetes is a black box to me, I decided to dig into it.
+I opened a ticket to order the book "Kubernetes in Action", published by Manning. Then, I spent most of my time reading it.
 
-This post is meant to be a high level view of Kubernetes, and its underlying architecture. Also, I would hope that it could serve as a first entry to learning Kubernetes for those who don't know it.
+This post is meant to be a high level view of Kubernetes, and its underlying architecture.
+Also, I would hope that it could serve as an easy first entry to learning Kubernetes for those who don't know it.
 
 ## Table of content
 * [What is it?](#what-is-it)
