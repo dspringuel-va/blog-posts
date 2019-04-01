@@ -39,6 +39,17 @@ Also, I would hope that it could serve as an easy first entry to learning Kubern
 
 ## What is it?
 
+Moving from monolithic applications to a microservices architecture has many benefits: independent development and releases, granular scability, possibility to select the right technology for a problem, etc.
+However, those benefits comes at a price: the complexity of successfully managing all the services to have a performant and resiliant system.
+
+Kubernetes is a platform that alleviates that complexity to make a microservice architecture easier to manage.
+
+From Kubernetes official website,
+
+> Kubernetes (K8s) is an open-source system for automating deployment, scaling, and management of containerized applications. It groups containers that make up an application into logical units for easy management and discovery.
+
+Kubernetes relies on Linux containers
+
 ## Building Blocks
 
 Let's start by describing the logical building blocks of what compose a Kubernetes ensemble.
