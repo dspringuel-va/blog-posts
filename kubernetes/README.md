@@ -248,27 +248,27 @@ With the correct set of rules, it would be possible to have a single Ingress res
 
 ### Config
 
+Almost every application needs some configuration. Usually, we don't want that configuration hard-coded in the application itself. Kubernetes defines two resources to help passing configurations to application: ConfigMaps and Secrets
+
 #### ConfigMap
+A ConfigMap resource is simply a list key-value pairs. It can be passed in the the pod either by environments variable or by a mounted volume.
 
 ![Config Map Diagram](https://docs.google.com/drawings/d/e/2PACX-1vT6vIlztG8iSEWAFlBpM1AZOBl4ZvBPiSEJRO9FXXB0bBkOjeCt_T74vpkSpXkydRC4N7Mk4KdxT7mw/pub?w=927&h=628)
 
-#### Secrets
+Therefore, ConfigMaps allow decoupling the pod configuration from the pod definition. In other words, it means that two pods can share the same definition, but different configurations, like staging vs production configurations for example.
 
-### Storage
+Another potential advantage of using ConfigMap with a referenced mounted volume is that the configuration could be updated in runtime without restarting the app (although it could be quite slow).
 
-#### PersistentVolume
+#### Secret
 
-#### PersistentVolumeClaim
+A Secret resource is the exact same concept as a ConfigMap, except it is used for sensitive data configuration.
+One big difference with ConfigMap is that Secrets are stored encrypted on the Kubernetes' Control Plane (the etcd storage).
 
-#### StorageClass
+Also, having a different resource type means that it's possible to have different access restrictions regarding different users (typically having Secrets be more restricted obviously than ConfigMaps).
 
 ### Scaling
 
 #### HorizontalAutoScaler
-
-### Security
-
-#### ServiceAccount
 
 ## Architecture
 
