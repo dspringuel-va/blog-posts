@@ -7,9 +7,36 @@ I opened a ticket to order the book "Kubernetes in Action", published by Manning
 This post is meant to be a high level view of Kubernetes, and its underlying architecture. Also, I would hope that it could serve as a first entry to learning Kubernetes for those who don't know it.
 
 ## Table of content
-1. [What is it?](#what-is-it)
+* [What is it?](#what-is-it)
+* [Building Blocks](#building-blocks)
+  * [Container](#container)
+  * [Pod](#pod)
+  * [Node](#node)
+  * [Cluster](#cluster)
+* [Resources](#resources)
+  * [Namespace](#namespace)
+  * [Workloads](#workloads)
+    * [Pod](#pod-1)
+    * [ReplicaSet](#replicaset)
+    * [Deployment](#deployment)
+    * [Others](#others)
+  * [Services](#services)
+    * [Service (ClusterIP, NodePort, and Load Balancer)](#service)
+    * [Ingress](#ingress)
+  * [Config](#config)
+    * [ConfigMap](#configmap)
+    * [Secret](#secret)
+* [Architecture](#architecture)
+  * [Control Plane (a.k.a. master node)](#control-plane-aka-master-node)
+    * [API Server](#api-server)
+    * [etcd](#etcd)
+    * [Scheduler/ Controller Manager](#scheduler--controller-manager)
+  * [Worker Nodes](#worker-nodes)
+    * [Kubelet / Container Runtime](#kubelet--container-runtime)
+    * [Kubernetes Service Proxy (a.k.a. kube-proxy)](#kubernetes-service-proxy-aka-kube-proxy)
+* [References](#references)
 
-## What is it?<a name="what-is-it"></a>
+## What is it?
 
 ## Building Blocks
 
@@ -97,7 +124,7 @@ It is also possible to dig deeper in the doc. If one wants to know more about po
 kubectl explain pod.spec
 ```
 
-### Namespaces
+### Namespace
 
 Every single resource in the cluster is named. The namespace resource is used to group resources togheter in a non overlapping way. Therefore, all resources' name must be unique within a namespace. A different resource with the same name can exist in a different namespace.
 
@@ -164,7 +191,7 @@ The maxUnavailable property defines the opposite, i.e. how many fewer pods than 
 
 For example, if the maxSurge is set to 1 and maxUnavailable is set to 0 with a desired number set to 3, the rolling update will have at most 4 pods at any moment, and at least 3 at any moment.
 
-#### Other
+#### Others
 
 There are many other resources that will spin up new pods. Let's talk about a few of them.
 
