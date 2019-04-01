@@ -266,10 +266,6 @@ One big difference with ConfigMap is that Secrets are stored encrypted on the Ku
 
 Also, having a different resource type means that it's possible to have different access restrictions regarding different users (typically having Secrets be more restricted obviously than ConfigMaps).
 
-### Scaling
-
-#### HorizontalAutoScaler
-
 ## Architecture
 
 ![Overall Architecture Diagram](https://docs.google.com/drawings/d/e/2PACX-1vQCYKzEwsN1q74BkfHv85o6bsE_1gSigon8mHLn9Yf7A4bIYEV0PRT0Y5GT97_Sss-i51NL9LwJysC0/pub?w=1416&h=778)
