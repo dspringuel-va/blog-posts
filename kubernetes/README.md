@@ -309,11 +309,23 @@ There are almost a controller for every type of resource creatable. Furthermore,
 
 ### Worker Nodes
 
+The API server and the controllers is at the heart of the Control Plane. However, some system components must run also on each of the worker nodes, namely the Kubernetes Service Proxy and the Kubelet.
+
+#### Kubelet / Container Runtime
+
+The Kubelet is responsible for everything running on the worker nodes, but
+the main responsibility is to manage the life of containers on the node.
+
+When a pod is scheduled on a node, Kubelet gets notified and actually starts the container by using the configured container runtime (Docker, etc). Also, Kubelet is responsible for monitoring the health of the pods, either by running liveness and readiness probes, or by watching computational resources consumption.
+It also stops the container when the corresponding pod resource ets deleted from the API server.
+
+Finally, the Kubelet is also responsible with registering the node to the cluster by creating a Node resource on the API server.
+
 #### Kubernetes Service Proxy (a.k.a. kube-proxy)
 
-#### Kubelet
+Besides the Kubelet, every node also runs the Kubernetes Service Proxy.
 
-#### Container Runtime
+The main responsibility of this component is to handle services correctly, so that clients can connect correctly to the associated pods. The kube-proxy acheives that by listening to the Service and Enpoints resources, and updating the node's iptables rules accordingly.
 
 ## References
 
