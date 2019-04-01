@@ -238,7 +238,7 @@ Furthermore, it makes sure that the service load is evenly distributed amongst a
 
 When there are many different services exposed externally, it can become hard to manage all the load-balancer's IP addresses.
 
-An Ingress is a resources that sits in front of many other resources. It operates at the L7 (application layer) of the network stack. That means that it can redirect requests based on either the request domain, or the request path.
+An Ingress is a resources that sits in front of many other resources. It operates at the L7 (application layer) of the network stack. That means that it can redirect requests based on either the request domain, or the request path for example.
 
 ![Ingress Diagram](https://docs.google.com/drawings/d/e/2PACX-1vQ5gIevkt6uJntEbEBWg0sIMOD8m6dBw6EJ-x0X4jdvRJuvK0b-LegHQY2VofHJrjObNKRUCdvQn4X_/pub?w=2003&h=823)
 
@@ -268,15 +268,44 @@ Also, having a different resource type means that it's possible to have differen
 
 ## Architecture
 
+Now that a we know a bit more about what Kubernetes can do, let's take a look on how it works under the hood.
+
 ![Overall Architecture Diagram](https://docs.google.com/drawings/d/e/2PACX-1vQCYKzEwsN1q74BkfHv85o6bsE_1gSigon8mHLn9Yf7A4bIYEV0PRT0Y5GT97_Sss-i51NL9LwJysC0/pub?w=1416&h=778)
+
+Kubernetes' architecture consists of a Control Plane and worker nodes (or plainly, the nodes). Some system applications are also running on the worker nodes.
 
 ### Control Plane (a.k.a. Master Node)
 
-#### ApiServer
+The Control Plane consists of an API service, an etcd database, a scheduler and a controller manager. Let's take a more detailed look at each of those elements.
+
+#### API Server
+
+The API Server is the focal point of the Control Plane. It is simply a RESTful API server that takes care of managing all the Kubernetes resources (basic CRUD operations). It also offers a "watch" functionality, so take clients can listen on resources updates they care about.
 
 #### etcd
 
+Resources needs to be persistently stored somewhere. That where etcd comes in.
+
+From [CoreOS website](https://coreos.com/etcd/):
+
+> etcd is a distributed key value store that provides a reliable way to store data across a cluster of machines.
+
+The API Server stores all the resources directly in etcd, and is the only part of the system that has access to it.
+
 #### Scheduler / Controller Manager
+
+Having a simple CRUD server without doing anything with that data wouldn't do much work. Various controllers exist to run reconciliation tasks to make sure the desired state reflects the actual cluster state.
+
+Those controllers are run in the Controller Manager. For example, when the ReplicaSet controller picks up new/updated ReplicaSet, it create the necessary Pod resources accordingly.
+That specific controller doesn't create the actual Pod, only the Pod resources.
+Creating the actual pods is made by another component in the system, in response of a new/updated Pod resources.
+
+The Scheduler is a specific type of controller that takes care of choosing on which node each pod should run.
+It listens on Pod resource creation.
+When it happens, the Scheduler finds all the nodes that can accept the Pod (based on resources management, or affinity for example), prioritize those nodes and choose the best one.
+Then, it updates the Pod resource to indicates which node it should run on.
+
+There are almost a controller for every type of resource creatable. Furthermore, every controller's job is really scoped to the resource it's controlling. It makes the controller loosely coupled from one another.
 
 ### Worker Nodes
 
