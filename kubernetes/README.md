@@ -1,6 +1,15 @@
 # Kubernetes in Action
 
-## What is it?
+Recently, I took some professional development days.
+Since Kubernetes is a black box to me, I decided to dig into it for a week.
+I opened a ticket to order the book "Kubernetes in Action", published by Manning.
+
+This post is meant to be a high level view of Kubernetes, and its underlying architecture. Also, I would hope that it could serve as a first entry to learning Kubernetes for those who don't know it.
+
+## Table of content
+1. [What is it?](#what-is-it)
+
+## What is it?<a name="what-is-it"></a>
 
 ## Building Blocks
 
