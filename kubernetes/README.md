@@ -48,7 +48,10 @@ From Kubernetes official website,
 
 > Kubernetes (K8s) is an open-source system for automating deployment, scaling, and management of containerized applications. It groups containers that make up an application into logical units for easy management and discovery.
 
-Kubernetes relies on Linux containers
+Kubernetes relies on Linux containers to run heterogenous applications without having to know anything about the application internals.
+This abstraction makes is easy to run multiple different applications on the same hardware.
+
+Furthermore, the applications don't know anything about the underlying infrastructure. It is all abstracted away by Kubernetes. Thus, this simplifies development, deployment and management for the software teams.
 
 ## Building Blocks
 
