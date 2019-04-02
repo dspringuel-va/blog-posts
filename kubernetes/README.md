@@ -60,13 +60,13 @@ Let's start by describing the logical building blocks of what compose a Kubernet
 
 It starts with some containers, and goes all the way up to a cluster.
 
-![Building Blocks](https://docs.google.com/drawings/d/e/2PACX-1vQXcxnzV0f-g0e9Q_XtuwdHYFFg7wmtsyQO_VsZBWyyCeJwXUY_3M5cBTjO85UWL9S0IfUuok-SDx5a/pub?w=643&h=633)
+![Building Blocks](https://docs.google.com/drawings/d/e/2PACX-1vQXcxnzV0f-g0e9Q_XtuwdHYFFg7wmtsyQO_VsZBWyyCeJwXUY_3M5cBTjO85UWL9S0IfUuok-SDx5a/pub?h=400)
 
 ### Container
 
 A container is a unit of software packaged with all the needed dependencies to run it.
 
-![Container Diagram](https://docs.google.com/drawings/d/e/2PACX-1vSzE6SM-GPQvUcY6HZJ2K9kgRb9ndPv8a63k77VFgz0jlDXMKF_WYwg7Tyf9xcWJNxwUrUj_Gd19qEA/pub?w=263&h=311)
+![Container Diagram](https://docs.google.com/drawings/d/e/2PACX-1vSzE6SM-GPQvUcY6HZJ2K9kgRb9ndPv8a63k77VFgz0jlDXMKF_WYwg7Tyf9xcWJNxwUrUj_Gd19qEA/pub?h=400)
 
 The most common container runtime is Docker, which is one of the runtimes supported by Kubernetes. rkt is an alternative to Docker, which is also supported by Kubernetes.
 
@@ -82,7 +82,7 @@ The most known one is DockerHub. Google Cloud Platform also offers its own image
 
 A Kubernetes pod is a group of 1 or more containers.
 
-![Pod Diagram](https://docs.google.com/drawings/d/e/2PACX-1vQsoPj5L9ab2o0ZgeNqLzYQhdSiu_KAs1dNaPhwopQjujnW1SNBhX5gvyFQ2iV4_20_nqdmflNolblp/pub?w=415&h=625)
+![Pod Diagram](https://docs.google.com/drawings/d/e/2PACX-1vQsoPj5L9ab2o0ZgeNqLzYQhdSiu_KAs1dNaPhwopQjujnW1SNBhX5gvyFQ2iV4_20_nqdmflNolblp/pub?h=400)
 
 Containers within a pod have their processes isolated (like every other container).
 However, containers in a pod share their network namespace, i.e. they share the same IP address and the same port space.
@@ -106,7 +106,7 @@ In this case, it would be better separate the apps into two pods.
 
 A node is a machine representation where a group of pods are running.
 
-![Node Diagram](https://docs.google.com/drawings/d/e/2PACX-1vQUI6h9QuTXPSfnJ0ehCORuNo6aknViuqi2Oan2L4a7gEajvKhv8L89qvnN8XJFSa6L-oZ7oPnjKZM5/pub?w=1517&h=851)
+![Node Diagram](https://docs.google.com/drawings/d/e/2PACX-1vQUI6h9QuTXPSfnJ0ehCORuNo6aknViuqi2Oan2L4a7gEajvKhv8L89qvnN8XJFSa6L-oZ7oPnjKZM5/pub?h=400)
 
 A pod can't live across two different nodes, i.e. have one container run in one node, and a second container in a different node.
 All of a pod's containers are guaranteed to run in the same node.
@@ -115,7 +115,7 @@ All of a pod's containers are guaranteed to run in the same node.
 
 A cluster is simply a group of nodes.
 
-![Cluster Diagram](https://docs.google.com/drawings/d/e/2PACX-1vRu7wUcEbgvU8kSli7Ye58hbXlqCUKsgXVnlk-IxbSQWUpBl3tVJOCWZFGc_VQp_t1_5e3lfu5BAOWM/pub?w=1770&h=1129)
+![Cluster Diagram](https://docs.google.com/drawings/d/e/2PACX-1vRu7wUcEbgvU8kSli7Ye58hbXlqCUKsgXVnlk-IxbSQWUpBl3tVJOCWZFGc_VQp_t1_5e3lfu5BAOWM/pub?h=400)
 
 The nodes can have differents computational resources, depending on what the system needs. They also can be in different data-centers, accross different regions.
 
@@ -152,7 +152,7 @@ kubectl explain pod.spec
 
 Every single resource in the cluster is named. The namespace resource is used to group resources together in a non overlapping way. Therefore, all resources' names must be unique within a namespace. A different resource with the same name can exist in a different namespace.
 
-![Namespace Diagram](https://docs.google.com/drawings/d/e/2PACX-1vTR7MCsBMEVbMBA9AQg-32kEKqNLHMdkK1sunii7x2Rb5fylYdhwYszPjYGEP2QqxReeIwnzGloRcVk/pub?w=1898&h=1014)
+![Namespace Diagram](https://docs.google.com/drawings/d/e/2PACX-1vTR7MCsBMEVbMBA9AQg-32kEKqNLHMdkK1sunii7x2Rb5fylYdhwYszPjYGEP2QqxReeIwnzGloRcVk/pub?h=400)
 
 Kubernetes creates a default namespace, where all resources go if no namespace is specified upon resource creation.
 
@@ -168,7 +168,7 @@ Workloads is a logical group of resources that manages the life of pods. The mos
 
 The Pod is the atomic workload resource. As mentioned before, it runs one or more containers within it.
 
-![Detailed Pod Diagram](https://docs.google.com/drawings/d/e/2PACX-1vRO_zH_xjWw9SXZ9szPmCUtxYmg52Sj8TscNJ8dBBiAids0XFRFxxVu1NfRwEuGQNTph79P3cOuTpBy/pub?w=824&h=870)
+![Detailed Pod Diagram](https://docs.google.com/drawings/d/e/2PACX-1vRO_zH_xjWw9SXZ9szPmCUtxYmg52Sj8TscNJ8dBBiAids0XFRFxxVu1NfRwEuGQNTph79P3cOuTpBy/pub?h=400)
 
 In the Pod resource definition, it is possible to attribute many properties.
 The metadata exposes information on the pod itself, like its name, namespace or labels.
@@ -184,7 +184,7 @@ The ReplicaSet is one of such resource.
 
 A ReplicaSet is a resource responsible for managing a group of pods. The main properties of that resources are the pod template (what each pod should be like), the pod selector (which pods are part of this set), and the replicas (how many pods should be running under that set).
 
-![Replica Set Diagram](https://docs.google.com/drawings/d/e/2PACX-1vTCrgcAKk-InhOQPw84ULsK8Z0eioosmABeYZYDZzKa8gyY9vhwUr1mk0FYscNq7cAvxOHgyfSqyFS3/pub?w=991&h=1064)
+![Replica Set Diagram](https://docs.google.com/drawings/d/e/2PACX-1vTCrgcAKk-InhOQPw84ULsK8Z0eioosmABeYZYDZzKa8gyY9vhwUr1mk0FYscNq7cAvxOHgyfSqyFS3/pub?h=400)
 
 The ReplicaSet watches for any pod changes. If for any reasons, the number of pods doesn't match the replica number (a pod crashed, a pod label changed, or the host node failed for example), the ReplicaSet will spin up a new pod automatically.
 
@@ -200,14 +200,14 @@ The Deployment resource alleviates that problem.
 
 The Deployment resource is almost the same as the ReplicaSet. It has a pod selector, a pod template and a replicas property.
 
-![Deployment Diagram](https://docs.google.com/drawings/d/e/2PACX-1vRUwVm0eMdmQVOkQ6WOR6kiMRP_lM1cBQgFixzWFAh-l5Ml2jPKRVgYXxx2tXzY-pFap4Q5_1ai6YzV/pub?w=4487&h=1709)
+![Deployment Diagram](https://docs.google.com/drawings/d/e/2PACX-1vRUwVm0eMdmQVOkQ6WOR6kiMRP_lM1cBQgFixzWFAh-l5Ml2jPKRVgYXxx2tXzY-pFap4Q5_1ai6YzV/pub?h=400)
 
 The difference resides in what happens when the pod template is updated.
 In that scenario, the Deployment will create another ReplicaSet with the updated pod template.
 That new ReplicaSet has its replicas property set to 0.
 Then, it gradually increases the new ReplicaSet replicas number, while decreasing the old ReplicaSet replicas number to 0.
 
-![Deployment Diagram - Rolling Update](https://docs.google.com/drawings/d/e/2PACX-1vTKew2mhzCXOMfBZOHCxyF3eOykFSL9h-PKkbj2RmrkkdlpOR7U4IiFdzSPiy3OwMUeQvVdKErcmm-i/pub?w=3325&h=1699)
+![Deployment Diagram - Rolling Update](https://docs.google.com/drawings/d/e/2PACX-1vTKew2mhzCXOMfBZOHCxyF3eOykFSL9h-PKkbj2RmrkkdlpOR7U4IiFdzSPiy3OwMUeQvVdKErcmm-i/pub?h=1000)
 
 Once the rolling update is done, the Deployment doesn't delete the old ReplicaSet. It is kept around, in case that a rollback is needed.
 
@@ -263,7 +263,7 @@ The common thing amongst all the services is that they map a group of pods to a 
 
 The simplest Service resource is called a ClusterIP Service.
 
-![Cluster IP Service Diagram](https://docs.google.com/drawings/d/e/2PACX-1vRjzGBrjZTZmKlVyLvEYaKaXtjzcuQSGbfp7xh4M05rKKyFJuv7gXJTIjtU-d4JDVm7_zqfriqlK-30/pub?w=1397&h=945)
+![Cluster IP Service Diagram](https://docs.google.com/drawings/d/e/2PACX-1vRjzGBrjZTZmKlVyLvEYaKaXtjzcuQSGbfp7xh4M05rKKyFJuv7gXJTIjtU-d4JDVm7_zqfriqlK-30/pub?h=400)
 
 A ClusterIP service exposes an internal only IP address (i.e. can be called only from within the cluster internal network). When a handling a request, it redirects it to a random pod it manages.
 
@@ -273,7 +273,7 @@ One thing to mention is that the Service resource itself doesn't manage the pods
 
 The Endpoints resource can be created manually. When matched by name with a Service that doesn't specify a pod selector, it can be used to create a service that points to external services outside the cluster.
 
-![Endpoints to external service](https://docs.google.com/drawings/d/e/2PACX-1vSdFY4W97DJuRz0agL_GG8SoYBZ2QiDqTSWQrj6pKiAx0xdOHhkRTr4roqS-LHuUFsmm73OvS0520Sb/pub?w=1870&h=1278)
+![Endpoints to external service](https://docs.google.com/drawings/d/e/2PACX-1vSdFY4W97DJuRz0agL_GG8SoYBZ2QiDqTSWQrj6pKiAx0xdOHhkRTr4roqS-LHuUFsmm73OvS0520Sb/pub?h=400)
 
 *NodePort*
 
@@ -284,7 +284,7 @@ Then, the request is redirected to a random pod under the service.
 
 Since the nodes have an external IP address, the service is effectively exposed to external clients.
 
-![NodePort Service Diagram](https://docs.google.com/drawings/d/e/2PACX-1vR_wFvaJUmfEOg8IwWwrmP_ZtVKblBl0pow7VuZj5kqdfXZYfO8YlUqY7xVtmI-3iZNnP_20UmR879b/pub?w=1929&h=1233)
+![NodePort Service Diagram](https://docs.google.com/drawings/d/e/2PACX-1vR_wFvaJUmfEOg8IwWwrmP_ZtVKblBl0pow7VuZj5kqdfXZYfO8YlUqY7xVtmI-3iZNnP_20UmR879b/pub?h=400)
 
 One thing to note is that the client must know a node IP address.
 It could be any nodes, even though the pod the request is directed to doesn't run on that node.
@@ -294,7 +294,7 @@ Also, this type of service requires to configure the cluster firewall to have th
 
 A Load Balancer Service is almost the same thing as a NodePort service. In fact, it is just an extension of it.
 
-![Load Balancer Service Diagram](https://docs.google.com/drawings/d/e/2PACX-1vRZTBO7-f7i0H_eMZVPZDPnGt0kG-i1i0d3En71GXXwsS3TsHdYqaGyg712HQ_vEUDnxEPrkljxrqQc/pub?w=1806&h=1226)
+![Load Balancer Service Diagram](https://docs.google.com/drawings/d/e/2PACX-1vRZTBO7-f7i0H_eMZVPZDPnGt0kG-i1i0d3En71GXXwsS3TsHdYqaGyg712HQ_vEUDnxEPrkljxrqQc/pub?h=400)
 
 Instead of having the clients call the nodes directly, that service uses a load balancer in front of the nodes. Thus, the client needs to know only one IP address, instead of individual node IP.
 Furthermore, it makes sure that the service load is evenly distributed amongst all nodes.
@@ -307,7 +307,7 @@ An Ingress is a resources that sits in front of many other services.
 It operates at the L7 (application layer) of the network stack.
 That means that it can redirect requests based on either the request domain, or the request path for example.
 
-![Ingress Diagram](https://docs.google.com/drawings/d/e/2PACX-1vQ5gIevkt6uJntEbEBWg0sIMOD8m6dBw6EJ-x0X4jdvRJuvK0b-LegHQY2VofHJrjObNKRUCdvQn4X_/pub?w=2003&h=823)
+![Ingress Diagram](https://docs.google.com/drawings/d/e/2PACX-1vQ5gIevkt6uJntEbEBWg0sIMOD8m6dBw6EJ-x0X4jdvRJuvK0b-LegHQY2VofHJrjObNKRUCdvQn4X_/pub?h=400)
 
 To make the Ingress resources work, it needs a Ingress controller. For example, GKE uses Google Cloud Platform's own HTTP load-balancing features to provide the Ingress functionality.
 
@@ -323,7 +323,7 @@ Kubernetes defines two resources to help passing configurations to applications:
 A ConfigMap resource is simply a list of key-value pairs.
 It can be passed in the pod either by environment variable or by a mounted volume.
 
-![Config Map Diagram](https://docs.google.com/drawings/d/e/2PACX-1vT6vIlztG8iSEWAFlBpM1AZOBl4ZvBPiSEJRO9FXXB0bBkOjeCt_T74vpkSpXkydRC4N7Mk4KdxT7mw/pub?w=927&h=628)
+![Config Map Diagram](https://docs.google.com/drawings/d/e/2PACX-1vT6vIlztG8iSEWAFlBpM1AZOBl4ZvBPiSEJRO9FXXB0bBkOjeCt_T74vpkSpXkydRC4N7Mk4KdxT7mw/pub?h=400)
 
 Therefore, ConfigMaps allow decoupling the pod configuration from the pod definition.
 In other words, it means that two pods can share the same definition, but different configurations, like staging vs production configurations for example.
@@ -341,7 +341,7 @@ Also, having a different resource type means that it's possible to have differen
 
 Now that a we know a bit more about what Kubernetes can do, let's take a look on how it works under the hood.
 
-![Overall Architecture Diagram](https://docs.google.com/drawings/d/e/2PACX-1vQCYKzEwsN1q74BkfHv85o6bsE_1gSigon8mHLn9Yf7A4bIYEV0PRT0Y5GT97_Sss-i51NL9LwJysC0/pub?w=1416&h=778)
+![Overall Architecture Diagram](https://docs.google.com/drawings/d/e/2PACX-1vQCYKzEwsN1q74BkfHv85o6bsE_1gSigon8mHLn9Yf7A4bIYEV0PRT0Y5GT97_Sss-i51NL9LwJysC0/pub?h=400)
 
 Kubernetes' architecture consists of a Control Plane and worker nodes (or plainly, the nodes). Some system applications are also running on the worker nodes.
 
