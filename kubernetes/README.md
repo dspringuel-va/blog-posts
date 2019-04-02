@@ -88,7 +88,8 @@ Containers within a pod have their processes isolated (like every other containe
 However, containers in a pod share their network namespace, i.e. they share the same IP address and the same port space.
 The IP address is chosen by Kubernetes at creation time, and only stays around for the pod instance life.
 
-A pod can contain more than 1 container. However, those should be tightly coupled together. Usually, that means a "main" container which run the application the pod is meant for, along with sidecar containers that provides specific value to the main container.
+A pod can contain more than 1 container. However, those should be tightly coupled together.
+Usually, that means a "main" container which runs the application that the pod is meant for, along with sidecar containers that provide specific value (or add complementary functionality) to the main container.
 Here, main is only a logical concept.
 
 An example could be a nginx server that runs as the main container,
@@ -156,7 +157,7 @@ Every single resource in the cluster is named. The namespace resource is used to
 Kubernetes creates a default namespace, where all resources go if no namespace is specified upon resource creation.
 
 Some resources are cluster-level resources, which means that they can't be in a namespace.
-The namespace resource itself is a good example of a cluster-level resource (Kubernetes doesn't allow to have a namespace resource within a namespace).
+The namespace resource itself is a good example of a cluster-level resource (Kubernetes doesn't allow you to have a namespace resource within a namespace).
 Nodes and persistent volumes are other examples of cluster-level resources.
 
 ### Workloads
