@@ -1,7 +1,7 @@
 # Kubernetes in Action
 
 Recently, I took some professional development days.
-Since Kubernetes is a black box to me, I decided to dig into it.
+Since Kubernetes was a black box to me, I decided to dig into it.
 I opened a ticket to order the book "Kubernetes in Action", published by Manning.
 Then, I spent most of my time reading it.
 
@@ -41,16 +41,16 @@ Also, I would hope that it could serve as an easy first entry to learning Kubern
 ## What is it?
 
 Moving from monolithic applications to a microservices architecture has many benefits: independent development and releases, granular scability, possibility to select the right technology for a problem, etc.
-However, those benefits comes at a price: the complexity of successfully managing all the services to have a performant and resiliant system.
+However, those benefits come at a price: the complexity of successfully managing all the services to have a performant and resiliant system.
 
 Kubernetes is a platform that alleviates that complexity to make a microservice architecture easier to manage.
 
-From Kubernetes official website,
+From Kubernetes' official website,
 
 > Kubernetes (K8s) is an open-source system for automating deployment, scaling, and management of containerized applications. It groups containers that make up an application into logical units for easy management and discovery.
 
 Kubernetes relies on Linux containers to run heterogenous applications without having to know anything about the application internals.
-This abstraction makes is easy to run multiple different applications on the same hardware.
+This abstraction makes it easy to run multiple different applications on the same hardware.
 
 Furthermore, the applications don't know anything about the underlying infrastructure. It is all abstracted away by Kubernetes. Thus, this simplifies development, deployment and management for the software teams.
 
@@ -68,15 +68,15 @@ A container is a unit of software packaged with all the needed dependencies to r
 
 ![Container Diagram](https://docs.google.com/drawings/d/e/2PACX-1vSzE6SM-GPQvUcY6HZJ2K9kgRb9ndPv8a63k77VFgz0jlDXMKF_WYwg7Tyf9xcWJNxwUrUj_Gd19qEA/pub?w=263&h=311)
 
-The most common container runtime is Docker, which is one of the runtime supported by Kubernetes. rkt is an alternative to Docker, which is also supported by Kubernetes.
+The most common container runtime is Docker, which is one of the runtimes supported by Kubernetes. rkt is an alternative to Docker, which is also supported by Kubernetes.
 
-Docker gives the possibility to the user to build declaratively an image of the container.
+Docker gives the user the possibility to declaratively build an image of the container.
 A Docker image is a model for a container.
 It is then possible to create as many container as one wants based on that image.
 Furthermore, it is possible to host an image on registeries over the Internet,
 which thus makes container creation really easy.
 
-The most known one is DockerHub. Google Cloud Platform offers also its own image registry: Google Cloud Registry.
+The most known one is DockerHub. Google Cloud Platform also offers its own image registry: Google Cloud Registry.
 
 ### Pod
 
@@ -84,7 +84,7 @@ A Kubernetes pod is a group of 1 or more containers.
 
 ![Pod Diagram](https://docs.google.com/drawings/d/e/2PACX-1vQsoPj5L9ab2o0ZgeNqLzYQhdSiu_KAs1dNaPhwopQjujnW1SNBhX5gvyFQ2iV4_20_nqdmflNolblp/pub?w=415&h=625)
 
-Containers within a pod have their processes isolated (like every other containers).
+Containers within a pod have their processes isolated (like every other container).
 However, containers in a pod share their network namespace, i.e. they share the same IP address and the same port space.
 The IP address is chosen by Kubernetes at creation time, and only stays around for the pod instance life.
 
@@ -109,7 +109,7 @@ A node is a machine representation where a group of pods are running.
 ![Node Diagram](https://docs.google.com/drawings/d/e/2PACX-1vQUI6h9QuTXPSfnJ0ehCORuNo6aknViuqi2Oan2L4a7gEajvKhv8L89qvnN8XJFSa6L-oZ7oPnjKZM5/pub?w=1517&h=851)
 
 A pod can't live across two different nodes, i.e. have one container run in one node, and a second container in a different node.
-All pod's containers are guaranteed to run in the same node.
+All of a pod's containers are guaranteed to run in the same node.
 
 ### Cluster
 
@@ -124,7 +124,7 @@ The nodes can have differents computational resources, depending on what the sys
 Almost everything that defines a Kubernetes clusters is represented by a resource.
 The resources are managed by a single RESTful API server.
 They represent the state of the cluster at any moment in time.
-There are controllers that listens to resources CRUD operations at any time and execute actions accordingly to unify the actual state with the desired state.
+There are controllers that listen to a resource's CRUD operations at any time and execute actions accordingly to unify the actual state with the desired state.
 
 That architecture makes Kubernetes declarative (instead of imperative), i.e. it only needs to be told what state the cluster should be in (and Kubernetes will take care of reconciliating it), instead of being told what to do in order to be in that state.
 
@@ -150,7 +150,7 @@ kubectl explain pod.spec
 
 ### Namespace
 
-Every single resource in the cluster is named. The namespace resource is used to group resources togheter in a non overlapping way. Therefore, all resources' name must be unique within a namespace. A different resource with the same name can exist in a different namespace.
+Every single resource in the cluster is named. The namespace resource is used to group resources together in a non overlapping way. Therefore, all resources' names must be unique within a namespace. A different resource with the same name can exist in a different namespace.
 
 ![Namespace Diagram](https://docs.google.com/drawings/d/e/2PACX-1vTR7MCsBMEVbMBA9AQg-32kEKqNLHMdkK1sunii7x2Rb5fylYdhwYszPjYGEP2QqxReeIwnzGloRcVk/pub?w=1898&h=1014)
 
@@ -162,7 +162,7 @@ Nodes and persistent volumes are other examples of cluster-level resources.
 
 ### Workloads
 
-Workloads is a logical group of resources that manages the life of pods. The most simple one is the pod resource itself. Let's take a look at some few of those resources.
+Workloads is a logical group of resources that manages the life of pods. The most simple one is the pod resource itself. Let's take a look at a few of those resources.
 
 #### Pod
 
@@ -174,7 +174,7 @@ In the Pod resource definition, it is possible to attribute many properties.
 The metadata exposes information on the pod itself, like its name, namespace or labels.
 The spec describes among other things which container to run, from which images to create them, or which volume to create.
 
-Labels are part of the metadata section of the pod definition, and it is a important property for the pods.
+Labels are part of the metadata section of the pod definition, and it is an important property for the pods.
 It allows the user to organize the pods, in a potentially overlapping way.
 Furthermore, it allows other resources to select pods based on those labels.
 
@@ -182,7 +182,7 @@ The ReplicaSet is one of such resource.
 
 #### ReplicaSet
 
-A ReplicaSet is a resource responsible to manage a group of pods. The main properties of that resources are the pod template (what each pod should be like), the pod selector (which pods are part of this set), and the replicas (how many pods should be running under that set).
+A ReplicaSet is a resource responsible for managing a group of pods. The main properties of that resources are the pod template (what each pod should be like), the pod selector (which pods are part of this set), and the replicas (how many pods should be running under that set).
 
 ![Replica Set Diagram](https://docs.google.com/drawings/d/e/2PACX-1vTCrgcAKk-InhOQPw84ULsK8Z0eioosmABeYZYDZzKa8gyY9vhwUr1mk0FYscNq7cAvxOHgyfSqyFS3/pub?w=991&h=1064)
 
@@ -202,16 +202,16 @@ The Deployment resource is almost the same as the ReplicaSet. It has a pod selec
 
 ![Deployment Diagram](https://docs.google.com/drawings/d/e/2PACX-1vRUwVm0eMdmQVOkQ6WOR6kiMRP_lM1cBQgFixzWFAh-l5Ml2jPKRVgYXxx2tXzY-pFap4Q5_1ai6YzV/pub?w=4487&h=1709)
 
-The difference resides on what happens when the pod template is updated.
+The difference resides in what happens when the pod template is updated.
 In that scenario, the Deployment will create another ReplicaSet with the updated pod template.
 That new ReplicaSet has its replicas property set to 0.
-Then, it gradually increase the new ReplicaSet replicas number, while decreasing the old ReplicaSet replicas number to 0.
+Then, it gradually increases the new ReplicaSet replicas number, while decreasing the old ReplicaSet replicas number to 0.
 
 ![Deployment Diagram - Rolling Update](https://docs.google.com/drawings/d/e/2PACX-1vTKew2mhzCXOMfBZOHCxyF3eOykFSL9h-PKkbj2RmrkkdlpOR7U4IiFdzSPiy3OwMUeQvVdKErcmm-i/pub?w=3325&h=1699)
 
 Once the rolling update is done, the Deployment doesn't delete the old ReplicaSet. It is kept around, in case that a rollback is needed.
 
-The Deployment defines also a Rolling Update Strategy. It is compose mainly of two properties: maxSurge and maxUnavailable.
+The Deployment defines also a Rolling Update Strategy. It is composed mainly of two properties: maxSurge and maxUnavailable.
 The maxSurge property defines how many more pods than the desired number can run during the update.
 The maxUnavailable property defines the opposite, i.e. how many fewer pods than the desired number can run during the update.
 
@@ -223,12 +223,12 @@ There are many other resources that can spin up new pods. Let's talk about a few
 
 *Job*
 
-A Job is almost the same resource than a Pod.
+A Job is almost the same resource as a Pod.
 
 Usually, a Pod needs to run continuously. When it fails, the general use case for it is to be brought back to life, usually by a ReplicaSet.
 
-However, there are some case where a pod would normally execute and terminate successfully.
-In those case, the pod shouldn't be restarted, since it was meant for a one time execution.
+However, there are some cases where a pod would normally execute and terminate successfully.
+In those cases, the pod shouldn't be restarted, since it was meant for a one time execution.
 The Job resource was created especially for that purpose.
 
 The Job will run a pod until it finishes successfully. If the pod fails for any reason (the node crashed, etc), it will reschedule it to run again.
@@ -237,7 +237,7 @@ Furthermore, it is possible to setup a job to run many times the pods, sequentia
 
 *CronJob*
 
-A CronJob is the exact same thing than a Job, except the fact that is possible to schedule the running time of the pod in time.
+A CronJob is the exact same thing as a Job, except for the fact that it is possible to schedule the running time of the pod in time.
 
 At approximately the schedule time, the CronJob simply creates a Job resource, which in turn takes care of running the pod.
 
@@ -317,11 +317,11 @@ With the correct set of rules, it would be possible to have a single Ingress res
 
 Almost every application needs some configuration.
 Usually, we don't want that configuration hard-coded in the application itself.
-Kubernetes defines two resources to help passing configurations to application: ConfigMaps and Secrets.
+Kubernetes defines two resources to help passing configurations to applications: ConfigMaps and Secrets.
 
 #### ConfigMap
 A ConfigMap resource is simply a list of key-value pairs.
-It can be passed in the pod either by environments variable or by a mounted volume.
+It can be passed in the pod either by environment variable or by a mounted volume.
 
 ![Config Map Diagram](https://docs.google.com/drawings/d/e/2PACX-1vT6vIlztG8iSEWAFlBpM1AZOBl4ZvBPiSEJRO9FXXB0bBkOjeCt_T74vpkSpXkydRC4N7Mk4KdxT7mw/pub?w=927&h=628)
 
@@ -358,7 +358,7 @@ It also offers a "watch" functionality, so take clients can listen on resources 
 #### etcd
 
 Resources needs to be persistently stored somewhere.
-That where etcd comes in.
+That is where etcd comes in.
 
 From [CoreOS website](https://coreos.com/etcd/):
 
@@ -381,11 +381,11 @@ It listens on Pod resource creation.
 When it happens, the Scheduler finds all the nodes that can accept the Pod (based on resources management, or affinity for example), prioritizes those nodes and choose the best one.
 Then, it updates the Pod resource to indicates which node it should run on.
 
-There are almost a controller for every type of resource creatable. Furthermore, every controller's job is really scoped to the resource it's controlling. It makes the controller loosely coupled from one another.
+There is almost a controller for every type of resource creatable. Furthermore, every controller's job is really scoped to the resource it's controlling. It makes the controller loosely coupled from one another.
 
 ### Worker Nodes
 
-The API server and the controllers is at the heart of the Control Plane. However, some system components must run also on each of the worker nodes, namely the Kubernetes Service Proxy and the Kubelet.
+The API server and the controllers are at the heart of the Control Plane. However, some system components must also run on each of the worker nodes, namely the Kubernetes Service Proxy and the Kubelet.
 
 #### Kubelet / Container Runtime
 
@@ -393,10 +393,10 @@ The Kubelet is responsible for everything running on the worker nodes, but
 the main responsibility is to manage the life of containers on the node.
 
 When a pod is scheduled on a node, Kubelet gets notified and actually starts the container by using the configured container runtime (Docker, etc).
-Also, Kubelet is responsible for monitoring the health of the pods, either by running liveness and readiness probes, or by watching computational resources consumption.
+Also, Kubelet is responsible for monitoring the health of the pods, either by running liveness and readiness probes, or by watching computational resource consumption.
 It also stops the container when the corresponding pod resource gets deleted from the API server.
 
-Finally, the Kubelet is also responsible with registering the node to the cluster by creating a Node resource on the API server.
+Finally, the Kubelet is also responsible for registering the node to the cluster by creating a Node resource on the API server.
 
 #### Kubernetes Service Proxy (a.k.a. kube-proxy)
 
