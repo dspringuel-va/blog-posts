@@ -186,13 +186,13 @@ A ReplicaSet is a resource responsible for managing a group of pods. The main pr
 
 ![Replica Set Diagram](https://docs.google.com/drawings/d/e/2PACX-1vTCrgcAKk-InhOQPw84ULsK8Z0eioosmABeYZYDZzKa8gyY9vhwUr1mk0FYscNq7cAvxOHgyfSqyFS3/pub?w=991&h=1064)
 
-The ReplicaSet watches for any pod changes. If for any reasons, the number of pods doesn't match the replica number (a pod crashed, a pod label changed, or the host node failed for example), the ReplicaSet will spin up a new pod automatically.
+The ReplicaSet watches for any pod changes. If, for any reason, the number of pods doesn't match the replica number (a pod crashed, a pod label changed, or the host node failed for example), the ReplicaSet will spin up a new pod automatically.
 
 The ReplicaSet doesn't decide on which node the pod is created, nor its IP address.
 It only cares about the number of pods running.
 If the ReplicaSet replicas property would change (up or down), it would then command to create or kill the needed pods.
 
-If the pod template would change, it doesn't affect the currently running pods under the ReplicaSet. The next the ReplicaSet needs to create a pod, it would use the new template, which means that two versions of the pods could concurrently run under that ReplicaSet (which isn't ideal).
+If the pod template would change, it doesn't affect the currently running pods under the ReplicaSet. The next time the ReplicaSet needs to create a pod, it would use the new template, which means that two versions of the pods could concurrently run under that ReplicaSet (which isn't ideal).
 
 The Deployment resource alleviates that problem.
 
