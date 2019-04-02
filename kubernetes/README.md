@@ -152,7 +152,7 @@ kubectl explain pod.spec
 
 Every single resource in the cluster is named. The namespace resource is used to group resources together in a non overlapping way. Therefore, all resources' names must be unique within a namespace. A different resource with the same name can exist in a different namespace.
 
-![Namespace Diagram](https://docs.google.com/drawings/d/e/2PACX-1vTR7MCsBMEVbMBA9AQg-32kEKqNLHMdkK1sunii7x2Rb5fylYdhwYszPjYGEP2QqxReeIwnzGloRcVk/pub?h=400)
+![Namespace Diagram](https://docs.google.com/drawings/d/e/2PACX-1vTR7MCsBMEVbMBA9AQg-32kEKqNLHMdkK1sunii7x2Rb5fylYdhwYszPjYGEP2QqxReeIwnzGloRcVk/pub?h=500)
 
 Kubernetes creates a default namespace, where all resources go if no namespace is specified upon resource creation.
 
@@ -168,7 +168,7 @@ Workloads is a logical group of resources that manages the life of pods. The mos
 
 The Pod is the atomic workload resource. As mentioned before, it runs one or more containers within it.
 
-![Detailed Pod Diagram](https://docs.google.com/drawings/d/e/2PACX-1vRO_zH_xjWw9SXZ9szPmCUtxYmg52Sj8TscNJ8dBBiAids0XFRFxxVu1NfRwEuGQNTph79P3cOuTpBy/pub?h=400)
+![Detailed Pod Diagram](https://docs.google.com/drawings/d/e/2PACX-1vRO_zH_xjWw9SXZ9szPmCUtxYmg52Sj8TscNJ8dBBiAids0XFRFxxVu1NfRwEuGQNTph79P3cOuTpBy/pub?h=500)
 
 In the Pod resource definition, it is possible to attribute many properties.
 The metadata exposes information on the pod itself, like its name, namespace or labels.
@@ -184,7 +184,7 @@ The ReplicaSet is one of such resource.
 
 A ReplicaSet is a resource responsible for managing a group of pods. The main properties of that resources are the pod template (what each pod should be like), the pod selector (which pods are part of this set), and the replicas (how many pods should be running under that set).
 
-![Replica Set Diagram](https://docs.google.com/drawings/d/e/2PACX-1vTCrgcAKk-InhOQPw84ULsK8Z0eioosmABeYZYDZzKa8gyY9vhwUr1mk0FYscNq7cAvxOHgyfSqyFS3/pub?h=400)
+![Replica Set Diagram](https://docs.google.com/drawings/d/e/2PACX-1vTCrgcAKk-InhOQPw84ULsK8Z0eioosmABeYZYDZzKa8gyY9vhwUr1mk0FYscNq7cAvxOHgyfSqyFS3/pub?h=500)
 
 The ReplicaSet watches for any pod changes. If, for any reason, the number of pods doesn't match the replica number (a pod crashed, a pod label changed, or the host node failed for example), the ReplicaSet will spin up a new pod automatically.
 
@@ -200,14 +200,14 @@ The Deployment resource alleviates that problem.
 
 The Deployment resource is almost the same as the ReplicaSet. It has a pod selector, a pod template and a replicas property.
 
-![Deployment Diagram](https://docs.google.com/drawings/d/e/2PACX-1vRUwVm0eMdmQVOkQ6WOR6kiMRP_lM1cBQgFixzWFAh-l5Ml2jPKRVgYXxx2tXzY-pFap4Q5_1ai6YzV/pub?h=400)
+![Deployment Diagram](https://docs.google.com/drawings/d/e/2PACX-1vRUwVm0eMdmQVOkQ6WOR6kiMRP_lM1cBQgFixzWFAh-l5Ml2jPKRVgYXxx2tXzY-pFap4Q5_1ai6YzV/pub?h=600)
 
 The difference resides in what happens when the pod template is updated.
 In that scenario, the Deployment will create another ReplicaSet with the updated pod template.
 That new ReplicaSet has its replicas property set to 0.
 Then, it gradually increases the new ReplicaSet replicas number, while decreasing the old ReplicaSet replicas number to 0.
 
-![Deployment Diagram - Rolling Update](https://docs.google.com/drawings/d/e/2PACX-1vTKew2mhzCXOMfBZOHCxyF3eOykFSL9h-PKkbj2RmrkkdlpOR7U4IiFdzSPiy3OwMUeQvVdKErcmm-i/pub?h=1000)
+![Deployment Diagram - Rolling Update](https://docs.google.com/drawings/d/e/2PACX-1vTKew2mhzCXOMfBZOHCxyF3eOykFSL9h-PKkbj2RmrkkdlpOR7U4IiFdzSPiy3OwMUeQvVdKErcmm-i/pub?h=1200)
 
 Once the rolling update is done, the Deployment doesn't delete the old ReplicaSet. It is kept around, in case that a rollback is needed.
 
