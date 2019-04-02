@@ -98,20 +98,17 @@ A node is a machine representation where a group of pods are running.
 
 ![Node Diagram](https://docs.google.com/drawings/d/e/2PACX-1vQUI6h9QuTXPSfnJ0ehCORuNo6aknViuqi2Oan2L4a7gEajvKhv8L89qvnN8XJFSa6L-oZ7oPnjKZM5/pub?w=1517&h=851)
 
-Every pods in the node have a unique internal IP address.
 Also, a pod can't live across two different nodes, i.e. have one container run in one node, and a second container in a different nodes.
 All pod's containers are guaranteed to run in the same node.
 
-The nodes can have differents computational resources, depending on what the system needs.
 
 ### Cluster
 
-A cluster is a group of nodes.
+A cluster is simply a group of nodes.
 
 ![Cluster Diagram](https://docs.google.com/drawings/d/e/2PACX-1vRu7wUcEbgvU8kSli7Ye58hbXlqCUKsgXVnlk-IxbSQWUpBl3tVJOCWZFGc_VQp_t1_5e3lfu5BAOWM/pub?w=1770&h=1129)
 
-It is important to note that every single pods and nodes accross the cluster have unique IP address within the internal network, which makes possible to connect to any pods from any pods within the cluster.
-
+The nodes can have differents computational resources, depending on what the system needs. They also can be in different data-centers, accross different regions.
 
 ## Resources
 
