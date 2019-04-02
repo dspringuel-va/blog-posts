@@ -248,7 +248,8 @@ This is useful for example to monitor the node itself, or to run system wide ope
 
 ### Services
 
-As mentionned earlier, pods are assigned unpredictable IP address when they are created. Then, how can one pod call another pod if it doesn't know its address?
+As mentionned earlier, pods are assigned unpredictable IP address when they are created.
+Then, how can one pod call another pod if it doesn't know its address?
 Services is a resource type that takes care of that issue.
 
 There are two main service resources: a Service (duh!) and an Ingress.
@@ -267,15 +268,18 @@ A ClusterIP service exposes an internal only IP address (i.e. can be called only
 
 The service uses the same labelling system the ReplicaSet uses. A pod selector is specified in the Service description. All pods with a matching label can receive a redirected request from that service.
 
-One thing to mention is that the Service resource itself doesn't manage the pods' IP addresses under its wings. Another resource called Endpoints takes care of that.
+One thing to mention is that the Service resource itself doesn't manage the pods' IP addresses under its wings. Another resource called Endpoints (note the plural) takes care of that.
 
-The Endpoint resource can be created manually. When matched by name with a Service that doesn't specify a pod selector, it can be used to create a service that points to external services outside the cluster.
+The Endpoints resource can be created manually. When matched by name with a Service that doesn't specify a pod selector, it can be used to create a service that points to external services outside the cluster.
 
 ![Endpoints to external service](https://docs.google.com/drawings/d/e/2PACX-1vSdFY4W97DJuRz0agL_GG8SoYBZ2QiDqTSWQrj6pKiAx0xdOHhkRTr4roqS-LHuUFsmm73OvS0520Sb/pub?w=1870&h=1278)
 
 *NodePort*
 
-A ClusterIP service doesn't expose the service outside the cluster. A NodePort service can. That type of service listens to an open ports on any node in the cluster. Then, the request is redirected to a random pod under the service.
+A ClusterIP service doesn't expose the service outside the cluster.
+A NodePort service can.
+That type of service listens to an open port on any node in the cluster.
+Then, the request is redirected to a random pod under the service.
 
 Since the nodes have an external IP address, the service is effectively exposed to external clients.
 
@@ -298,7 +302,9 @@ Furthermore, it makes sure that the service load is evenly distributed amongst a
 
 When there are many different services exposed externally, it can become hard to manage all the load-balancer's IP addresses.
 
-An Ingress is a resources that sits in front of many other resources. It operates at the L7 (application layer) of the network stack. That means that it can redirect requests based on either the request domain, or the request path for example.
+An Ingress is a resources that sits in front of many other services.
+It operates at the L7 (application layer) of the network stack.
+That means that it can redirect requests based on either the request domain, or the request path for example.
 
 ![Ingress Diagram](https://docs.google.com/drawings/d/e/2PACX-1vQ5gIevkt6uJntEbEBWg0sIMOD8m6dBw6EJ-x0X4jdvRJuvK0b-LegHQY2VofHJrjObNKRUCdvQn4X_/pub?w=2003&h=823)
 
@@ -308,14 +314,18 @@ With the correct set of rules, it would be possible to have a single Ingress res
 
 ### Config
 
-Almost every application needs some configuration. Usually, we don't want that configuration hard-coded in the application itself. Kubernetes defines two resources to help passing configurations to application: ConfigMaps and Secrets
+Almost every application needs some configuration.
+Usually, we don't want that configuration hard-coded in the application itself.
+Kubernetes defines two resources to help passing configurations to application: ConfigMaps and Secrets.
 
 #### ConfigMap
-A ConfigMap resource is simply a list key-value pairs. It can be passed in the the pod either by environments variable or by a mounted volume.
+A ConfigMap resource is simply a list of key-value pairs.
+It can be passed in the pod either by environments variable or by a mounted volume.
 
 ![Config Map Diagram](https://docs.google.com/drawings/d/e/2PACX-1vT6vIlztG8iSEWAFlBpM1AZOBl4ZvBPiSEJRO9FXXB0bBkOjeCt_T74vpkSpXkydRC4N7Mk4KdxT7mw/pub?w=927&h=628)
 
-Therefore, ConfigMaps allow decoupling the pod configuration from the pod definition. In other words, it means that two pods can share the same definition, but different configurations, like staging vs production configurations for example.
+Therefore, ConfigMaps allow decoupling the pod configuration from the pod definition.
+In other words, it means that two pods can share the same definition, but different configurations, like staging vs production configurations for example.
 
 Another potential advantage of using ConfigMap with a referenced mounted volume is that the configuration could be updated in runtime without restarting the app (although it could be quite slow).
 
@@ -340,11 +350,14 @@ The Control Plane consists of an API service, an etcd database, a scheduler and 
 
 #### API Server
 
-The API Server is the focal point of the Control Plane. It is simply a RESTful API server that takes care of managing all the Kubernetes resources (basic CRUD operations). It also offers a "watch" functionality, so take clients can listen on resources updates they care about.
+The API Server is the focal point of the Control Plane.
+It is simply a RESTful API server that takes care of managing all the Kubernetes resources (basic CRUD operations).
+It also offers a "watch" functionality, so take clients can listen on resources updates they care about.
 
 #### etcd
 
-Resources needs to be persistently stored somewhere. That where etcd comes in.
+Resources needs to be persistently stored somewhere.
+That where etcd comes in.
 
 From [CoreOS website](https://coreos.com/etcd/):
 
@@ -354,15 +367,17 @@ The API Server stores all the resources directly in etcd, and is the only part o
 
 #### Scheduler / Controller Manager
 
-Having a simple CRUD server without doing anything with that data wouldn't do much work. Various controllers exist to run reconciliation tasks to make sure the desired state reflects the actual cluster state.
+Having a simple CRUD server without doing anything with that data wouldn't do much work.
+Various controllers exist to run reconciliation tasks to make sure the desired state reflects the actual cluster state.
 
-Those controllers are run in the Controller Manager. For example, when the ReplicaSet controller picks up new/updated ReplicaSet, it create the necessary Pod resources accordingly.
+Those controllers are run in the Controller Manager.
+For example, when the ReplicaSet controller picks up new/updated ReplicaSet, it create the necessary Pod resources accordingly.
 That specific controller doesn't create the actual Pod, only the Pod resources.
 Creating the actual pods is made by another component in the system, in response of a new/updated Pod resources.
 
 The Scheduler is a specific type of controller that takes care of choosing on which node each pod should run.
 It listens on Pod resource creation.
-When it happens, the Scheduler finds all the nodes that can accept the Pod (based on resources management, or affinity for example), prioritize those nodes and choose the best one.
+When it happens, the Scheduler finds all the nodes that can accept the Pod (based on resources management, or affinity for example), prioritizes those nodes and choose the best one.
 Then, it updates the Pod resource to indicates which node it should run on.
 
 There are almost a controller for every type of resource creatable. Furthermore, every controller's job is really scoped to the resource it's controlling. It makes the controller loosely coupled from one another.
@@ -376,8 +391,9 @@ The API server and the controllers is at the heart of the Control Plane. However
 The Kubelet is responsible for everything running on the worker nodes, but
 the main responsibility is to manage the life of containers on the node.
 
-When a pod is scheduled on a node, Kubelet gets notified and actually starts the container by using the configured container runtime (Docker, etc). Also, Kubelet is responsible for monitoring the health of the pods, either by running liveness and readiness probes, or by watching computational resources consumption.
-It also stops the container when the corresponding pod resource ets deleted from the API server.
+When a pod is scheduled on a node, Kubelet gets notified and actually starts the container by using the configured container runtime (Docker, etc).
+Also, Kubelet is responsible for monitoring the health of the pods, either by running liveness and readiness probes, or by watching computational resources consumption.
+It also stops the container when the corresponding pod resource gets deleted from the API server.
 
 Finally, the Kubelet is also responsible with registering the node to the cluster by creating a Node resource on the API server.
 
@@ -385,7 +401,8 @@ Finally, the Kubelet is also responsible with registering the node to the cluste
 
 Besides the Kubelet, every node also runs the Kubernetes Service Proxy.
 
-The main responsibility of this component is to handle services correctly, so that clients can connect correctly to the associated pods. The kube-proxy acheives that by listening to the Service and Enpoints resources, and updating the node's iptables rules accordingly.
+The main responsibility of this component is to handle services correctly, so that clients can connect correctly to the associated pods.
+The kube-proxy acheives that by listening to the Service and Enpoints resources, and updating the node's iptables rules accordingly.
 
 ## References
 
