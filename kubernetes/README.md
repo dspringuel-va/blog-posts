@@ -2,7 +2,8 @@
 
 Recently, I took some professional development days.
 Since Kubernetes is a black box to me, I decided to dig into it.
-I opened a ticket to order the book "Kubernetes in Action", published by Manning. Then, I spent most of my time reading it.
+I opened a ticket to order the book "Kubernetes in Action", published by Manning.
+Then, I spent most of my time reading it.
 
 This post is meant to be a high level view of Kubernetes, and its underlying architecture.
 Also, I would hope that it could serve as an easy first entry to learning Kubernetes for those who don't know it.
@@ -67,16 +68,20 @@ A container is a unit of software packaged with all the needed dependencies to r
 
 ![Container Diagram](https://docs.google.com/drawings/d/e/2PACX-1vSzE6SM-GPQvUcY6HZJ2K9kgRb9ndPv8a63k77VFgz0jlDXMKF_WYwg7Tyf9xcWJNxwUrUj_Gd19qEA/pub?w=263&h=311)
 
-The most common container runtime is Docker, which is one of the runtime supported by Kubernetes (rkt is an alternative to Docker, which is also supported by Kubernetes).
+The most common container runtime is Docker, which is one of the runtime supported by Kubernetes. rkt is an alternative to Docker, which is also supported by Kubernetes.
 
 Docker gives the possibility to the user to build declaratively an image of the container.
-A Docker image is a model for a container. It is then possible to create as many container as one want based on that image. Furthermore, it is possible to host an image on registeries over the Internet, which thus makes container creation really easy.
+A Docker image is a model for a container.
+It is then possible to create as many container as one wants based on that image.
+Furthermore, it is possible to host an image on registeries over the Internet,
+which thus makes container creation really easy.
 
 The most known one is DockerHub. Google Cloud Platform offers also its own image registry: Google Cloud Registry.
 
 ### Pod
 
 A Kubernetes pod is a group of 1 or more containers.
+
 ![Pod Diagram](https://docs.google.com/drawings/d/e/2PACX-1vQsoPj5L9ab2o0ZgeNqLzYQhdSiu_KAs1dNaPhwopQjujnW1SNBhX5gvyFQ2iV4_20_nqdmflNolblp/pub?w=415&h=625)
 
 Containers within a pod have their processes isolated (like every other containers).
@@ -86,10 +91,14 @@ The IP address is chosen by Kubernetes at creation time, and only stays around f
 A pod can contain more than 1 container. However, those should be tightly coupled together. Usually, that means a "main" container which run the application the pod is meant for, along with sidecar containers that provides specific value to the main container.
 Here, main is only a logical concept.
 
-An example could be a nginx server that runs in the main container, along with another container that is meant to fetch the website files from somewhere else. Here, one container can't do much without the other.
+An example could be a nginx server that runs as the main container,
+along with another container that is meant to fetch the website files from somewhere else.
+Here, one container can't do much without the other.
 
-A counter-example would be to have a frontend and backend container within the same pod. In this case, one can definitely run without the other.
-Those containers shouldn't really be coupled at that level. Maybe they don't need the same resources, or same availability. It's impossible to scale one without scaling the other, which might be a problem.
+A counter-example would be to have a frontend and backend container within the same pod.
+In this case, one can definitely run without the other.
+Those containers shouldn't really be coupled at that level. Maybe they don't need the same resources, or same availability.
+It's impossible to scale one without scaling the other, which might be a problem.
 In this case, it would be better separate the apps into two pods.
 
 ### Node
@@ -98,9 +107,8 @@ A node is a machine representation where a group of pods are running.
 
 ![Node Diagram](https://docs.google.com/drawings/d/e/2PACX-1vQUI6h9QuTXPSfnJ0ehCORuNo6aknViuqi2Oan2L4a7gEajvKhv8L89qvnN8XJFSa6L-oZ7oPnjKZM5/pub?w=1517&h=851)
 
-Also, a pod can't live across two different nodes, i.e. have one container run in one node, and a second container in a different nodes.
+A pod can't live across two different nodes, i.e. have one container run in one node, and a second container in a different node.
 All pod's containers are guaranteed to run in the same node.
-
 
 ### Cluster
 
@@ -117,11 +125,12 @@ The resources are managed by a single RESTful API server.
 They represent the state of the cluster at any moment in time.
 There are controllers that listens to resources CRUD operations at any time and execute actions accordingly to unify the actual state with the desired state.
 
-That architecture makes Kubernetes declarative (instead of imperative), i.e. it only needs to be told what state the cluster should be in (and Kubernetes will take care of making it happen), instead of being told what to do in order to be in that state.
+That architecture makes Kubernetes declarative (instead of imperative), i.e. it only needs to be told what state the cluster should be in (and Kubernetes will take care of reconciliating it), instead of being told what to do in order to be in that state.
 
-There are more details on Kubernetes architecture further down.
+There are more details on Kubernetes architecture [further down](#architecture).
 
-One last thing before jumping into individual resources, `kubectl` is a nice little CLI tools that can quickly expose documentation for each resources. The command for it is `explain`.
+One last thing before jumping into individual resources, `kubectl` is a nice little CLI tool that can quickly expose documentation for each resources.
+The command for it is `explain`.
 
 For example,
 
@@ -130,7 +139,9 @@ kubectl explain pod
 ```
 
 shows the documentation for the pod resource and its fields.
-It is also possible to dig deeper in the doc. If one wants to know more about pod spec, the command to run is the following.
+
+It is also possible to dig deeper in the doc.
+If one wants to know more about pod spec, the command to run is the following:
 
 ```
 kubectl explain pod.spec
@@ -144,7 +155,8 @@ Every single resource in the cluster is named. The namespace resource is used to
 
 Kubernetes creates a default namespace, where all resources go if no namespace is specified upon resource creation.
 
-Some resources are cluster-level resources, which means that they can't be in a namespace. The namespace resource itself is a good example of a cluster-level resource (Kubernetes doesn't allow to have a namespace resource within a namespace).
+Some resources are cluster-level resources, which means that they can't be in a namespace.
+The namespace resource itself is a good example of a cluster-level resource (Kubernetes doesn't allow to have a namespace resource within a namespace).
 Nodes and persistent volumes are other examples of cluster-level resources.
 
 ### Workloads
@@ -169,19 +181,19 @@ The ReplicaSet is one of such resource.
 
 #### ReplicaSet
 
-A ReplicaSet is a resource responsible to manage a group of pods. The main properties of that resources are the pod template (what each pod should look like), the pod selector (how to know which pods are part of this set), and the replicas (how many pods should be running under that set).
+A ReplicaSet is a resource responsible to manage a group of pods. The main properties of that resources are the pod template (what each pod should be like), the pod selector (which pods are part of this set), and the replicas (how many pods should be running under that set).
 
 ![Replica Set Diagram](https://docs.google.com/drawings/d/e/2PACX-1vTCrgcAKk-InhOQPw84ULsK8Z0eioosmABeYZYDZzKa8gyY9vhwUr1mk0FYscNq7cAvxOHgyfSqyFS3/pub?w=991&h=1064)
 
 The ReplicaSet watches for any pod changes. If for any reasons, the number of pods doesn't match the replica number (a pod crashed, a pod label changed, or the host node failed for example), the ReplicaSet will spin up a new pod automatically.
 
-The ReplicaSet doesn't decide on which node the pod is created, nor its IP address. It only care about the number of pods running.
+The ReplicaSet doesn't decide on which node the pod is created, nor its IP address.
+It only cares about the number of pods running.
 If the ReplicaSet replicas property would change (up or down), it would then command to create or kill the needed pods.
 
 If the pod template would change, it doesn't affect the currently running pods under the ReplicaSet. The next the ReplicaSet needs to create a pod, it would use the new template, which means that two versions of the pods could concurrently run under that ReplicaSet (which isn't ideal).
 
 The Deployment resource alleviates that problem.
-
 
 #### Deployment
 
@@ -189,7 +201,8 @@ The Deployment resource is almost the same as the ReplicaSet. It has a pod selec
 
 ![Deployment Diagram](https://docs.google.com/drawings/d/e/2PACX-1vRUwVm0eMdmQVOkQ6WOR6kiMRP_lM1cBQgFixzWFAh-l5Ml2jPKRVgYXxx2tXzY-pFap4Q5_1ai6YzV/pub?w=4487&h=1709)
 
-The difference resides on what happens when the pod template is updated. In that scenario, the Deployment will create another ReplicaSet with the updated pod template.
+The difference resides on what happens when the pod template is updated.
+In that scenario, the Deployment will create another ReplicaSet with the updated pod template.
 That new ReplicaSet has its replicas property set to 0.
 Then, it gradually increase the new ReplicaSet replicas number, while decreasing the old ReplicaSet replicas number to 0.
 
@@ -205,7 +218,7 @@ For example, if the maxSurge is set to 1 and maxUnavailable is set to 0 with a d
 
 #### Others
 
-There are many other resources that will spin up new pods. Let's talk about a few of them.
+There are many other resources that can spin up new pods. Let's talk about a few of them.
 
 *Job*
 
@@ -214,7 +227,7 @@ A Job is almost the same resource than a Pod.
 Usually, a Pod needs to run continuously. When it fails, the general use case for it is to be brought back to life, usually by a ReplicaSet.
 
 However, there are some case where a pod would normally execute and terminate successfully.
-In those case, the pod shouldn't be spinned up again, since it was a one time execution.
+In those case, the pod shouldn't be restarted, since it was meant for a one time execution.
 The Job resource was created especially for that purpose.
 
 The Job will run a pod until it finishes successfully. If the pod fails for any reason (the node crashed, etc), it will reschedule it to run again.
@@ -225,14 +238,13 @@ Furthermore, it is possible to setup a job to run many times the pods, sequentia
 
 A CronJob is the exact same thing than a Job, except the fact that is possible to schedule the running time of the pod in time.
 
-At approximately the schedule time, the CronJob simply creates a Job resources, which in turn takes care of running the pod.
+At approximately the schedule time, the CronJob simply creates a Job resource, which in turn takes care of running the pod.
 
 *DaemonSet*
 
 The DaemonSet is a resource similar to the ReplicaSets. Instead of specifying the number of replicas to run, the DaemonSet makes sure that a single pod runs on every node in the cluster.
 
 This is useful for example to monitor the node itself, or to run system wide operations.
-
 
 ### Services
 
