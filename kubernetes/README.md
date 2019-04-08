@@ -8,7 +8,7 @@ Then, I spent most of my time reading it.
 This post is meant to be a high level view of Kubernetes, and its underlying architecture.
 Also, I would hope that it could serve as an easy first entry to learning Kubernetes for those who don't know it.
 
-## Table of content
+## Table of contents
 * [What is it?](#what-is-it)
 * [Building Blocks](#building-blocks)
   * [Container](#container)
@@ -403,7 +403,7 @@ Finally, the Kubelet is also responsible for registering the node to the cluster
 Besides the Kubelet, every node also runs the Kubernetes Service Proxy.
 
 The main responsibility of this component is to handle services correctly, so that clients can connect correctly to the associated pods.
-The kube-proxy acheives that by listening to the Service and Enpoints resources, and updating the node's iptables rules accordingly.
+The kube-proxy achieves that by listening to the Service and Enpoints resources, and updating the node's iptables rules accordingly.
 
 ## References
 
