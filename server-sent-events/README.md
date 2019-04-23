@@ -28,3 +28,11 @@ This post is an high-level overview of this standard.
 ## Client Example
 
 ## References
+
+* https://www.w3.org/TR/eventsource/
+* https://html.spec.whatwg.org/multipage/server-sent-events.html#server-sent-events
+* https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events
+* https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events
+* https://en.wikipedia.org/wiki/Server-sent_events
+* https://www.html5rocks.com/en/tutorials/eventsource/basics/
+* https://stackoverflow.com/questions/14703627/websockets-protocol-vs-http
