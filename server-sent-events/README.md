@@ -8,7 +8,9 @@ In Customer Voice for example, it would be nice to have a progress bar to show h
 or to update a review request status as it happens (e.g. from opened to clicked) without refreshing the page.
 
 Websocket is always the first thing that comes to my mind when I think of technology to have server push notifications.
-However, it seems overkill for that specific purpose. For example, I wouldn't need full-duplex communication to solve the problems mentioned above.
+However, it seems overkill for that specific purpose.
+For example, I wouldn't need full-duplex communication to solve the problems mentioned above.
+Furthermore, Websocket doesn't seem like a technology that is trivial to setup and use.
 
 I was doing research on the subject when I stumbled upon this StackOverflow answer (please scroll to the "Update" section): https://stackoverflow.com/a/14711517.
 It lists many web protocols.
@@ -26,7 +28,7 @@ This standard is defined as a normal HTTP request.
 If a server can handle HTTP request, it can certainly handle Server-Sent Events.
 
 ### Server Side
-The gist of this standard is about formatting correctly the responses sent back to the client and setting a few headers on the server.
+The gist of this standard is about formatting correctly the responses sent back to the client and setting a specific `'Content-Type'` header on the server.
 
 The crucial part of the standard on the server side is the response formatting. Every event must have the following part to be accepted by the client:
 
@@ -61,6 +63,17 @@ data: AG-123\n\n
 
 This would send three events; two of type `create` and one of type `delete`. This allows the client to handle the events differently (more details in the client example).
 If the server doesn't specify any type, it will be `message` by default.
+
+The `id` field allows to uniquely identifies the event.
+```
+id: 1\n
+event: create\n
+data: AG-123\n\n
+
+id: 2\n
+event: create\n
+data: AG-456 \n\n
+```
 
 The `retry` prefix is used to tell how long the client the client should wait (in milliseconds) before attempting to reconnect if the connection closes unexpectedly.
 
@@ -121,11 +134,14 @@ app.get('/stream', (request: Request, response: Response) => {
   let i = 1;
   const stream = () => {
     response.write(`id: ${i}\n`);
+
     if (i > 10) {
       response.write(`event: streamEnd\n`);
       response.write(`data: Stream ended\n\n`);
+      return;
     }
 
+    console.log(`Sending message ${i}`);
     response.write(`data: Stream ${i}\n\n`)
     i += 1;
     setTimeout(stream, 500);
