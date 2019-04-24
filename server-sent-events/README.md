@@ -186,6 +186,8 @@ Here's a screenshot of the result, from the Network tab:
 
 ![Server-Sent Events ](https://i.imgur.com/FFqBd0i.png)
 
+![In Action](https://i.imgur.com/qxd9icw.gif)
+
 ## References
 
 ### Examples
