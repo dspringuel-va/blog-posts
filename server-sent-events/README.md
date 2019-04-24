@@ -65,6 +65,8 @@ retry: 10000\n
 data: Hello\n\n
 ```
 
+If none is specified, it defaults to 3 seconds.
+
 Furthermore, the server must also set a few headers before starting to send the responses.
 The most important one is `'Content-Type': 'text/event-stream'`. From this header, we conclude that the responses sent back to the client are in a text format (no binary).
 
