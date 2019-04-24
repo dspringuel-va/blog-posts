@@ -180,6 +180,10 @@ Then, it add listeners for events of type `message` (which is the default), `str
 When it receives the `streamEnd` event, it close the connection.
 The client also listens for when the connections opens, and when there are errors.
 
+Here's a screenshot of the result, from the Network tab:
+
+![Server-Sent Events ](https://i.imgur.com/FFqBd0i.png)
+
 ## References
 
 ### Examples
