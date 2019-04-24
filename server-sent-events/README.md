@@ -4,11 +4,11 @@ This post is about Server-Sent Events, a web standard to allow a server to send 
 
 ## Context
 When working on web applications, there are many UX problems that could be alleviated if the server would notify the client about events as they arrive.
-In Customer Voice for example, it would be nice to have a progress bar to show which customers are saved when the user upload a big list of customers,
+In Customer Voice for example, it would be nice to have a progress bar to show how many customers are being saved when the user upload a big list of customers,
 or to update a review request status as it happens (e.g. from opened to clicked) without refreshing the page.
 
-Websocket is always the first thing that comes into my mind when I think of technology to have server notifications.
-However, it seems overkill for that specific purpose. For example, I wouldn't need full-duplex communication to solve what I would like to solve.
+Websocket is always the first thing that comes to my mind when I think of technology to have server push notifications.
+However, it seems overkill for that specific purpose. For example, I wouldn't need full-duplex communication to solve the problems mentioned above.
 
 I was doing research on the subject when I stumbled upon this StackOverflow answer (please scroll to the "Update" section): https://stackoverflow.com/a/14711517.
 It lists many web protocols.
@@ -21,24 +21,27 @@ This post is an high-level overview of this standard.
 
 ## What is it?
 
-Server-Sent Events is a standard that allows the server to send multiple response to a client (most likely the browser) in a single long-lived connection.
+Server-Sent Events is a standard that allows the server to send multiple responses to a client (most likely the browser) in a single long-lived connection.
 This standard is defined as a normal HTTP request.
 If a server can handle HTTP request, it can certainly handle Server-Sent Events.
 
 ### Server Side
-The gist of this standard is about setting a few headers on the server and formatting correctly the response sent back to the client.
+The gist of this standard is about formatting correctly the responses sent back to the client and setting a few headers on the server.
 
-The crucial part of the standard is the response formatting. Every event must have the following part to be accepted by the client:
+The crucial part of the standard on the server side is the response formatting. Every event must have the following part to be accepted by the client:
 
 ```
 data: {message} \n\n
 ```
 
-The response must be prefix by `data: `, followed by the message in text format. When the event is done, it must end by two new line character, i.e. `\n\n`. One newline is also accepted, but only for everyline, but the last one. For example,
+The response must be prefix by `data: `, followed by the message in text format. When the event is done, two new line characters are added at the end of the response, i.e. `\n\n`.
+One newline is also accepted, but only for every line except the last one.
+The last line must have exactly two new line characters.
+For example,
 
 ```
 data: This is the first line \n
-data: Continued on a second line\n
+data: Continued on a second line \n
 data: All done \n\n
 ```
 
@@ -56,9 +59,10 @@ event: delete\n
 data: AG-123\n\n
 ```
 
-This would send three events; two of type `create` and one of type `delete`. This allows the client to handle the events differently. More details in the client example. If the server doesn't specify any type, it will be `message` by default.
+This would send three events; two of type `create` and one of type `delete`. This allows the client to handle the events differently (more details in the client example).
+If the server doesn't specify any type, it will be `message` by default.
 
-The `retry` prefix is used to tell how long the client the client should wait (in milliseconds) before attempting to reconnect if the connection closes.
+The `retry` prefix is used to tell how long the client the client should wait (in milliseconds) before attempting to reconnect if the connection closes unexpectedly.
 
 ```
 retry: 10000\n
@@ -67,8 +71,8 @@ data: Hello\n\n
 
 If none is specified, it defaults to 3 seconds.
 
-Furthermore, the server must also set a few headers before starting to send the responses.
-The most important one is `'Content-Type': 'text/event-stream'`. From this header, we conclude that the responses sent back to the client are in a text format (no binary).
+Furthermore, the server must also set the `'Content-Type': 'text/event-stream'` header before starting to send the responses.
+From this header, we conclude that the responses sent back to the client are in a text format (no binary).
 
 ### Client Side
 On the client side, there is an API defined to use this standard: `EventSource`.
@@ -182,16 +186,16 @@ Then, it add listeners for events of type `message` (which is the default), `str
 When it receives the `streamEnd` event, it close the connection.
 The client also listens for when the connections opens, and when there are errors.
 
+### In action!
 Here's a screenshot of the result, from the Network tab:
 
-![Server-Sent Events ](https://i.imgur.com/FFqBd0i.png)
-
 ![In Action](https://i.imgur.com/qxd9icw.gif)
+
+![Server-Sent Events ](https://i.imgur.com/FFqBd0i.png)
 
 ## References
 
 ### Examples
-Both examples can be found here:
 * https://github.com/dspringuel-va/stream-client
 * https://github.com/dspringuel-va/stream-server
 
