@@ -1,6 +1,6 @@
 # Server-Sent Events
 
-This post is about Server-Sent Events, a web standard to allow a server to send many response to the browser.
+This post is about Server-Sent Events, a web standard to allow a server to send many responses to the browser.
 
 ## Context
 When working on web applications, there are many UX problems that could be alleviated if the server would notify the client about events as they arrive.
@@ -21,14 +21,174 @@ This post is an high-level overview of this standard.
 
 ## What is it?
 
+Server-Sent Events is a standard that allows the server to send multiple response to a client (most likely the browser) in a single long-lived connection.
+This standard is defined as a normal HTTP request.
+If a server can handle HTTP request, it can certainly handle Server-Sent Events.
 
+### Server Side
+The gist of this standard is about setting a few headers on the server and formatting correctly the response sent back to the client.
+
+The crucial part of the standard is the response formatting. Every event must have the following part to be accepted by the client:
+
+```
+data: {message} \n\n
+```
+
+The response must be prefix by `data: `, followed by the message in text format. When the event is done, it must end by two new line character, i.e. `\n\n`. One newline is also accepted, but only for everyline, but the last one. For example,
+
+```
+data: This is the first line \n
+data: Continued on a second line\n
+data: All done \n\n
+```
+
+The standard also defines other prefix: `event`, `id`, and `retry`.
+The `event` prefix allows to 'type' the event sent. For example,
+
+```
+event: create\n
+data: AG-123\n\n
+
+event: create\n
+data: AG-456 \n\n
+
+event: delete\n
+data: AG-123\n\n
+```
+
+This would send three events; two of type `create` and one of type `delete`. This allows the client to handle the events differently. More details in the client example. If the server doesn't specify any type, it will be `message` by default.
+
+The `retry` prefix is used to tell how long the client the client should wait (in milliseconds) before attempting to reconnect if the connection closes.
+
+```
+retry: 10000\n
+data: Hello\n\n
+```
+
+Furthermore, the server must also set a few headers before starting to send the responses.
+The most important one is `'Content-Type': 'text/event-stream'`. From this header, we conclude that the responses sent back to the client are in a text format (no binary).
+
+### Client Side
+On the client side, there is an API defined to use this standard: `EventSource`.
+The client can open the connection by creating that object.
+
+```ts
+const source: EventSource = new EventSource(url);
+```
+
+Then, the client sets up listeners to various event types.
+
+```ts
+source.addEventListener('message', function(e: MessageEvent) {
+  // On message
+});
+
+source.addEventListener('open', function(e: Event) {
+  // Connection was opened.
+});
+
+source.addEventListener('error', function(e: Event) {
+  if (e.readyState == EventSource.CLOSED) {
+    // Connection was closed.
+  }
+  else {
+    // Any other error.
+  }
+});
+```
+
+To close the connection, the client can call the `close()` method on the `EventSource` object.
 
 ## Server Example
 
+Here is an example of a Node.js server (using Express), implementing an Server-Sent Event endpoint `/stream`.
+
+```ts
+app.get('/stream', (request: Request, response: Response) => {
+  console.log(`Client opened the connection.`);
+  response.header("Content-Type", "text/event-stream");
+  response.header("Connection", "keep-alive");
+
+  response.write('event: hello\n');
+  response.write('data: Hello World!\n\n');
+
+  let i = 1;
+  const stream = () => {
+    response.write(`id: ${i}\n`);
+    if (i > 10) {
+      response.write(`event: streamEnd\n`);
+      response.write(`data: Stream ended\n\n`);
+    }
+
+    response.write(`data: Stream ${i}\n\n`)
+    i += 1;
+    setTimeout(stream, 500);
+  }
+  stream();
+
+  request.on('close', () => {
+    console.log(`Client closed the connection.\n`);
+  })
+});
+```
+
+It start by setting the headers `Content-Type` and `Connection`.
+Then, it sends an 'Hello' event of type `hello`. After it sends a sequence of 10 messages, followed by a 'Stream ended message' of type `streamEnded`.
+Furthermore, it add a listener to a close event on the request. This fires when the connection closes.
+
 ## Client Example
+Here is a example of an Angular component using the `EventSource` interface.
+
+```ts
+export class AppComponent implements OnInit {
+  title = 'stream-client';
+  events: string[] = [];
+
+  constructor() {}
+
+  ngOnInit(): void {
+    console.log('On init');
+    const stream: EventSource = new EventSource('http://localhost:13000/stream');
+
+    stream.addEventListener('message', (message: MessageEvent) => {
+      this.events.push(message.data);
+      console.log(message);
+    });
+
+    stream.addEventListener('streamEnd', (message: MessageEvent) => {
+      this.events.push(`${message.data} (it was the last one)`);
+      stream.close();
+    });
+
+    stream.addEventListener('hello', (message: MessageEvent) => {
+      this.events.push(`Hello Message => ${message.data}`);
+    });
+
+    stream.addEventListener('open', (open: Event) => {
+      console.log(open);
+    });
+
+    stream.addEventListener('error', (error: Event) => {
+      console.log(error);
+    });
+  }
+}
+```
+
+The client opens the connection to `http://localhost:13000/stream` (which is the port the server listens to).
+Then, it add listeners for events of type `message` (which is the default), `streamEnd` and `hello`.
+When it receives the `streamEnd` event, it close the connection.
+The client also listens for when the connections opens, and when there are errors.
 
 ## References
 
+### Examples
+Both examples can be found here:
+* https://github.com/dspringuel-va/stream-client
+* https://github.com/dspringuel-va/stream-server
+
+
+### Documentation
 * https://www.w3.org/TR/eventsource/
 * https://html.spec.whatwg.org/multipage/server-sent-events.html#server-sent-events
 * https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events
