@@ -108,15 +108,6 @@ Reducing batch size means to have small units of work that can go through all th
 
 It reduces the risks of delivering the wrong work, or defectuous work. Furthermore, it decreases the lead time, since the amount of work is smaller. That allows the customers see value faster.
 
-#### Reduce the number of handoffs
-*What*
-
-Ideally, the number of handoffs should be reduce to one team, i.e. one team to implement, integrate and deploy work to production.
-
-*Why*
-
-Reducing the number of handoffs reduces the amounts of context switching. This allows the team to see the whole picture on where the work is coming from and why it matters. Again, reducing the handoffs reduces the work lead time.
-
 ### Create the foundations of Our Deployment Pipeline
 
 #### Enable on demand creation of dev, test, and production environments
