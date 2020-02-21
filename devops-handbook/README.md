@@ -128,55 +128,116 @@ smaller. That allows the customers see value faster.
 #### Enable on demand creation of dev, test, and production environments
 *What*
 
-
+Ideally, developers should develop their code locally in the exact same
+environment than in production. Instead of only documenting how the
+production environment consists of, it is better to create a build
+mechanisms to create in minutes any environment on demand. This can be
+achieve in many ways, such as using virtual images and containers (like
+Docker), or using infrastructure as code configuration management tools
+(like Puppet, Chef, etc) for example.
 
 *Why*
+
+Having a separate yet identical environment, a developer can quickly
+and safely develop new code, can reproduce, diagnose and fix defects,
+can experiments on infrastructure code that creates the environment.
 
 
 #### Make infrastructure easier to rebuild than to repair
 *What*
 
-
+The key to have an infrastructure easy to build is to have all
+configuration in version control. Thus, it becomes the source of truth
+for the automated build mechanism to replicate every configuration
+everywhere.
 
 *Why*
+
+When the infrastructure is easy and quick to rebuild, we can rely on
+the the build mechanism to ensure environment consistency across all
+machines/containers. If any manual configuration change is done on a
+production environment, it'll be lost when a new environment is created
+Thus, no variance is able to creep in production, which allows a more
+stable and controlled environment.
 
 
 #### Modify our definition of done to include running in production-like environment
 *What*
 
-
+Before some work can be consider done, we must have integrated, tested,
+and working code, where all of this is demonstrated in a
+production-like environment.
 
 *Why*
 
-
+It prevents having problems all the way to production. When caught
+early, problems are much easier and quicker to fix, and cause no
+disruption to customers. Furthermore, it increase the confidence of
+delivering quality work to production.
 
 ### Enable Fast and Reliable Automated Testing
-
-#### Continously build, test, and integrate our code and environments
-*What*
-
-
-
-*Why*
-
 
 #### Build a fast a reliable automated validation test suite
 *What*
 
+To have a high level of confidence about the work done, it should be
+validated with automated tests. There are many types of tests that
+should be implemented, all of which serves a specific purpose.
 
+Unit test: Small and fast test that verifies that a single function works properly in isolation. This proves to the developer that the code
+behaves as it was designed. External dependencies (api, databases)
+should be stubbed out, so the tests can remain small and fast to run.
+
+Acceptance test: Test that make sure that the application as a whole
+runs as intendend, and that regression erros have not been introduced.
+The difference between acceptance and unit test is the point of view.
+The acceptance test should prove that the code works as the customer/
+business wants it (and not the developer).
+
+Integration test: Test that make sure that the system works well as a
+whole, i.e. with real application and services, and not stubbed out
+interfaces. By nature, it'll probably take more time to run than unit
+or acceptance test, but will reflect more closely the production
+environment, which make sure that we can catch errors earlier.
+
+Whenever an error is caught in an acceptance or integration test, a
+unit test should be created to make sure that the error is caught
+earlier in the process.
 
 *Why*
+
+Having tests in general make sure that we have the confidence that the
+new code works as intended and that it *should* not introduce problems
+with the existing code. Furthermore, having multiple kind of tests
+increases that confidence to many levels in the system, like the
+business logic works and is preserved, and that the integration between
+multiple service still remains. Furthermore, having automated tests
+reduce the amount of manual test to be done, which helps to reduce the
+deployment lead time.
 
 
 #### Pull our Andon Cord when the deployment pipeline breaks
 *What*
 
+The Andon Cord is a cord that exists on Toyota manufacturing lines.
+When a worker has a problem on an item that can't be resolved in the
+time allowed for the item to be in that work station, the worker should
+pull the Andon Cord, which stops the whole manufacturing line, and
+notify managers and other workers that there is a problem, so it can be
+resolved as quickly as possible.
+
+The equivalent in the software development world is to have an
+automated alert sent to everyone when a production deployment pipeline
+broke on any steps. If any tests were broken, new tests should be
+implemented, so that future regression can be avoided.
 
 
 *Why*
-
-
-####
+Letting everyone aware that the deployment pipeline is broken makes
+sure that it is fixed as quickly as possible to keep everyone unblocked
+and thus keeping the leading time low. It also allows everyone to learn
+why it failed and how it was resolved, which empowers everyone to
+potentially fix it in the future.
 
 
 ### Automate and Enable Low-Risk Releases
