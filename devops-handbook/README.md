@@ -245,18 +245,46 @@ potentially fix it in the future.
 #### Automate our deployment process
 *What*
 
-
+The deployment process should be as automated as possible. In an ideal
+world, the pipeline should infer so much confidence that the number of
+manual steps to deploy code would be 0. Examples of automated steps
+include:
+- Building and packaging code in ways suitable for deployment
+- Restarting servers, applications, or services
+- Generating configuration files from templates
+- Running testing procedures
 
 *Why*
 
+Having automated deployment steps reduce the amount of manual human to
+be done during the deployment. Consequently, it makes the deployment
+more consistent throughout the organization, and less prone to
+human-error that could result into hard to detect/fix problems. Again,
+it also means that the total deployment time is reduced, which means a
+lower lead time.
 
 #### Decouple deployments from releases
 *What*
 
+In this context, a deployment is the installation of a given version of a system onto a given environment. A release is when a set of features is made available to the users of the system. There are many ways to decouple one from another.
 
+Blue/Green deployment: The goal of this deployment is to have two production environments running at the same time, where one has the change to introduce to the system. When the new environment is ready to serve traffic, a router will redirect the traffic from the old production environment to the new one. For example, in Kubernetes, this can be achieved with a Deployment resource.
+
+Canary deployment: A canary deployment builds on the blue/green deployment. Instead of redirecting all at once the traffic from the blue to the green environment, a canary deployment will gradually send traffic to the new environment, based on many factors such as user persona or randomness.
+
+Implement feature toggles (a.k.a. feature flags): In this pattern, there is only one production environment at a time. However, there are some conditional statements in the application code that show variant of a features based on the state of the toggle for a given user (or group of users).
 
 *Why*
 
+Decoupling deployment from releases allows new code and feature to live
+on real production environments. It allows another layer of confidence
+and safety when releasing new features. For example, if a problem is
+detected during a canary deployment at 1%, it means that probably at
+most 1% of the users will be affected by this defect. The problem can
+be fixed earlier, without any major disruption. Furthermore, patterns
+like the feature toggles allows easy rollbacks, or gracefully degrade
+performance if problems arise (e.g. Netflix showing static
+recommendations instead of personalized recommendations).
 
 ## The Second Way: The Technical Practices of Feedback
 
