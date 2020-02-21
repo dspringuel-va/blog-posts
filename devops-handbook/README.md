@@ -84,29 +84,44 @@ marketplace.
 *What*
 
 Contrary to manufaturing, work in software development is invisible by
-nature. However, it can be made visible by creating physical or virtual board. On that board, all the steps of the value stream should be present as columns. Then, each work piece resides on the corresponding column representing its state in the stream.
+nature. However, it can be made visible by creating physical or virtual
+board. On that board, all the steps of the value stream should be
+present as columns. Then, each work piece resides on the corresponding
+column representing its state in the stream.
 
 *Why*
 
-First, it helps to define a technical value stream, and makes everyone involved on the same page. Furthermore, the work in progress is easy to understand at a glance. Finally, it's easier to calculate the lead time, which is the time it is put on the board up to the time it is placed on the last column.
+First, it helps to define a technical value stream, and makes everyone
+involved on the same page. Furthermore, the work in progress is easy to
+understand at a glance. Finally, it's easier to calculate the lead
+time, which is the time it is put on the board up to the time it is
+placed on the last column.
 
 #### Limit the work in progress
 *What*
 
-Limiting the work in progress is establishing and enforcing a limit on the amount of work cards in each of the work column.
+Limiting the work in progress is establishing and enforcing a limit on
+the amount of work cards in each of the work column.
 
 *Why*
 
-Limiting the work in progress helps reduce the lead time of the work by focusing on work that already has been started. Furthermore, it helps to see problems in the value stream, e.g. where in the stream do the work get stuck, and why.
+Limiting the work in progress helps reduce the lead time of the work by
+focusing on work that already has been started. Furthermore, it helps
+to see problems in the value stream, e.g. where in the stream do the
+work get stuck, and why.
 
 #### Reduce batch size
 *What*
 
-Reducing batch size means to have small units of work that can go through all the stream at once and be delivered independently.
+Reducing batch size means to have small units of work that can go
+through all the stream at once and be delivered independently.
 
 *Why*
 
-It reduces the risks of delivering the wrong work, or defectuous work. Furthermore, it decreases the lead time, since the amount of work is smaller. That allows the customers see value faster.
+It reduces the risks of delivering the wrong work, or defectuous work.
+Furthermore, it decreases the lead time, since the amount of work is
+smaller. That allows the customers see value faster.
+
 
 ### Create the foundations of Our Deployment Pipeline
 
