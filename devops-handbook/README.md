@@ -184,7 +184,8 @@ To have a high level of confidence about the work done, it should be
 validated with automated tests. There are many types of tests that
 should be implemented, all of which serves a specific purpose.
 
-Unit test: Small and fast test that verifies that a single function works properly in isolation. This proves to the developer that the code
+Unit test: Small and fast test that verifies that a single function
+works properly in isolation. This proves to the developer that the code
 behaves as it was designed. External dependencies (api, databases)
 should be stubbed out, so the tests can remain small and fast to run.
 
@@ -266,13 +267,29 @@ lower lead time.
 #### Decouple deployments from releases
 *What*
 
-In this context, a deployment is the installation of a given version of a system onto a given environment. A release is when a set of features is made available to the users of the system. There are many ways to decouple one from another.
+In this context, a deployment is the installation of a given version of
+a system onto a given environment. A release is when a set of features
+is made available to the users of the system. There are many ways to
+decouple one from another.
 
-Blue/Green deployment: The goal of this deployment is to have two production environments running at the same time, where one has the change to introduce to the system. When the new environment is ready to serve traffic, a router will redirect the traffic from the old production environment to the new one. For example, in Kubernetes, this can be achieved with a Deployment resource.
+Blue/Green deployment: The goal of this deployment is to have two
+production environments running at the same time, where one has the
+change to introduce to the system. When the new environment is ready to
+serve traffic, a router will redirect the traffic from the old
+production environment to the new one. For example, in Kubernetes, this
+can be achieved with a Deployment resource.
 
-Canary deployment: A canary deployment builds on the blue/green deployment. Instead of redirecting all at once the traffic from the blue to the green environment, a canary deployment will gradually send traffic to the new environment, based on many factors such as user persona or randomness.
+Canary deployment: A canary deployment builds on the blue/green
+deployment. Instead of redirecting all at once the traffic from the
+blue to the green environment, a canary deployment will gradually send
+traffic to the new environment, based on many factors such as user
+persona or randomness.
 
-Implement feature toggles (a.k.a. feature flags): In this pattern, there is only one production environment at a time. However, there are some conditional statements in the application code that show variant of a features based on the state of the toggle for a given user (or group of users).
+Implement feature toggles (a.k.a. feature flags): In this pattern,
+there is only one production environment at a time. However, there are
+some conditional statements in the application code that show variant
+of a features based on the state of the toggle for a given user (or
+group of users).
 
 *Why*
 
@@ -288,13 +305,90 @@ recommendations instead of personalized recommendations).
 
 ## The Second Way: The Technical Practices of Feedback
 
-### Telemetry
+### Create Telemetry to Enable Seeing and Solving Problems
 
-### Feedback on code deployment
+#### Create our centralized telemetry infrastructure
+*What*
 
-### Hypothesis-Driven Development
 
-### Code Review and Coordination
+
+*Why*
+
+
+
+
+#### Create application logging telemetry that helps production
+*What*
+
+
+
+*Why*
+
+
+
+
+#### Use telemetry to guide problem solving
+*What*
+
+
+
+*Why*
+
+
+
+
+#### Enable creation of production metrics as part of daily work
+*What*
+
+
+
+*Why*
+
+
+#### Find and fill any telemetry gaps
+*What*
+
+
+
+*Why*
+
+
+
+### Integrate Hypothesis-Driven Development and A/B Testing into our Daily Work
+
+#### Integrating A/B Testing into our feature testing
+*What*
+
+
+
+*Why*
+
+
+### Create Review and Coordination Processes to Increase Quality of our Current Work
+
+#### Enable coordination and scheduling of changes
+*What*
+
+
+
+*Why*
+
+
+#### Enable peer review of changes
+*What*
+
+
+
+*Why*
+
+
+#### Enable pair programming to improve all our changes
+*What*
+
+
+
+*Why*
+
 
 ## The Third Way: The Technical Practices of Continual Learning and Experimentation
 
