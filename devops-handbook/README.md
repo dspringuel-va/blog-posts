@@ -497,8 +497,24 @@ example.
 
 ## The Third Way: The Technical Practices of Continual Learning and Experimentation
 
-### Learning into Daily Work
+### Enable and Inject Learning into Daily Work
+
+#### Establish a just, learning culture
+
+#### Schedule blameless post-mortem meetings after accidents occur
+
 
 ### Convert Local Discoveries into Global Improvments
 
-### Organizational Learning and Improvments
+#### Automate standardized processes in software for re-use
+
+#### Build reusable operations user stories into development
+
+### Reserve Time to Create Organizational Learning and Improvement
+
+#### Institutionalize rituals to pay down technical debt
+
+#### Enable everyone to teach and learn
+
+
+
