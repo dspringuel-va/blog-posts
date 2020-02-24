@@ -2,13 +2,13 @@
 
 DevOps (portmanteau for [Software] Development and [Information
 Technology] Operations) is a set of practices designed to shorten the
-development cycle and increase the software quality.
+development cycle and increase software quality.
 
 I heard the term before, like probably the majority of software
-developers in the industry. However, I realized that I was not really
-knowledgeable in the subject.
+developers in the industry. However, I realized that I was not much
+educated about the subject.
 
-> **Wait, DevOps isn't only about continous deployment?**
+> **Wait, DevOps isn't only about continuous deployment?**
 >
 > *Me, right before doing this.*
 
@@ -23,7 +23,7 @@ Belgium. The DevOps movement was born. That movement is a continuity of
 the Agile movement (set of values and principles designed to deliver
 working software frequently) in early 2000s, and the Lean movement
 (techniques to measure and understand manufacturing lead time, which is
-a great predicator of product quality and customer satifaction) in the
+a great predictor of product quality and customer satisfaction) in the
 1980s.
 
 Debois and some of his peers (Gene Kim, Jez Humble and John Willis)
@@ -41,7 +41,7 @@ and why they matter.
 ## The Three Ways
 
 A value stream is a concept coming from the Lean movement. It is the
-sequence of activities to perform in order to take a customer/business
+sequence of activities to take a customer/business
 request and delivering the value.
 
 In software development, the value stream looks ressembles to something
@@ -55,15 +55,15 @@ from when the developers check in their code to when it is delivered in
 production. The handbook authors define an ideal deployment lead time
 in the order of minutes.
 
-In order to enable that short lead time, three ways are defined, where
+To enable that short lead time, three ways are defined, where
 one builds on the previous one. The first one defines **technical
 practices of flow**. Those practices are meant to ship code in a fast,
-confident way, in order that have a maximal flow. A great flow means
+confident way, to have a maximal flow. A great flow means
 that the customers gets what they want earlier, which is good for the
 business.
 
 The second way defines the **technical practices of feedback**. Once a
-good flow is established, practices of feeback from all steps of the
+good flow is established, practices of feedback from all steps of the
 stream will help to improve the quality of the work delivered, improve
 the time to detect and recover from problems and improve even more the
 deployment flow.
@@ -72,7 +72,7 @@ The last way defines the **technical practices of continual learning
 and experimentations**. Learning from success and failures is crucial
 to improving the quality of work. Furthermore, when the flow and the
 feedback loop are short and strong, it is easier and safer to
-experiment and take calculated risks. Ultimately, that fast learning
+experiment and take calculated risks. Ultimately, fast learning
 and experimentations help do outdo the competition and win in the
 marketplace.
 
@@ -83,7 +83,7 @@ marketplace.
 #### Make our work visible
 *What*
 
-Contrary to manufaturing, work in software development is invisible by
+Contrary to manufacturing, work in software development is invisible by
 nature. However, it can be made visible by creating physical or virtual
 board. On that board, all the steps of the value stream should be
 present as columns. Then, each work piece resides on the corresponding
@@ -91,7 +91,7 @@ column representing its state in the stream.
 
 *Why*
 
-First, it helps to define a technical value stream, and makes everyone
+First, it helps to define a technical value stream and makes everyone
 involved on the same page. Furthermore, the work in progress is easy to
 understand at a glance. Finally, it's easier to calculate the lead
 time, which is the time it is put on the board up to the time it is
@@ -100,14 +100,14 @@ placed on the last column.
 #### Limit the work in progress
 *What*
 
-Limiting the work in progress is establishing and enforcing a limit on
-the amount of work cards in each of the work column.
+Limiting the work in progress means to establish and enforce a limit on
+the number of work cards in each of the work column.
 
 *Why*
 
 Limiting the work in progress helps reduce the lead time of the work by
 focusing on work that already has been started. Furthermore, it helps
-to see problems in the value stream, e.g. where in the stream do the
+to see problems in the value stream, e.g. where in the stream does the
 work get stuck, and why.
 
 #### Reduce batch size
@@ -120,18 +120,18 @@ through all the stream at once and be delivered independently.
 
 It reduces the risks of delivering the wrong work, or defectuous work.
 Furthermore, it decreases the lead time, since the amount of work is
-smaller. That allows the customers see value faster.
+smaller. That allows the customers to see value faster.
 
 
 ### Create the foundations of Our Deployment Pipeline
 
-#### Enable on demand creation of dev, test, and production environments
+#### Enable on-demand creation of dev, test, and production environments
 *What*
 
 Ideally, developers should develop their code locally in the exact same
-environment than in production. Instead of only documenting how the
+environment as in production. Instead of only documenting how the
 production environment consists of, it is better to create a build
-mechanisms to create in minutes any environment on demand. This can be
+mechanism to create in minutes any environment on demand. This can be
 achieve in many ways, such as using virtual images and containers (like
 Docker), or using infrastructure as code configuration management tools
 (like Puppet, Chef, etc) for example.
@@ -146,7 +146,7 @@ can experiments on infrastructure code that creates the environment.
 #### Make infrastructure easier to rebuild than to repair
 *What*
 
-The key to have an infrastructure easy to build is to have all
+The key to having an infrastructure easy to build is to have all
 configuration in version control. Thus, it becomes the source of truth
 for the automated build mechanism to replicate every configuration
 everywhere.
@@ -154,14 +154,14 @@ everywhere.
 *Why*
 
 When the infrastructure is easy and quick to rebuild, we can rely on
-the the build mechanism to ensure environment consistency across all
+the build mechanism to ensure environment consistency across all
 machines/containers. If any manual configuration change is done on a
 production environment, it'll be lost when a new environment is created
-Thus, no variance is able to creep in production, which allows a more
+Thus, no variance can creep in production, which allows a more
 stable and controlled environment.
 
 
-#### Modify our definition of done to include running in production-like environment
+#### Modify our definition of done to include running in a production-like environment
 *What*
 
 Before some work can be consider done, we must have integrated, tested,
@@ -170,36 +170,36 @@ production-like environment.
 
 *Why*
 
-It prevents having problems all the way to production. When caught
-early, problems are much easier and quicker to fix, and cause no
-disruption to customers. Furthermore, it increase the confidence of
+It prevents having problems in production. When caught
+early, problems are much easier and quicker to fix and cause no
+disruption to customers. Furthermore, it increases the confidence in
 delivering quality work to production.
 
 ### Enable Fast and Reliable Automated Testing
 
-#### Build a fast a reliable automated validation test suite
+#### Build a fast and reliable automated validation test suite
 *What*
 
 To have a high level of confidence about the work done, it should be
-validated with automated tests. There are many types of tests that
-should be implemented, all of which serves a specific purpose.
+validated with automated tests. Many types of tests should be implemented,
+all of which serve a specific purpose.
 
 Unit test: Small and fast test that verifies that a single function
 works properly in isolation. This proves to the developer that the code
 behaves as it was designed. External dependencies (api, databases)
 should be stubbed out, so the tests can remain small and fast to run.
 
-Acceptance test: Test that make sure that the application as a whole
-runs as intendend, and that regression erros have not been introduced.
-The difference between acceptance and unit test is the point of view.
+Acceptance test: Test that makes sure that the application as a whole
+runs as intended, and that regression errors have not been introduced.
+The difference between acceptance and unit tests is the point of view.
 The acceptance test should prove that the code works as the customer/
 business wants it (and not the developer).
 
-Integration test: Test that make sure that the system works well as a
+Integration test: Test that makes sure that the system works well as a
 whole, i.e. with real application and services, and not stubbed out
 interfaces. By nature, it'll probably take more time to run than unit
 or acceptance test, but will reflect more closely the production
-environment, which make sure that we can catch errors earlier.
+environment, which makes sure that we can catch errors earlier.
 
 Whenever an error is caught in an acceptance or integration test, a
 unit test should be created to make sure that the error is caught
@@ -207,12 +207,12 @@ earlier in the process.
 
 *Why*
 
-Having tests in general make sure that we have the confidence that the
+Having tests, in general, make sure that we have the confidence that the
 new code works as intended and that it *should* not introduce problems
-with the existing code. Furthermore, having multiple kind of tests
+with the existing code. Furthermore, having multiple kinds of tests
 increases that confidence to many levels in the system, like the
 business logic works and is preserved, and that the integration between
-multiple service still remains. Furthermore, having automated tests
+multiple services remains. Furthermore, having automated tests
 reduce the amount of manual test to be done, which helps to reduce the
 deployment lead time.
 
@@ -260,7 +260,7 @@ include:
 Having automated deployment steps reduce the amount of manual human to
 be done during the deployment. Consequently, it makes the deployment
 more consistent throughout the organization, and less prone to
-human-error that could result into hard to detect/fix problems. Again,
+human error that could result in hard to detect/fix problems. Again,
 it also means that the total deployment time is reduced, which means a
 lower lead time.
 
@@ -287,19 +287,19 @@ persona or randomness.
 
 Implement feature toggles (a.k.a. feature flags): In this pattern,
 there is only one production environment at a time. However, there are
-some conditional statements in the application code that show variant
-of a features based on the state of the toggle for a given user (or
+some conditional statements in the application code that show variants
+of a feature based on the state of the toggle for a given user (or
 group of users).
 
 *Why*
 
-Decoupling deployment from releases allows new code and feature to live
-on real production environments. It allows another layer of confidence
+Decoupling deployment from releases allows new code and features to live
+in real production environments. It allows another layer of confidence
 and safety when releasing new features. For example, if a problem is
 detected during a canary deployment at 1%, it means that probably at
 most 1% of the users will be affected by this defect. The problem can
 be fixed earlier, without any major disruption. Furthermore, patterns
-like the feature toggles allows easy rollbacks, or gracefully degrade
+like the feature toggles allow easy rollbacks, or gracefully degrade
 performance if problems arise (e.g. Netflix showing static
 recommendations instead of personalized recommendations).
 
@@ -326,18 +326,18 @@ many different tools.
 #### Create application logging telemetry that helps production
 *What*
 
-Logging telemetry is events that contains some interesting piece of
+Logging telemetry is events that contain some interesting pieces of
 information along with a timestamp. There are many levels of logging:
 
 Debug: Could be anything that happens in the system. Most of the
-time, this logging helps debugging system issues.
+time, this logging helps to debug system issues.
 
 Info: Actions that are either user-driven or system specific.
 
 Warn: Conditions that could potentially become error, like a database call that takes longer than normal.
 
 Error: Information mostly about internal failures, like API call
-failures or internal errors
+failures or internal errors.
 
 Fatal: Information that tells us that the program must terminate.
 
@@ -347,7 +347,7 @@ Fatal: Information that tells us that the program must terminate.
 Having different levels of logging helps to detect at a glance what is
 happening throughout the system. It also helps to add some context on
 why certain events are happening (e.g. what logging event preceded an
-error logging message). It also allows to have an alerting system in
+error logging message). It also allows having an alerting system in
 place that depends on certain logging levels, to be able to respond
 accordingly as fast as possible to resolve the problem.
 
@@ -363,7 +363,7 @@ we can answer during problem resolution include
 actually occurring?
 - What are the relevant events and changes in our application and
 environments that could have contributed to the problem?
-- What hypotheses can we formulate to confim the link between the
+- What hypotheses can we formulate to confirm the link between the
 proposed causes and effects?
 - How can we prove which of these hypotheses are correct and
 successfully effect a fix?
@@ -373,14 +373,14 @@ successfully effect a fix?
 The main benefit of using telemetry for problem solving is that it
 results in a much faster mean time to recovery, which is good for the
 customers and the business. Furthermore, since it brings more objective
-data when problems occurs, it encourage a blameless culture around
+data when problems occur, it encourages a blameless culture around
 problems and outages.
 
 
 #### Enable creation of production metrics as part of daily work
 *What*
 
-In order to have all the telemetry necessary to monitor all parts of
+To have all the telemetry necessary to monitor all parts of
 the systems, every contributor should be able to easily and quickly add
 new telemetry around any work done. This can be done by using metrics
 library, like [StatsD](https://github.com/statsd/statsd) (created by
@@ -388,24 +388,24 @@ Etsy).
 
 *Why*
 
-Continously creating telemetry as part of daily work makes sure that
+Continuously creating telemetry as part of daily work makes sure that
 everything that is going to production is monitored. Thus, we can
 maintain a high level of quality.
 
 #### Find and fill any telemetry gaps
 *What*
 
-When the telemetry infrastructe is effectively in place, we can use
-telemetry to monitor as much parts of the system as possible. Example
+When the telemetry infrastructure is effectively in place, we can use
+telemetry to monitor as many parts of the system as possible. Example
 levels are
 
-Business level: number of sales transaction, user signups, etc.
+Business level: number of sales transactions, user signups, etc.
 
 Application level: transaction times, user response times, application
 faults, etc
 
 Infrastructure level (databases, OS, network, etc): web server traffic,
- CPU, memory and disk usage, etc .
+ CPU, memory and disk usage, etc.
 
 Client software level: application errors, API response times, etc.
 
@@ -416,7 +416,7 @@ deployment frequencies, environment status, etc.
 *Why*
 
 Filling those gaps enables the monitoring of the whole system at once.
-It allows us to detect problems almost as soon as they occur, whereever
+It allows us to detect problems almost as soon as they occur, wherever
 they occur, which leads to a faster mean time to recovery.
 
 ### Integrate Hypothesis-Driven Development and A/B Testing into our Daily Work
@@ -445,18 +445,18 @@ and gain some market share.
 *What*
 
 When the business is growing, it becomes difficult to effectively
-manage work dependencies accross teams. Having loosely coupled
-architecture helps diminishing the amount of dependency from one team
+manage work dependencies across teams. Having loosely coupled
+architecture helps to diminish the amount of dependency from one team
 to another. However, it might not be always possible to reduce all
-dependency to the point of not having any. Then, coordination accross
-team is feasible by using chat rooms to announce upcoming changes, or
-by having meeting where people can discuss potential work dependencies.
+dependency to the point of not having any. Then, coordination across
+teams is feasible by using chat rooms to announce upcoming changes, or
+by having meetings where people can discuss potential work dependencies.
 
 *Why*
 
-When multiple teams could potentially have work collision, coordonating
+When multiple teams could potentially have work collision, coordinating
 and scheduling changes decrease the risk of dependency problems and
-limits the amount of work in progress. This helps helps minimizing the
+limits the amount of work in progress. This helps to minimize the
 chances of incidents and increase the deployment lead time.
 
 #### Enable peer review of changes
@@ -464,23 +464,23 @@ chances of incidents and increase the deployment lead time.
 
 Peer review of changes means that the code is reviewed by the
 appropriate subject matter expert before the code is actually
-integrated and deployed. This can be done in a various ways, like
+integrated and deployed. This can be done in various ways, like
 over-the-shoulder review (a developer looks at the code of another one
-as the latter walks through the code), or tool assisted code review
+as the latter walks through the code), or tool-assisted code review
 (like a pull request on GitHub).
 
 *Why*
 
-The main benefits is to review and catch potential issues before the
+The main benefits are to review and catch potential issues before the
 code is integrated. That means that the cost and the time to fix those
-issues are really low. Furthermore, code reviews encourages smaller
+issues are really low. Furthermore, code reviews encourage smaller
 batch size of work, since small changes are easier and faster to review.
 
 
 #### Enable pair programming to improve all our changes
 *What*
 
-Pair programming is having two developers working togheter at a single
+Pair programming is having two developers working together at a single
 computer. One is writing the code (the driver), while the other is
 reviewing the code as it's being written (the navigator). Then,
 developers switch place after a given amount of time, usually after 15
@@ -488,9 +488,9 @@ to 30 minutes.
 
 *Why*
 
-The main benefits of pair programming is having the code reviewed as
+The main benefit of pair programming is having the code reviewed as
 soon as it is created. The navigator, while reviewing the code, could
-coming with new ideas or see potential future problems, all of which
+come with new ideas or see potential future problems, all of which
 could be resolved faster. Furthermore, pair programming enables a
 natural transfer of skills, like sharing techniques or workflows for
 example.
@@ -507,7 +507,7 @@ high level of quality, we must establish a just, learning culture.
 Being just means that we recognized that when human error occurs, it
 isn't caused by a bad human, but rather by design problems in the
 complex system that we created. We must also treat every accident as an
-opportunity to learn on why it occurred, and how we can prevent similar
+opportunity to learn why it occurred, and how we can prevent similarly
 issues in the future
 
 *Why*
@@ -525,13 +525,13 @@ everyone to become better.
 
 A post-mortem meeting is a meeting to focus and learn on the causes of
 a given accident, and on the decision-making processes of the people
-that worked on that accident. People in post-mortem meeting should do
+that worked on that accident. People in a post-mortem meeting should do
 the following:
 
 - Construct a timeline and gather details on failures
 - Empower all engineers to improve safety by allowing them to give
 detailed accounts of their contributions to failures
-- Enable and encourage people who do make mistakes to educate other on
+- Enable and encourage people who do make mistakes to educate others on
 how not to make them in the future
 - Accept that there is always a discretionary space where humans can
 decide to take action or not, and that the judgment of those decisions
@@ -544,9 +544,9 @@ they are followed up.
 The main benefit of scheduling post-mortem meetings is that it allows
 to understand why an accident happens and to work on and record a
 solution that would prevent such accidents from happening in the
-future. Another important aspect of post-mortem is to reinforce a
+future. Another important aspect of post-mortems is to reinforce a
 blameless culture where accidents are an opportunity to learn. Over
-time, this makes the individuals better at preventing accidents, and
+time, this makes the individuals better at preventing accidents and
 increases organizational sharing and learning.
 
 ### Convert Local Discoveries into Global Improvements
