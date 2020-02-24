@@ -500,21 +500,87 @@ example.
 ### Enable and Inject Learning into Daily Work
 
 #### Establish a just, learning culture
+*What*
+
+Having accidents in a software system is almost inevitable. To keep a
+high level of quality, we must establish a just, learning culture.
+Being just means that we recognized that when human error occurs, it
+isn't caused by a bad human, but rather by design problems in the
+complex system that we created. We must also treat every accident as an
+opportunity to learn on why it occurred, and how we can prevent similar
+issues in the future
+
+*Why*
+
+When accidents are viewed with a perspective of learning, it makes
+people feel safe. This means that people are not afraid to share
+details on mistakes that they made, and also are enthusiastic in
+helping the rest of the company avoid the same error in the future.
+Consequently, it allows knowledge to be shared around, which elevates
+everyone to become better.
+
 
 #### Schedule blameless post-mortem meetings after accidents occur
+*What*
 
+A post-mortem meeting is a meeting to focus and learn on the causes of
+a given accident, and on the decision-making processes of the people
+that worked on that accident. People in post-mortem meeting should do
+the following:
 
-### Convert Local Discoveries into Global Improvments
+- Construct a timeline and gather details on failures
+- Empower all engineers to improve safety by allowing them to give
+detailed accounts of their contributions to failures
+- Enable and encourage people who do make mistakes to educate other on
+how not to make them in the future
+- Accept that there is always a discretionary space where humans can
+decide to take action or not, and that the judgment of those decisions
+lies in hindsight
+- Propose countermeasure to prevent similar accidents and ensure that
+they are followed up.
+
+*Why*
+
+The main benefit of scheduling post-mortem meetings is that it allows
+to understand why an accident happens and to work on and record a
+solution that would prevent such accidents from happening in the
+future. Another important aspect of post-mortem is to reinforce a
+blameless culture where accidents are an opportunity to learn. Over
+time, this makes the individuals better at preventing accidents, and
+increases organizational sharing and learning.
+
+### Convert Local Discoveries into Global Improvements
 
 #### Automate standardized processes in software for re-use
+*What*
+
+
+
+*Why*
+
 
 #### Build reusable operations user stories into development
+*What*
+
+
+
+*Why*
+
 
 ### Reserve Time to Create Organizational Learning and Improvement
 
 #### Institutionalize rituals to pay down technical debt
+*What*
+
+
+
+*Why*
+
 
 #### Enable everyone to teach and learn
+*What*
 
 
+
+*Why*
 
