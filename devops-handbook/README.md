@@ -554,17 +554,22 @@ increases organizational sharing and learning.
 #### Automate standardized processes in software for re-use
 *What*
 
-
+When a new software entity (infrastructure, process, etc) is created,
+sometimes the hows and whys related to that process are hard to find,
+or simply lost. To ensure that relevant information stays around, we
+need to transform these documented standards and process into an
+executable form that makes them easier to reuse. For example, we could
+store all the tools and processes in a central repository, or even make
+an executable program that wraps everything neatly in a central tool
+that could be used by everyone.
 
 *Why*
 
-
-#### Build reusable operations user stories into development
-*What*
-
-
-
-*Why*
+We make sure that well designed tools and processed are widely
+available and adopted by everyone. It means that people don't have to
+reinvent the wheel everytime when trying to design something, which
+saves some time. It also means that the errors (hopefully) won't get
+repeated.
 
 
 ### Reserve Time to Create Organizational Learning and Improvement
@@ -572,15 +577,17 @@ increases organizational sharing and learning.
 #### Institutionalize rituals to pay down technical debt
 *What*
 
-
+Technical debt can be caused by many factors like to compensate for a lack of time cause by a scheduled released, or because the system is growing in an unexpected way. Independant of the cause, it is important to keep technical debt to a minimum. One way of doing so is to schedule recurring improvement blitzes, where teams self-organize and fix problems that are impeding them in doing their work. It could be a problematic area of the code, environment, architecture, tooling, etc.
 
 *Why*
 
+Creating improvement blitzes has many benefits. The most obvious one is that every part of the system could get improved. It's the perfect moment to focus on non-functional aspects (like performance, stability or security) as well, which is really beneficial for the overall health of the business. Furthermore, it empowers people to identify and fix problems they encounter everyday, which promotes a culture of high quality and continual improvements.
 
 #### Enable everyone to teach and learn
 *What*
 
-
+The simplest way to encourage learning and teaching is to dedicate organizational time to it. Learning could be done by taking classes, reading books, or attending a conference and/or workshops. Teaching is also an important part of the equation and can be done via mentoring, writing blog post, or making conference presentation for example.
 
 *Why*
 
+Teaching and learning from other in a organization obviously spread the knowledge from and to everyone, which helps the organization to get better on many aspects (software quality, efficiency, morale, etc).
