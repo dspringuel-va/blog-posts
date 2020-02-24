@@ -424,36 +424,76 @@ they occur, which leads to a faster mean time to recovery.
 #### Integrating A/B Testing into our feature testing
 *What*
 
-
+When business level telemetry is in place, it enables us to do some A/B
+testing. A/B testing is showing randomly to a user two versions of
+something (version A or version B), and gather data on how it affects
+the performance of the system. For example, which button style and
+placement leads to the best conversion rate for example.
 
 *Why*
 
+A/B testing enables continuous and fast feedback cycles. It is one
+quick way to do user research. Consequently, the more we do user
+research quickly, the faster the system will improve over time. That
+quick feedback cycle is also very good when the given industry is
+fast-paced, since it allows the business to gain an edge on competitors
+and gain some market share.
 
 ### Create Review and Coordination Processes to Increase Quality of our Current Work
 
 #### Enable coordination and scheduling of changes
 *What*
 
-
+When the business is growing, it becomes difficult to effectively
+manage work dependencies accross teams. Having loosely coupled
+architecture helps diminishing the amount of dependency from one team
+to another. However, it might not be always possible to reduce all
+dependency to the point of not having any. Then, coordination accross
+team is feasible by using chat rooms to announce upcoming changes, or
+by having meeting where people can discuss potential work dependencies.
 
 *Why*
 
+When multiple teams could potentially have work collision, coordonating
+and scheduling changes decrease the risk of dependency problems and
+limits the amount of work in progress. This helps helps minimizing the
+chances of incidents and increase the deployment lead time.
 
 #### Enable peer review of changes
 *What*
 
-
+Peer review of changes means that the code is reviewed by the
+appropriate subject matter expert before the code is actually
+integrated and deployed. This can be done in a various ways, like
+over-the-shoulder review (a developer looks at the code of another one
+as the latter walks through the code), or tool assisted code review
+(like a pull request on GitHub).
 
 *Why*
+
+The main benefits is to review and catch potential issues before the
+code is integrated. That means that the cost and the time to fix those
+issues are really low. Furthermore, code reviews encourages smaller
+batch size of work, since small changes are easier and faster to review.
 
 
 #### Enable pair programming to improve all our changes
 *What*
 
-
+Pair programming is having two developers working togheter at a single
+computer. One is writing the code (the driver), while the other is
+reviewing the code as it's being written (the navigator). Then,
+developers switch place after a given amount of time, usually after 15
+to 30 minutes.
 
 *Why*
 
+The main benefits of pair programming is having the code reviewed as
+soon as it is created. The navigator, while reviewing the code, could
+coming with new ideas or see potential future problems, all of which
+could be resolved faster. Furthermore, pair programming enables a
+natural transfer of skills, like sharing techniques or workflows for
+example.
 
 ## The Third Way: The Technical Practices of Continual Learning and Experimentation
 
