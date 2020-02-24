@@ -44,7 +44,7 @@ A value stream is a concept coming from the Lean movement. It is the
 sequence of activities to take a customer/business
 request and delivering the value.
 
-In software development, the value stream looks ressembles to something
+In software development, the value stream looks resembles to something
 like a product owner captures the next most important business idea to
 be developed, transforms it into user stories, which are then picked up
 by developers, implemented, integrated, and delivered to the rest of
@@ -70,7 +70,7 @@ deployment flow.
 
 The last way defines the **technical practices of continual learning
 and experimentations**. Learning from success and failures is crucial
-to improving the quality of work. Furthermore, when the flow and the
+to improve the quality of work. Furthermore, when the flow and the
 feedback loop are short and strong, it is easier and safer to
 experiment and take calculated risks. Ultimately, fast learning
 and experimentations help do outdo the competition and win in the
@@ -86,7 +86,7 @@ marketplace.
 Contrary to manufacturing, work in software development is invisible by
 nature. However, it can be made visible by creating physical or virtual
 board. On that board, all the steps of the value stream should be
-present as columns. Then, each work piece resides on the corresponding
+present as columns. Then, each workpiece resides on the corresponding
 column representing its state in the stream.
 
 *Why*
@@ -101,12 +101,12 @@ placed on the last column.
 *What*
 
 Limiting the work in progress means to establish and enforce a limit on
-the number of work cards in each of the work column.
+the number of work cards in each of the work columns.
 
 *Why*
 
 Limiting the work in progress helps reduce the lead time of the work by
-focusing on work that already has been started. Furthermore, it helps
+focusing on work that has already started. Furthermore, it helps
 to see problems in the value stream, e.g. where in the stream does the
 work get stuck, and why.
 
@@ -114,7 +114,7 @@ work get stuck, and why.
 *What*
 
 Reducing batch size means to have small units of work that can go
-through all the stream at once and be delivered independently.
+through all the streams at once and be delivered independently.
 
 *Why*
 
@@ -212,7 +212,7 @@ new code works as intended and that it *should* not introduce problems
 with the existing code. Furthermore, having multiple kinds of tests
 increases that confidence to many levels in the system, like the
 business logic works and is preserved, and that the integration between
-multiple services remains. Furthermore, having automated tests
+multiple services remain. Furthermore, having automated tests
 reduce the amount of manual test to be done, which helps to reduce the
 deployment lead time.
 
@@ -334,7 +334,7 @@ time, this logging helps to debug system issues.
 
 Info: Actions that are either user-driven or system specific.
 
-Warn: Conditions that could potentially become error, like a database call that takes longer than normal.
+Warn: Conditions that could potentially become errors, like a database call that takes longer than normal.
 
 Error: Information mostly about internal failures, like API call
 failures or internal errors.
@@ -567,7 +567,7 @@ that could be used by everyone.
 
 We make sure that well designed tools and processed are widely
 available and adopted by everyone. It means that people don't have to
-reinvent the wheel everytime when trying to design something, which
+reinvent the wheel every time when trying to design something, which
 saves some time. It also means that the errors (hopefully) won't get
 repeated.
 
@@ -577,17 +577,36 @@ repeated.
 #### Institutionalize rituals to pay down technical debt
 *What*
 
-Technical debt can be caused by many factors like to compensate for a lack of time cause by a scheduled released, or because the system is growing in an unexpected way. Independant of the cause, it is important to keep technical debt to a minimum. One way of doing so is to schedule recurring improvement blitzes, where teams self-organize and fix problems that are impeding them in doing their work. It could be a problematic area of the code, environment, architecture, tooling, etc.
+Technical debt can be caused by many factors like to compensate for a
+lack of time caused by a scheduled release, or because the system is
+growing in an unexpected way. Independent of the cause, it is
+important to keep technical debt to a minimum. One way of doing so is
+to schedule recurring improvement blitzes, where teams self-organize
+and fix problems that are impeding them in doing their work. It could
+be a problematic area of the code, environment, architecture, tooling,
+etc.
 
 *Why*
 
-Creating improvement blitzes has many benefits. The most obvious one is that every part of the system could get improved. It's the perfect moment to focus on non-functional aspects (like performance, stability or security) as well, which is really beneficial for the overall health of the business. Furthermore, it empowers people to identify and fix problems they encounter everyday, which promotes a culture of high quality and continual improvements.
+Creating improvement blitzes has many benefits. The most obvious one
+is that every part of the system could get improved. It's the perfect
+moment to focus on non-functional aspects (like performance, stability
+or security) as well, which is really beneficial for the overall
+health of the business. Furthermore, it empowers people to identify
+and fix problems they encounter everyday, which promotes a culture of
+high quality and continual improvements.
 
 #### Enable everyone to teach and learn
 *What*
 
-The simplest way to encourage learning and teaching is to dedicate organizational time to it. Learning could be done by taking classes, reading books, or attending a conference and/or workshops. Teaching is also an important part of the equation and can be done via mentoring, writing blog post, or making conference presentation for example.
+The simplest way to encourage learning and teaching is to dedicate
+organizational time to it. Learning could be done by taking classes,
+reading books, or attending a conference and/or workshops. Teaching is
+also an important part of the equation and can be done via mentoring,
+writing blog posts, or making conference presentations for example.
 
 *Why*
 
-Teaching and learning from other in a organization obviously spread the knowledge from and to everyone, which helps the organization to get better on many aspects (software quality, efficiency, morale, etc).
+Teaching and learning from others in an organization obviously spread
+the knowledge from and to everyone, which helps the organization to
+get better on many aspects (software quality, efficiency, morale, etc).
