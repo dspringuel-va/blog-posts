@@ -31,12 +31,11 @@ decided to write the DevOps handbook, where its purpose is "... to give
 you the theory, principles, and practices to successfully start your
 DevOps initiative and achieve your desired outcomes".
 
-
-![DevOpsHandbook](https://images-na.ssl-images-amazon.com/images/I/81B4f4soNAL.jpg)
-
 This post is a summary of The Three Ways of DevOps, as defined in that
 handbook. It is meant as a rough introduction to some DevOps practices,
 and why they matter.
+
+![DevOpsHandbook](https://images-na.ssl-images-amazon.com/images/I/81B4f4soNAL.jpg)
 
 ## The Three Ways
 
@@ -334,7 +333,8 @@ time, this logging helps to debug system issues.
 
 Info: Actions that are either user-driven or system specific.
 
-Warn: Conditions that could potentially become errors, like a database call that takes longer than normal.
+Warn: Conditions that could potentially become errors, like a database call
+that takes longer than normal.
 
 Error: Information mostly about internal failures, like API call
 failures or internal errors.
