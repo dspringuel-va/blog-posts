@@ -1,8 +1,16 @@
-## The First Way: The Technical Practices of Flow
+# DevOps 101 | The First Way: The Technical Practices of Flow
 
-### Basics
+This is the part 2 of 4 of this DevOps 101 series.
 
-#### Make our work visible
+The first way defines **technical practices of flow**.
+Those practices are meant to ship code in a
+fast, confident way, to have a maximal flow. A great flow means
+that the customers gets what they want earlier, which is good for the
+business.
+
+## Basics
+
+### Make our work visible
 *What*
 
 Contrary to manufacturing, work in software development is invisible by
@@ -19,7 +27,7 @@ understand at a glance. Finally, it's easier to calculate the lead
 time, which is the time it is put on the board up to the time it is
 placed on the last column.
 
-#### Limit the work in progress
+### Limit the work in progress
 *What*
 
 Limiting the work in progress means to establish and enforce a limit on
@@ -30,9 +38,9 @@ the number of work cards in each of the work columns.
 Limiting the work in progress helps reduce the lead time of the work by
 focusing on work that has already started. Furthermore, it helps
 to see problems in the value stream, e.g. where in the stream does the
-work get stuck, and why.
+work gets stuck, and why.
 
-#### Reduce batch size
+### Reduce batch size
 *What*
 
 Reducing batch size means to have small units of work that can go
@@ -45,9 +53,9 @@ Furthermore, it decreases the lead time, since the amount of work is
 smaller. That allows the customers to see value faster.
 
 
-### Create the foundations of Our Deployment Pipeline
+## Create the foundations of Our Deployment Pipeline
 
-#### Enable on-demand creation of dev, test, and production environments
+### Enable on-demand creation of dev, test, and production environments
 *What*
 
 Ideally, developers should develop their code locally in the exact same
@@ -56,21 +64,21 @@ production environment consists of, it is better to create a build
 mechanism to create in minutes any environment on demand. This can be
 achieve in many ways, such as using virtual images and containers (like
 Docker), or using infrastructure as code configuration management tools
-(like Puppet, Chef, etc) for example.
+(like Puppet, Chef, etc).
 
 *Why*
 
 Having a separate yet identical environment, a developer can quickly
-and safely develop new code, can reproduce, diagnose and fix defects,
+and safely develop new code, can reproduce, diagnose and fix defects, and
 can experiments on infrastructure code that creates the environment.
 
 
-#### Make infrastructure easier to rebuild than to repair
+### Make infrastructure easier to rebuild than to repair
 *What*
 
 The key to having an infrastructure easy to build is to have all
 configuration in version control. Thus, it becomes the source of truth
-for the automated build mechanism to replicate every configuration
+for the automated build mechanisms to replicate every configuration
 everywhere.
 
 *Why*
@@ -82,8 +90,7 @@ production environment, it'll be lost when a new environment is created
 Thus, no variance can creep in production, which allows a more
 stable and controlled environment.
 
-
-#### Modify our definition of done to include running in a production-like environment
+### Modify our definition of done to include running in a production-like environment
 *What*
 
 Before some work can be consider done, we must have integrated, tested,
@@ -97,9 +104,9 @@ early, problems are much easier and quicker to fix and cause no
 disruption to customers. Furthermore, it increases the confidence in
 delivering quality work to production.
 
-### Enable Fast and Reliable Automated Testing
+## Enable Fast and Reliable Automated Testing
 
-#### Build a fast and reliable automated validation test suite
+### Build a fast and reliable automated validation test suite
 *What*
 
 To have a high level of confidence about the work done, it should be
@@ -130,16 +137,16 @@ earlier in the process.
 *Why*
 
 Having tests, in general, make sure that we have the confidence that the
-new code works as intended and that it *should* not introduce problems
-with the existing code. Furthermore, having multiple kinds of tests
+new code works as intended and that it *should not* introduce problems
+with the existing code. Also, having multiple kinds of tests
 increases that confidence to many levels in the system, like the
 business logic works and is preserved, and that the integration between
 multiple services remain. Furthermore, having automated tests
 reduce the amount of manual test to be done, which helps to reduce the
-deployment lead time.
+deployment lead time and is less error-prone.
 
 
-#### Pull our Andon Cord when the deployment pipeline breaks
+### Pull our Andon Cord when the deployment pipeline breaks
 *What*
 
 The Andon Cord is a cord that exists on Toyota manufacturing lines.
@@ -163,9 +170,9 @@ why it failed and how it was resolved, which empowers everyone to
 potentially fix it in the future.
 
 
-### Automate and Enable Low-Risk Releases
+## Automate and Enable Low-Risk Releases
 
-#### Automate our deployment process
+### Automate our deployment process
 *What*
 
 The deployment process should be as automated as possible. In an ideal
@@ -186,7 +193,7 @@ human error that could result in hard to detect/fix problems. Again,
 it also means that the total deployment time is reduced, which means a
 lower lead time.
 
-#### Decouple deployments from releases
+### Decouple deployments from releases
 *What*
 
 In this context, a deployment is the installation of a given version of
@@ -220,7 +227,7 @@ in real production environments. It allows another layer of confidence
 and safety when releasing new features. For example, if a problem is
 detected during a canary deployment at 1%, it means that probably at
 most 1% of the users will be affected by this defect. The problem can
-be fixed earlier, without any major disruption. Furthermore, patterns
+be fixed earlier, without any major disruptions. Furthermore, patterns
 like the feature toggles allow easy rollbacks, or gracefully degrade
 performance if problems arise (e.g. Netflix showing static
 recommendations instead of personalized recommendations).

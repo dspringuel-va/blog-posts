@@ -1,8 +1,18 @@
-## The Third Way: The Technical Practices of Continual Learning and Experimentation
+# DevOps 101 | The Third Way: The Technical Practices of Continual Learning and Experimentation
 
-### Enable and Inject Learning into Daily Work
+This is the part 4 of 4 of this DevOps 101 series.
 
-#### Establish a just, learning culture
+The third way defines the **technical practices of continual learning
+and experimentations**. Learning from successes and failures is crucial
+to improve the quality of work. Furthermore, when the flow and the
+feedback loop are short and strong, it is easier and safer to
+experiment and take calculated risks. Ultimately, fast learning
+and experimentations help to outdo the competition and win in the
+marketplace.
+
+## Enable and Inject Learning into Daily Work
+
+### Establish a just, learning culture
 *What*
 
 Having accidents in a software system is almost inevitable. To keep a
@@ -23,7 +33,7 @@ Consequently, it allows knowledge to be shared around, which elevates
 everyone to become better.
 
 
-#### Schedule blameless post-mortem meetings after accidents occur
+### Schedule blameless post-mortem meetings after accidents occur
 *What*
 
 A post-mortem meeting is a meeting to focus and learn on the causes of
@@ -39,22 +49,22 @@ how not to make them in the future
 - Accept that there is always a discretionary space where humans can
 decide to take action or not, and that the judgment of those decisions
 lies in hindsight
-- Propose countermeasure to prevent similar accidents and ensure that
+- Propose countermeasures to prevent similar accidents and ensure that
 they are followed up.
 
 *Why*
 
 The main benefit of scheduling post-mortem meetings is that it allows
-to understand why an accident happens and to work on and record a
+to understand why an accident happened and to work on and record a
 solution that would prevent such accidents from happening in the
 future. Another important aspect of post-mortems is to reinforce a
 blameless culture where accidents are an opportunity to learn. Over
 time, this makes the individuals better at preventing accidents and
 increases organizational sharing and learning.
 
-### Convert Local Discoveries into Global Improvements
+## Convert Local Discoveries into Global Improvements
 
-#### Automate standardized processes in software for re-use
+### Automate standardized processes in software for re-use
 *What*
 
 When a new software entity (infrastructure, process, etc) is created,
@@ -75,12 +85,12 @@ saves some time. It also means that the errors (hopefully) won't get
 repeated.
 
 
-### Reserve Time to Create Organizational Learning and Improvement
+## Reserve Time to Create Organizational Learning and Improvement
 
-#### Institutionalize rituals to pay down technical debt
+### Institutionalize rituals to pay down technical debt
 *What*
 
-Technical debt can be caused by many factors like to compensate for a
+Technical debt can be caused by many factors like compensating for a
 lack of time caused by a scheduled release, or because the system is
 growing in an unexpected way. Independent of the cause, it is
 important to keep technical debt to a minimum. One way of doing so is
@@ -99,7 +109,7 @@ health of the business. Furthermore, it empowers people to identify
 and fix problems they encounter everyday, which promotes a culture of
 high quality and continual improvements.
 
-#### Enable everyone to teach and learn
+### Enable everyone to teach and learn
 *What*
 
 The simplest way to encourage learning and teaching is to dedicate

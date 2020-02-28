@@ -1,8 +1,16 @@
-## The Second Way: The Technical Practices of Feedback
+# DevOps 101 | The Second Way: The Technical Practices of Feedback
 
-### Create Telemetry to Enable Seeing and Solving Problems
+This is the part 3 of 4 of this DevOps 101 series.
 
-#### Create our centralized telemetry infrastructure
+The second way defines the **technical practices of feedback**. Once a
+good flow is established, practices of feedback from all steps of the
+stream will help to improve the quality of the work delivered, improve
+the time to detect and recover from problems and improve even more the
+deployment flow.
+
+## Create Telemetry to Enable Seeing and Solving Problems
+
+### Create our centralized telemetry infrastructure
 *What*
 
 Every layer of the architecture (business logic, application,
@@ -18,7 +26,7 @@ organize and manage. Also, it makes easy for anyone interested in the
 system to watch any telemetry of their interest without having to use
 many different tools.
 
-#### Create application logging telemetry that helps production
+### Create application logging telemetry that helps production
 *What*
 
 Logging telemetry is events that contain some interesting pieces of
@@ -29,8 +37,8 @@ time, this logging helps to debug system issues.
 
 Info: Actions that are either user-driven or system specific.
 
-Warn: Conditions that could potentially become errors, like a database call
-that takes longer than normal.
+Warn: Conditions that could potentially become errors, like a database
+call that takes longer than normal.
 
 Error: Information mostly about internal failures, like API call
 failures or internal errors.
@@ -47,7 +55,7 @@ error logging message). It also allows having an alerting system in
 place that depends on certain logging levels, to be able to respond
 accordingly as fast as possible to resolve the problem.
 
-#### Use telemetry to guide problem solving
+### Use telemetry to guide problem solving
 *What*
 
 Use telemetry to resolve problems that are happening brings some
@@ -73,7 +81,7 @@ data when problems occur, it encourages a blameless culture around
 problems and outages.
 
 
-#### Enable creation of production metrics as part of daily work
+### Enable creation of production metrics as part of daily work
 *What*
 
 To have all the telemetry necessary to monitor all parts of
@@ -88,7 +96,7 @@ Continuously creating telemetry as part of daily work makes sure that
 everything that is going to production is monitored. Thus, we can
 maintain a high level of quality.
 
-#### Find and fill any telemetry gaps
+### Find and fill any telemetry gaps
 *What*
 
 When the telemetry infrastructure is effectively in place, we can use
@@ -101,7 +109,7 @@ Application level: transaction times, user response times, application
 faults, etc
 
 Infrastructure level (databases, OS, network, etc): web server traffic,
- CPU, memory and disk usage, etc.
+CPU, memory and disk usage, etc.
 
 Client software level: application errors, API response times, etc.
 
@@ -115,9 +123,9 @@ Filling those gaps enables the monitoring of the whole system at once.
 It allows us to detect problems almost as soon as they occur, wherever
 they occur, which leads to a faster mean time to recovery.
 
-### Integrate Hypothesis-Driven Development and A/B Testing into our Daily Work
+## Integrate Hypothesis-Driven Development and A/B Testing into our Daily Work
 
-#### Integrating A/B Testing into our feature testing
+### Integrating A/B Testing into our feature testing
 *What*
 
 When business level telemetry is in place, it enables us to do some A/B
@@ -135,16 +143,16 @@ quick feedback cycle is also very good when the given industry is
 fast-paced, since it allows the business to gain an edge on competitors
 and gain some market share.
 
-### Create Review and Coordination Processes to Increase Quality of our Current Work
+## Create Review and Coordination Processes to Increase Quality of our Current Work
 
-#### Enable coordination and scheduling of changes
+### Enable coordination and scheduling of changes
 *What*
 
 When the business is growing, it becomes difficult to effectively
 manage work dependencies across teams. Having loosely coupled
 architecture helps to diminish the amount of dependency from one team
 to another. However, it might not be always possible to reduce all
-dependency to the point of not having any. Then, coordination across
+dependencies to the point of not having any. Then, coordination across
 teams is feasible by using chat rooms to announce upcoming changes, or
 by having meetings where people can discuss potential work dependencies.
 
@@ -153,9 +161,9 @@ by having meetings where people can discuss potential work dependencies.
 When multiple teams could potentially have work collision, coordinating
 and scheduling changes decrease the risk of dependency problems and
 limits the amount of work in progress. This helps to minimize the
-chances of incidents and increase the deployment lead time.
+chances of incidents and decreases the deployment lead time.
 
-#### Enable peer review of changes
+### Enable peer review of changes
 *What*
 
 Peer review of changes means that the code is reviewed by the
@@ -173,7 +181,7 @@ issues are really low. Furthermore, code reviews encourage smaller
 batch size of work, since small changes are easier and faster to review.
 
 
-#### Enable pair programming to improve all our changes
+### Enable pair programming to improve all our changes
 *What*
 
 Pair programming is having two developers working together at a single
@@ -188,5 +196,4 @@ The main benefit of pair programming is having the code reviewed as
 soon as it is created. The navigator, while reviewing the code, could
 come with new ideas or see potential future problems, all of which
 could be resolved faster. Furthermore, pair programming enables a
-natural transfer of skills, like sharing techniques or workflows for
-example.
+natural transfer of skills, like sharing techniques or workflows.
